@@ -31,31 +31,19 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item"><a class="nav-link" href="#">Explore</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Categories</a></li>
                                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Platform</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Special Offers</a></li>
-                                </ul>
+                                    </ul>
                             </div>
                         </div>
                     </nav>
                 </div>
                 <div class="col-md-3 d-flex align-items-center justify-content-end">
-                    <a href="#" class="me-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-person" viewBox="0 0 16 16">
-                            <path
-                                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.289 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-                        </svg>
-                        Profile
-                    </a>
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <a href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-cart" viewBox="0 0 16 16">
                             <path
-                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l13.136.883L14.082 12H4.918l-.964-5.351z" />
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5z" />
                             <path fill-rule="evenodd"
                                 d="M5.5 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1 1a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm9.5-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1 1a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" />
                         </svg>
@@ -67,7 +55,7 @@
     </header>
 
     <main class="container my-4">
-        <section id="home" class="carousel">
+        <section id="home" class="carousel-and-preview">
             <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -98,93 +86,141 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </section>
 
-        <section id="featured" class="featured-games">
-            <h2>Featured Games</h2>
-            <div class="row row-cols-1 row-cols-md-5 g-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="placeholder.png" class="card-img-top" alt="Game 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Game 1</h5>
-                            <p class="card-text">Short description</p>
+            <div id="featured" class="featured-games">
+                <h2>Featured Games (Latest 10)</h2>
+                <div class="row row-cols-1 row-cols-md-5 g-4">
+                    <div class="col">
+                        <div class="card">
+                            <img src="placeholder.png" class="card-img-top" alt="Game 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Game 1</h5>
+                                <p class="card-text">Short description</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="placeholder.png" class="card-img-top" alt="Game 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Game 2</h5>
-                            <p class="card-text">Short description</p>
+                    <div class="col">
+                        <div class="card">
+                            <img src="placeholder.png" class="card-img-top" alt="Game 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Game 2</h5>
+                                <p class="card-text">Short description</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
+                    </div>
+            </div>
         </section>
-
-        <section id="auth" class="auth-forms">
-            <div id="signin-form">
-                <h2>Sign In to GameStore</h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Username or email address:</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign in</button>
-                    <div class="mt-2">
-                        <small><a href="#">Forgot your password?</a></small> | <small><a href="#">Create an account</a></small>
-                    </div>
-                </form>
-            </div>
-
-            <div id="signup-form" style="display: none;">
-                <h2>Create your free account</h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="signup-email" class="form-label">Username or email address</label>
-                        <input type="email" class="form-control" id="signup-email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="signup-password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="signup-password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="signup-username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="signup-username">
-                    </div>
-                    <div class="mb-3">
-                        <label for="signup-country" class="form-label">Your Country/Region</label>
-                        <select class="form-select" id="signup-country">
-                            <option selected>Choose...</option>
-                            <option value="1">Country 1</option>
-                            <option value="2">Country 2</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Continue</button>
-                    <div class="mt-2">
-                        <small><a href="#">Already have an account? Sign in</a></small>
-                    </div>
-                </form>
-            </div>
-            </section>
 
         <section id="details" class="game-details">
-            <h2>Game Details</h2>
-            </section>
+            <div class="modal fade" id="gameDetailModal" tabindex="-1" aria-labelledby="gameDetailModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="gameDetailModalLabel">Game Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="gameTrailerCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="placeholder.png" class="d-block w-100" alt="Game Trailer">
+                                            </div>
+                                            </div>
+                                        <button class="carousel-control-prev" type="button"
+                                            data-bs-target="#gameTrailerCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                            data-bs-target="#gameTrailerCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                    <div class="gameplay-images">
+                                        <img src="placeholder.png" alt="Gameplay 1">
+                                        <img src="placeholder.png" alt="Gameplay 2">
+                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h2 id="gameName">Name of the Game</h2>
+                                    <p id="gameDescription">Lorem ipsum dolor sit amet...</p>
+                                    <div class="rating">
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9734;</span>
+                                    </div>
+                                    <div class="reviews">
+                                        <div class="review">
+                                            <p class="review-text">Lorem ipsum dolor sit amet...</p>
+                                            <p class="reviewer">User Name</p>
+                                        </div>
+                                        </div>
+                                    <button class="btn btn-primary" id="purchaseButton">Purchase Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="profile" class="user-profile">
-            <h2>Edit Your Profile</h2>
-            </section>
+        <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1"
+            aria-labelledby="purchaseConfirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="purchaseConfirmationModalLabel">Purchase Confirmation</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Purchase successfully completed!</p>
+                        <p>The keys for the purchased game(s) have been sent to the corresponding email address.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <section id="admin" class="admin-panel">
-            <h2>Admin Panel</h2>
-            </section>
+        <section id="review" class="review-section">
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel">Leave a Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="reviewForm">
+                                <div class="mb-3">
+                                    <label for="reviewText" class="form-label">Your Review:</label>
+                                    <textarea class="form-control" id="reviewText" rows="3"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="reviewRating" class="form-label">Rating:</label>
+                                    <select class="form-select" id="reviewRating">
+                                        <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                                        <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
+                                        <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
+                                        <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
+                                        <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Review</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="bg-dark text-light text-center py-3">
