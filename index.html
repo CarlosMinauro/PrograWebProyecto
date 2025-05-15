@@ -1,392 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameStore</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <!-- ============================================================================== -->
-    <!-- BLOQUE HEADER: Contiene Logo, Navegación, Búsqueda y Carrito -->
-    <!-- ============================================================================== -->
-    <header class="bg-light py-3">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-3">
-                    <h1 class="logo">Game Store</h1>
-                    <!--
-                        ******************************************************************************
-                        COMENTARIO SOBRE REQUERIMIENTOS DE AUTENTICACIÓN (1, 2, 3, 4)
-                        ******************************************************************************
-                        Esta sección del encabezado es donde típicamente se colocarían los controles
-                        (botones/enlaces) para las funcionalidades de autenticación.
-                        El HTML actual es una base; los formularios y la lógica detallada
-                        se construirían en modales o páginas separadas.
-
-                        --- REQUERIMIENTO 1: Iniciar Sesión ---
-                        "Como usuario, quiero iniciar sesión en la aplicación con mi correo
-                        electrónico y contraseña para acceder a mi información personal de manera segura."
-                        (Implementación: Un formulario de login, no visible en este esqueleto HTML).
-
-                        --- REQUERIMIENTO 2: Registrarse ---
-                        "Como usuario, quiero poder registrarme en la aplicacion proporcionando mi
-                        nombre, correo electronico y contraseña para crear una cuenta."
-                        (Implementación: Un formulario de registro, no visible en este esqueleto HTML).
-
-                        --- REQUERIMIENTO 3: Confirmación de Correo Post-Registro ---
-                        "Como usuario, al registrarme deberé recibir un mensaje de correo para
-                        habilitar el ingreso."
-                        (Implementación: La UI informaría al usuario de este paso; el envío es backend).
-
-                        --- REQUERIMIENTO 4: Cambiar Contraseña Olvidada ---
-                        "Como usuario, si olvide mi contraseña debo poder cambiarla desde el log in."
-                        (Implementación: Un enlace en el formulario de login llevaría a esta funcionalidad).
-                        ******************************************************************************
-                    -->
-                </div>
-                <div class="col-md-6">
-                    <nav class="navbar navbar-expand-md navbar-light">
-                        <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="collapse navbar-collapse" id="navbarNav">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                                    <!--
-                                        ******************************************************************************
-                                        COMENTARIO SOBRE NAVEGACIÓN A SECCIONES DEL CATÁLOGO (Req. 6, 7, 8)
-                                        ******************************************************************************
-                                        Aquí se añadirían enlaces para navegar a diferentes vistas de la tienda.
-
-                                        --- REQUERIMIENTO 6 (Navegación al catálogo completo): ---
-                                        "Como usuario, debo poder ver un catalogo de juegos que me permita filtrar..."
-                                        (Implementación: Un enlace "Catálogo" que dirija a una página con filtros).
-
-                                        --- REQUERIMIENTO 7: Ver Juegos Más Vendidos ---
-                                        "Como usuario, debo poder ver una lista con los juegos mas vendidos."
-                                        (Implementación: Un enlace "Más Vendidos").
-
-                                        --- REQUERIMIENTO 8: Ver Juegos Mejor Valorados ---
-                                        "Como usuario, debo poder ver una lista con los juegos mejor valorados."
-                                        (Implementación: Un enlace "Mejor Valorados").
-                                        ******************************************************************************
-                                    -->
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="col-md-3 d-flex align-items-center justify-content-end">
-                    <!-- INICIO: Parte del REQUERIMIENTO 6 (Búsqueda como filtro) -->
-                    <!-- "Como usuario, debo poder ver un catalogo de juegos que me permita filtrar los juegos..." -->
-                    <!-- La barra de búsqueda es una forma de filtrar. -->
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <!-- FIN: Parte del REQUERIMIENTO 6 (Búsqueda como filtro) -->
-
-                    <!--
-                        ******************************************************************************
-                        COMENTARIO SOBRE ICONO/ENLACE AL CARRITO DE COMPRAS
-                        (Relacionado con Req. 10 para visualización, Req. 11 y 12 para acciones dentro del carrito)
-                        ******************************************************************************
-                        Este enlace lleva a la página o modal del carrito de compras.
-
-                        --- REQUERIMIENTO 10 (Contexto de visualización): ---
-                        "Como usuario autenticado, debo poder agregar un juego a mi carrito de compras..."
-                        (Los ítems agregados se verían en la página del carrito accedida desde aquí).
-
-                        --- REQUERIMIENTO 11: Eliminar Ítems del Carrito ---
-                        "Como usuario autenticado, deseo eliminar items de mi carrito de compras..."
-                        (Esta acción se realiza en la interfaz del carrito).
-
-                        --- REQUERIMIENTO 12: Realizar Pago ---
-                        "Como usuario autenticado, debo poder realizar el pago de los items que se
-                        encuentren en mi carrito de compras."
-                        (El proceso de pago se inicia desde la interfaz del carrito).
-                        ******************************************************************************
-                    -->
-                    <a href="#"> <!-- Este enlace debe apuntar a la página/modal del carrito -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-cart" viewBox="0 0 16 16">
-                            <path
-                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5z" />
-                            <path fill-rule="evenodd"
-                                d="M5.5 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1 1a2 2 0 1 0 4 0 2 2 0 0 0-4 0zm9.5-1a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1 1a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" />
-                        </svg>
-                        Shopping Cart
-                    </a>
-                </div>
-            </div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uligames Store</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/uligames-store-ico.png"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="images/uligames-store-logo-removebg-preview.png"
+        alt="uligames-store-logo"
+        class="logo"
+      />
+      <h1><a href="" target="_blank">Uligames Store</a></h1>
     </header>
-    <!-- ============================================================================== -->
-    <!-- FIN BLOQUE HEADER -->
-    <!-- ============================================================================== -->
-
-
-    <!-- ============================================================================== -->
-    <!-- BLOQUE MAIN: Contenido Principal de la Página -->
-    <!-- ============================================================================== -->
-    <main class="container my-4">
-
-        <!-- INICIO SECCIÓN: REQUERIMIENTO 5 -->
-        <!-- "Como usuario, al ingresar a la pagina deseo ver una pagina principal con un
-             carrusel de noticias principales y una vista previa al catalogo de la
-             tienda(los 10 juegos mas recientes)." -->
-        <section id="home" class="carousel-and-preview">
-
-            <!-- Parte del REQUERIMIENTO 5: Carrusel de noticias principales -->
-            <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- Item 1 del Carrusel -->
-                    <div class="carousel-item active">
-                        <img src="/imagenes/fc25.avif" class="d-block w-100" alt="Game 1">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Game Title 1</h5>
-                            <p>Game Description 1</p>
-                            <!-- Botón que se relaciona con el REQUERIMIENTO 9 (ver detalles) -->
-                            <button class="btn btn-primary btn-sm details-button" data-game-id="1" data-bs-toggle="modal" data-bs-target="#gameDetailModal">Details</button>
-                        </div>
-                    </div>
-                    <!-- Item 2 del Carrusel -->
-                    <div class="carousel-item">
-                        <img src="/imagenes/f125.avif" class="d-block w-100" alt="Game 2">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Game Title 2</h5>
-                            <p>Game Description 2</p>
-                            <!-- Botón que se relaciona con el REQUERIMIENTO 9 (ver detalles) -->
-                            <button class="btn btn-primary btn-sm details-button" data-game-id="2" data-bs-toggle="modal" data-bs-target="#gameDetailModal">Details</button>
-                        </div>
-                    </div>
-                    <!-- Se pueden añadir más items al carrusel dinámicamente -->
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            <!-- FIN Parte del REQUERIMIENTO 5: Carrusel de noticias principales -->
-
-
-            <!-- Parte del REQUERIMIENTO 5: Vista previa al catalogo (10 juegos más recientes) -->
-            <div id="featured" class="featured-games mt-4">
-                <h2>Featured Games (Latest 10)</h2>
-                <div class="row row-cols-1 row-cols-md-5 g-4">
-                    <!-- Ejemplo de Tarjeta de Juego 1 -->
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="/imagenes/fc25.avif" class="card-img-top" alt="Game 1">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">FIFA 25</h5>
-                                <p class="card-text">Short description</p>
-                                <!-- Botón que se relaciona con el REQUERIMIENTO 9 (ver detalles) -->
-                                <!-- También podría ser un punto de entrada para el REQUERIMIENTO 10 (agregar al carrito) si el flujo es directo. -->
-                                <button class="btn btn-outline-primary btn-sm mt-auto details-button" data-game-id="1" data-bs-toggle="modal" data-bs-target="#gameDetailModal">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Ejemplo de Tarjeta de Juego 2 -->
-                    <div class="col">
-                        <div class="card h-100">
-                            <img src="/imagenes/f125.avif" class="card-img-top" alt="Game 2">
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title">F1 2025</h5>
-                                <p class="card-text">Short description</p>
-                                <!-- Botón que se relaciona con el REQUERIMIENTO 9 (ver detalles) -->
-                                <button class="btn btn-outline-primary btn-sm mt-auto details-button" data-game-id="2" data-bs-toggle="modal" data-bs-target="#gameDetailModal">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Se generarían dinámicamente hasta 10 tarjetas para cumplir con el Req. 5 -->
-                </div>
-            </div>
-            <!-- FIN Parte del REQUERIMIENTO 5: Vista previa al catalogo -->
-
+    <main>
+    <section class="container">
+      <h2>Iniciar sesion en Uligames Store</h2>
+      <form action="">
+        <label for="user-id">Nombre de usuario o Correo electronico.</label>
+        <input type="text" id="user-id" />
+        <label for="user-password">Contraseña:</label>
+        <a href="" target="_blank">¿Olvidaste tu contraseña</a>
+        <input type="password" id="user-password"/>
+        <button type="submit" id="sign-in">Iniciar sesion</button>
+        <section class="sub-container">
+        <span>¿Nuevo en Uligames Store?</span
+        ><a href="" target="_blank">Crear una cuenta</a>
         </section>
-        <!-- FIN SECCIÓN: REQUERIMIENTO 5 -->
-
-
-        <!-- INICIO SECCIÓN: REQUERIMIENTO 9 (Modal de Detalles del Juego) -->
-        <!-- "Como usuario, al hacer click en alguno de los juegos, debo poder ver el
-             detalle del juego , una descripcion, trailer, fotos del mismo, estrellas y
-             resenas del mismo." -->
-        <section id="details" class="game-details">
-            <!-- El modal completo es para el REQUERIMIENTO 9 -->
-            <div class="modal fade" id="gameDetailModal" tabindex="-1" aria-labelledby="gameDetailModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="gameDetailModalLabel">Detalles del Juego</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div id="gameTrailerCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <div class="ratio ratio-16x9">
-                                                    <iframe
-                                                        src="https://www.youtube.com/embed/pBM2xyco_Kg" title="Título del Video para Accesibilidad"
-                                                        frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        referrerpolicy="strict-origin-when-cross-origin"
-                                                        allowfullscreen>
-                                                    </iframe>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="/imagenes/ssfc25.jpg" class="d-block w-100" alt="Game Screenshot 1">
-                                            </div>
-                                            </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#gameTrailerCarousel" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#gameTrailerCarousel" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                    <!-- Parte del REQUERIMIENTO 9: Galería de Imágenes Adicionales -->
-                                    <div class="gameplay-images d-flex flex-wrap">
-                                        <img src="/imagenes/ad1fifa.jpg" alt="Gameplay 1" class="img-thumbnail m-1" style="width: 100px; height: auto;">
-                                        <img src="/imagenes/ad2fifa.jpg" alt="Gameplay 2" class="img-thumbnail m-1" style="width: 100px; height: auto;">
-                                        <!-- Más imágenes aquí -->
-                                    </div>
-                                </div>
-                                <!-- Columna Derecha: Información y Acciones (Req. 9 y Req. 10) -->
-                                <div class="col-md-6">
-                                    <!-- Parte del REQUERIMIENTO 9: Nombre del Juego -->
-                                    <h2 id="gameName">FIFA 25</h2>
-                                    <!-- Parte del REQUERIMIENTO 9: Descripción del Juego -->
-                                    <p id="gameDescription">Lorem ipsum dolor sit amet...</p>
-                                    <!-- Parte del REQUERIMIENTO 9: Estrellas de Valoración -->
-                                    <div class="rating mb-2">
-                                        <span class="star text-warning">&#9733;</span>
-                                        <span class="star text-warning">&#9733;</span>
-                                        <span class="star text-warning">&#9733;</span>
-                                        <span class="star text-warning">&#9733;</span>
-                                        <span class="star text-secondary">&#9734;</span>
-                                    </div>
-                                    <!-- Parte del REQUERIMIENTO 9: Sección de Reseñas -->
-                                    <div class="reviews mb-3">
-                                        <h4>Reviews</h4>
-                                        <div class="review border-bottom pb-2 mb-2">
-                                            <p class="review-text"><i>"Lorem ipsum dolor sit amet..."</i></p>
-                                            <p class="reviewer small text-muted">- User Name</p>
-                                        </div>
-                                        <!-- Más reseñas se cargarían aquí -->
-                                    </div>
-
-                                    <!-- INICIO: REQUERIMIENTO 10 (Botón para Agregar al Carrito) -->
-                                    <!-- "Como usuario autenticado, debo poder agregar un juego a mi carrito
-                                         de compras, seleccionando el boton de comprar." -->
-                                    <button class="btn btn-primary" id="addToCartButton">Add to Cart</button>
-                                    <!-- FIN: REQUERIMIENTO 10 -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- FIN SECCIÓN: REQUERIMIENTO 9 (Modal de Detalles del Juego) -->
-
-
-        <!-- INICIO SECCIÓN: REQUERIMIENTO 13 (Modal de Confirmación de Compra) -->
-        <!-- "Como usuario autenticado, al finalizar una compra debo poder recibir en mi
-             correo eletronico las claves de los juegos que adquiri." -->
-        <!-- Este modal representa la confirmación visual en la UI. El envío de correo es backend. -->
-        <div class="modal fade" id="purchaseConfirmationModal" tabindex="-1" aria-labelledby="purchaseConfirmationModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="purchaseConfirmationModalLabel">Purchase Confirmation</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Purchase successfully completed!</p>
-                        <p>The keys for the purchased game(s) have been sent to your registered email address.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FIN SECCIÓN: REQUERIMIENTO 13 (Modal de Confirmación de Compra) -->
-
-
-        <!--
-            ******************************************************************************
-            SECCIÓN OPCIONAL: Modal para Dejar una Reseña
-            ******************************************************************************
-            Aunque no hay un requerimiento explícito para *escribir* una reseña en la imagen,
-            el REQUERIMIENTO 9 ("...ver [...] resenas del mismo.") a menudo implica la
-            capacidad de los usuarios para también enviar reseñas. Este modal es para eso.
-            Si solo se deben mostrar reseñas existentes, este modal podría no ser necesario.
-            ******************************************************************************
-        -->
-        <section id="review" class="review-section">
-            <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="reviewModalLabel">Leave a Review</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="reviewForm">
-                                <div class="mb-3">
-                                    <label for="reviewText" class="form-label">Your Review:</label>
-                                    <textarea class="form-control" id="reviewText" rows="3" required></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reviewRating" class="form-label">Rating:</label>
-                                    <select class="form-select" id="reviewRating" required>
-                                        <option value="" disabled selected>Select rating</option>
-                                        <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
-                                        <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734;</option>
-                                        <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734;</option>
-                                        <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734;</option>
-                                        <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734;</option>
-                                    </select>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Send Review</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+      </form>
+    </section>
     </main>
-    <!-- ============================================================================== -->
-    <!-- FIN BLOQUE MAIN -->
-    <!-- ============================================================================== -->
-
-
-    <!-- ============================================================================== -->
-    <!-- BLOQUE FOOTER -->
-    <!-- ============================================================================== -->
-    <footer class="bg-dark text-light text-center py-3 mt-auto">
-        <div class="container">
-            <p>&copy; 2024 GameStore. All rights reserved.</p>
-        </div>
-    </footer>
-    <!-- ============================================================================== -->
-    <!-- FIN BLOQUE FOOTER -->
-    <!-- ============================================================================== -->
-
-    <script src="script.js"></script>
-</body>
+  </body>
 </html>
