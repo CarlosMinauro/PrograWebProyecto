@@ -1,0 +1,647 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Hero Section */
+.hero {
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+              url('/images/hero-bg.jpg') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  margin: -2rem -2rem 2rem -2rem;
+  border-radius: 12px 12px 0 0;
+}
+
+.heroContent {
+  max-width: 800px;
+}
+
+.heroContent h1 {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Section Styles */
+.section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.sectionHeader h2 {
+  font-size: 1.75rem;
+  color: #2d3748;
+  margin: 0;
+}
+
+/* Game Grid */
+.gameGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.gameCard {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gameCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gameImage {
+  position: relative;
+  aspect-ratio: 16/9;
+}
+
+.gameImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.platform {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: #e53e3e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.gameInfo {
+  padding: 1rem;
+}
+
+.gameInfo h3 {
+  font-size: 1.125rem;
+  color: #2d3748;
+  margin: 0 0 0.5rem;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: #a0aec0;
+}
+
+.discountPrice {
+  color: #48bb78;
+}
+
+/* Features Section */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  background-color: #f7fafc;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature {
+  text-align: center;
+  padding: 2rem;
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature h3 {
+  font-size: 1.5rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  color: #718096;
+  line-height: 1.6;
+}
+
+/* Newsletter Section */
+.newsletter {
+  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  padding: 4rem 2rem;
+  color: white;
+}
+
+.newsletterContent {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletterContent h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.newsletterContent p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.newsletterForm {
+  display: flex;
+  gap: 1rem;
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.newsletterButton {
+  padding: 0.75rem 1.5rem;
+  background-color: #2d3748;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.newsletterButton:hover {
+  background-color: #1a202c;
+}
+
+/* Buttons */
+.primaryButton,
+.secondaryButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primaryButton {
+  background-color: #4299e1;
+  color: white;
+  border: none;
+}
+
+.primaryButton:hover {
+  background-color: #3182ce;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: #4299e1;
+  border: 1px solid #4299e1;
+}
+
+.secondaryButton:hover {
+  background-color: #ebf8ff;
+  transform: translateY(-2px);
+}
+
+/* News Carousel Section */
+.newsSection {
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  color: #2d3748;
+  margin-bottom: 1.5rem;
+}
+
+.carousel {
+  position: relative;
+  height: 400px;
+  background-color: #f7fafc;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #4a5568;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carouselButton:hover {
+  background-color: white;
+  color: #2d3748;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.prevButton {
+  left: 1rem;
+}
+
+.nextButton {
+  right: 1rem;
+}
+
+.carouselContent {
+  position: relative;
+  height: 100%;
+}
+
+.newsCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.newsCard.active {
+  opacity: 1;
+}
+
+.newsImage {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.newsImage::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.newsInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  color: white;
+  z-index: 1;
+}
+
+.newsDate {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.newsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.newsDescription {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+  max-width: 600px;
+}
+
+.readMore {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #4299e1;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.readMore:hover {
+  background-color: #3182ce;
+}
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cbd5e0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.indicator.active {
+  background-color: #4299e1;
+  transform: scale(1.2);
+}
+
+/* Latest Games Section */
+.gamesSection {
+  margin-bottom: 4rem;
+}
+
+.viewAll {
+  color: #4299e1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.viewAll:hover {
+  color: #3182ce;
+  text-decoration: underline;
+}
+
+.gamesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gameCard {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gameCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gameImage {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.gameInfo {
+  padding: 1rem;
+}
+
+.gameTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+}
+
+.gameMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.gamePlatform {
+  color: #718096;
+}
+
+.gamePrice {
+  font-weight: 600;
+  color: #4299e1;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .heroContent h1 {
+    font-size: 3rem;
+  }
+
+  .heroContent p {
+    font-size: 1.25rem;
+  }
+
+  .carousel {
+    height: 350px;
+  }
+
+  .newsTitle {
+    font-size: 1.25rem;
+  }
+
+  .newsDescription {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1.25rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.5rem;
+  }
+
+  .gameGrid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .newsletterForm {
+    flex-direction: column;
+  }
+
+  .newsletterButton {
+    width: 100%;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+
+  .carousel {
+    height: 300px;
+  }
+
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .newsInfo {
+    padding: 1.5rem;
+  }
+
+  .newsTitle {
+    font-size: 1.125rem;
+  }
+
+  .gamesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    height: 50vh;
+    margin: -1rem -1rem 1rem -1rem;
+    border-radius: 6px 6px 0 0;
+  }
+
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+
+  .sectionHeader h2 {
+    font-size: 1.25rem;
+  }
+
+  .gameGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .carousel {
+    height: 250px;
+  }
+
+  .carouselButton {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .newsInfo {
+    padding: 1rem;
+  }
+
+  .newsTitle {
+    font-size: 1rem;
+  }
+
+  .newsDescription {
+    display: none;
+  }
+
+  .gamesGrid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .gameImage {
+    height: 150px;
+  }
+
+  .gameTitle {
+    font-size: 1rem;
+  }
+} 
