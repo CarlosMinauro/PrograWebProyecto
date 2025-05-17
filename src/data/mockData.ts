@@ -5,7 +5,7 @@ export const mockNews: News[] = [
     id: '1',
     title: 'New PlayStation 5 Games Coming This Month',
     content: 'Discover the exciting lineup of games coming to PlayStation 5 this month, including exclusive titles and major releases.',
-    imageUrl: 'https://example.com/ps5-news.jpg',
+    imageUrl: '/images/news/play5-news.jfif',
     date: '2024-03-15',
     author: 'Game Store Team'
   },
@@ -13,7 +13,7 @@ export const mockNews: News[] = [
     id: '2',
     title: 'Nintendo Switch Pro Rumors: What We Know',
     content: 'Latest rumors about the upcoming Nintendo Switch Pro and what it might mean for the gaming community.',
-    imageUrl: 'https://example.com/switch-pro.jpg',
+    imageUrl: '/images/news/nintendo.jfif',
     date: '2024-03-14',
     author: 'Tech Insider'
   },
@@ -21,7 +21,7 @@ export const mockNews: News[] = [
     id: '3',
     title: 'PC Gaming: The Rise of Indie Games',
     content: 'How indie games are shaping the future of PC gaming and what to expect in the coming months.',
-    imageUrl: 'https://example.com/indie-games.jpg',
+    imageUrl: '/images/news/pc new.png',
     date: '2024-03-13',
     author: 'Gaming Trends'
   }
@@ -34,7 +34,8 @@ export const mockGames: Game[] = [
     description: 'An open-world action role-playing game set in Night City, a megalopolis obsessed with power, glamour, and body modification.',
     price: 59.99,
     discountPrice: 29.99,
-    imageUrl: '/images/games/cyberpunk.jpg',
+    imageUrl: '/images/games/covers/cyberpunkcover.jpg',
+    thumbnailUrl: '/images/games/thumbnails/cyberpunk/thumb-1.jpg',
     platform: 'PC',
     releaseDate: '2020-12-10',
     rating: 4.5,
@@ -62,12 +63,17 @@ export const mockGames: Game[] = [
       ]
     },
     screenshots: [
-      '/images/games/cyberpunk/screenshot1.jpg',
-      '/images/games/cyberpunk/screenshot2.jpg',
-      '/images/games/cyberpunk/screenshot3.jpg'
+      '/images/games/screenshots/cyberpunk/screen1.jfif',
+      '/images/games/screenshots/cyberpunk/screen2.jfif',
+      '/images/games/screenshots/cyberpunk/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/cyberpunk/thumb-1.jpg',
+      '/images/games/thumbnails/cyberpunk/thumb-2.jpg',
+      '/images/games/thumbnails/cyberpunk/thumb-3.jpg'
     ],
     videos: [
-      '/videos/games/cyberpunk/trailer.mp4'
+      'qIcTM8WXFjk'
     ],
     reviews: [
       {
@@ -87,7 +93,8 @@ export const mockGames: Game[] = [
     title: 'The Last of Us Part II',
     description: 'A post-apocalyptic action-adventure game that follows Ellie as she seeks revenge in a world ravaged by a fungal infection.',
     price: 69.99,
-    imageUrl: '/images/games/last-of-us.jpg',
+    imageUrl: '/images/games/covers/the last of us 2 cover.jfif',
+    thumbnailUrl: '/images/games/thumbnails/last-of-us/thumb-1.jpg',
     platform: 'PlayStation',
     releaseDate: '2020-06-19',
     rating: 4.8,
@@ -101,9 +108,17 @@ export const mockGames: Game[] = [
       'Stealth'
     ],
     screenshots: [
-      '/images/games/last-of-us/screenshot1.jpg',
-      '/images/games/last-of-us/screenshot2.jpg',
-      '/images/games/last-of-us/screenshot3.jpg'
+      '/images/games/screenshots/last-of-us/screen1.jfif',
+      '/images/games/screenshots/last-of-us/screen2.avif',
+      '/images/games/screenshots/last-of-us/screen3.jfif'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/last-of-us/thumb-1.jpg',
+      '/images/games/thumbnails/last-of-us/thumb-2.jpg',
+      '/images/games/thumbnails/last-of-us/thumb-3.jpg'
+    ],
+    videos: [
+      'qPNiIeKMHyg'
     ],
     reviews: [
       {
@@ -123,7 +138,8 @@ export const mockGames: Game[] = [
     title: 'The Legend of Zelda: Tears of the Kingdom',
     description: 'An action-adventure game that follows Link as he explores the vast land of Hyrule and the mysterious sky islands above.',
     price: 59.99,
-    imageUrl: '/images/games/zelda.jpg',
+    imageUrl: '/images/games/covers/zelda cover.jfif',
+    thumbnailUrl: '/images/games/thumbnails/zelda/thumb-1.jpg',
     platform: 'Nintendo',
     releaseDate: '2023-05-12',
     rating: 4.9,
@@ -137,9 +153,17 @@ export const mockGames: Game[] = [
       'Exploration'
     ],
     screenshots: [
-      '/images/games/zelda/screenshot1.jpg',
-      '/images/games/zelda/screenshot2.jpg',
-      '/images/games/zelda/screenshot3.jpg'
+      '/images/games/screenshots/zelda/screen1.jfif',
+      '/images/games/screenshots/zelda/screen2.jfif',
+      '/images/games/screenshots/zelda/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/zelda/thumb-1.jpg',
+      '/images/games/thumbnails/zelda/thumb-2.jpg',
+      '/images/games/thumbnails/zelda/thumb-3.jpg'
+    ],
+    videos: [
+      'RTmTThcO6oI'
     ],
     reviews: [
       {
@@ -160,7 +184,8 @@ export const mockGames: Game[] = [
     description: 'A first-person shooter that continues the story of the Master Chief as he battles against the Banished on the ringworld Zeta Halo.',
     price: 59.99,
     discountPrice: 39.99,
-    imageUrl: '/images/games/halo.jpg',
+    imageUrl: '/images/games/covers/halo infinite cover.jpg',
+    thumbnailUrl: '/images/games/thumbnails/halo/thumb-1.jpg',
     platform: 'Xbox',
     releaseDate: '2021-12-08',
     rating: 4.3,
@@ -174,9 +199,17 @@ export const mockGames: Game[] = [
       'Open World'
     ],
     screenshots: [
-      '/images/games/halo/screenshot1.jpg',
-      '/images/games/halo/screenshot2.jpg',
-      '/images/games/halo/screenshot3.jpg'
+      '/images/games/screenshots/halo/screen1.jfif',
+      '/images/games/screenshots/halo/screen2.jfif',
+      '/images/games/screenshots/halo/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/halo/thumb-1.jpg',
+      '/images/games/thumbnails/halo/thumb-2.jpg',
+      '/images/games/thumbnails/halo/thumb-3.jpg'
+    ],
+    videos: [
+      'PyMlV5_HRWk'
     ],
     reviews: [
       {

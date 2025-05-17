@@ -12,13 +12,14 @@
 }
 
 .filters {
-  background-color: white;
+  background-color: rgb(21,20,55);
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   height: fit-content;
   position: sticky;
   top: 2rem;
+  color: rgba(35,186,255,255);
 }
 
 .searchBar {
@@ -28,16 +29,22 @@
 .searchBar input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid rgba(35,186,255,0.3);
+  border-radius: 0.4rem;
   font-size: 1rem;
   transition: all 0.2s ease;
+  background-color: rgb(52,5,130);
+  color: rgba(35,186,255,255);
 }
 
 .searchBar input:focus {
   outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  border-color: rgba(35,186,255,255);
+  box-shadow: 0 0 0 3px rgba(35,186,255,0.15);
+}
+
+.searchBar input::placeholder {
+  color: rgba(35,186,255,0.6);
 }
 
 .filterGroup {
@@ -49,8 +56,8 @@
 }
 
 .filterGroup h3 {
-  font-size: 1rem;
-  color: #4a5568;
+  font-size: 1.1rem;
+  color: rgba(35,186,255,255);
   margin-bottom: 0.75rem;
 }
 
@@ -66,25 +73,26 @@
 }
 
 .priceRange span {
-  color: #718096;
+  color: rgba(35,186,255,0.8);
   font-size: 0.875rem;
 }
 
 select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 4px;
+  border: 1px solid rgba(35,186,255,0.3);
+  border-radius: 0.4rem;
   font-size: 1rem;
-  background-color: white;
+  background-color: rgb(52,5,130);
+  color: rgba(35,186,255,255);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 select:focus {
   outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+  border-color: rgba(35,186,255,255);
+  box-shadow: 0 0 0 3px rgba(35,186,255,0.15);
 }
 
 .checkbox {
@@ -92,7 +100,7 @@ select:focus {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  color: #4a5568;
+  color: rgba(35,186,255,255);
 }
 
 .checkbox input[type="checkbox"] {
@@ -109,18 +117,18 @@ select:focus {
 }
 
 .gameCard {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgb(21,20,55);
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   overflow: hidden;
   text-decoration: none;
-  color: inherit;
+  color: rgba(35,186,255,255);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .gameCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .gameImageContainer {
@@ -141,8 +149,8 @@ select:focus {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: rgba(14,14,14,0.8);
+  color: rgba(35,186,255,255);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -154,7 +162,7 @@ select:focus {
   top: 1rem;
   left: 1rem;
   background: #e53e3e;
-  color: white;
+  color: rgba(14,14,14,255);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -166,8 +174,8 @@ select:focus {
 }
 
 .gameInfo h3 {
-  font-size: 1.125rem;
-  color: #2d3748;
+  font-size: 1.25rem;
+  color: rgba(35,186,255,255);
   margin: 0 0 0.5rem;
 }
 
@@ -179,7 +187,7 @@ select:focus {
   font-size: 0.875rem;
 }
 
-.rating {
+.gameMeta .rating {
   color: #f6ad55;
   font-weight: 600;
 }
@@ -189,12 +197,12 @@ select:focus {
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: rgba(35,186,255,255);
 }
 
 .originalPrice {
   text-decoration: line-through;
-  color: #a0aec0;
+  color: rgba(35,186,255,0.6);
 }
 
 .discountPrice {

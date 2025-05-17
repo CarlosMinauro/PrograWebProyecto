@@ -2,42 +2,51 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
+  /* Background handled by body in index.css */
+  /* background-color: #f8f9fa; */
 }
 
 .main {
   flex: 1;
   width: 100%;
-  min-height: calc(100vh - 64px - 60px); /* viewport height - navbar - footer */
-  padding: 2rem 0;
+  /* min-height adjusted to take available space */
+  min-height: calc(100vh - var(--navbar-height, 64px) - var(--footer-height, 60px)); /* Calculate remaining height */
+  /* padding handled by container */
+  /* padding: 2rem 0; */
+  background-color: #3a3a3a; /* Greyish background */
+  display: flex; /* Use flexbox for centering content */
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1200px; /* Keep a reasonable max-width for content */
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 2rem; /* Add padding within the container */
   height: 100%;
+  display: flex; /* Use flexbox to center content inside container if needed */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
 .pageContainer {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
-  height: 100%;
-  min-height: calc(100vh - 64px - 60px - 4rem); /* viewport height - navbar - footer - padding */
+  background: rgb(21,20,55); /* Dark background for the card area */
+  border-radius: 1rem; /* Consistent border radius */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Consistent shadow */
+  padding: 2rem; /* Consistent padding */
+  /* height and min-height removed to allow content to determine size */
 }
 
 .pageHeader {
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(35,186,255,0.3); /* Muted blue border */
 }
 
 .pageHeader h1 {
   font-size: 2rem;
-  color: #2d3748;
+  color: rgba(35,186,255,255); /* Bright blue */
   margin: 0;
 }
 
@@ -46,8 +55,8 @@
 }
 
 .footer {
-  background-color: #343a40;
-  color: white;
+  background-color: #343a40; /* Keep dark background for footer */
+  color: rgba(35,186,255,0.8); /* Muted blue for footer text */
   padding: 1.5rem 0;
   margin-top: auto;
 }
@@ -55,6 +64,12 @@
 .footer p {
   margin: 0;
   text-align: center;
+}
+
+/* Add CSS variables for heights if navbar/footer heights are consistent */
+:root {
+  --navbar-height: 64px; /* Example height, adjust as needed */
+  --footer-height: 60px; /* Example height, adjust as needed */
 }
 
 /* Responsive Design */

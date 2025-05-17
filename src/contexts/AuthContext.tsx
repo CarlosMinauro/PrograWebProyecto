@@ -2,63 +2,44 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
   id: string;
-  name: string;
   email: string;
-  isAdmin: boolean;
+  name: string;
+  purchasedGames: string[]; // Array of game IDs
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
-  isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
-  forgotPassword: (email: string) => Promise<void>;
-  resetPassword: (token: string, newPassword: string) => Promise<void>;
+  hasPurchasedGame: (gameId: string) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
+  // Check for existing session on mount
   useEffect(() => {
-    // Check for stored user data on mount
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-    setIsLoading(false);
   }, []);
 
   const login = async (email: string, password: string) => {
-    try {
-      // TODO: Implement actual API call
-      // Mock login for now
-      const mockUser = {
-        id: '1',
-        name: 'Test User',
-        email,
-        isAdmin: false
-      };
-      setUser(mockUser);
-      localStorage.setItem('user', JSON.stringify(mockUser));
-    } catch (error) {
-      throw new Error('Invalid credentials');
-    }
-  };
-
-  const register = async (name: string, email: string, password: string) => {
-    try {
-      // TODO: Implement actual API call
-      // Mock registration for now
-      // In real implementation, this would trigger email verification
-      return Promise.resolve();
-    } catch (error) {
-      throw new Error('Registration failed');
-    }
+    // In a real app, this would be an API call
+    // For demo purposes, we'll simulate a successful login
+    const mockUser: User = {
+      id: 'user123',
+      email,
+      name: email.split('@')[0],
+      purchasedGames: ['1', '3'] // Example: user has purchased Cyberpunk and Zelda
+    };
+    
+    setUser(mockUser);
+    localStorage.setItem('user', JSON.stringify(mockUser));
   };
 
   const logout = () => {
@@ -66,39 +47,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem('user');
   };
 
-  const forgotPassword = async (email: string) => {
-    try {
-      // TODO: Implement actual API call
-      // Mock password reset request
-      return Promise.resolve();
-    } catch (error) {
-      throw new Error('Password reset request failed');
-    }
-  };
-
-  const resetPassword = async (token: string, newPassword: string) => {
-    try {
-      // TODO: Implement actual API call
-      // Mock password reset
-      return Promise.resolve();
-    } catch (error) {
-      throw new Error('Password reset failed');
-    }
+  const hasPurchasedGame = (gameId: string) => {
+    return user?.purchasedGames.includes(gameId) || false;
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAuthenticated: !!user,
-        isLoading,
-        login,
-        register,
-        logout,
-        forgotPassword,
-        resetPassword
-      }}
-    >
+    <AuthContext.Provider value={{
+      user,
+      isAuthenticated: !!user,
+      login,
+      logout,
+      hasPurchasedGame
+    }}>
       {children}
     </AuthContext.Provider>
   );

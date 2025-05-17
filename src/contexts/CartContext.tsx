@@ -1,19 +1,21 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Game } from '../types';
+import { mockGames } from '../data/mockData';
 
 interface CartItem {
-  game: Game;
+  gameId: string;
   quantity: number;
+  price: number;
+  title: string;
+  platform: string;
 }
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (game: Game) => void;
+  addToCart: (gameId: string) => void;
   removeFromCart: (gameId: string) => void;
-  updateQuantity: (gameId: string, quantity: number) => void;
   clearCart: () => void;
-  totalItems: number;
-  totalPrice: number;
+  getTotal: () => number;
+  checkout: () => Promise<void>;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -28,57 +30,70 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('cart', JSON.stringify(items));
   }, [items]);
 
-  const addToCart = (game: Game) => {
-    setItems(prevItems => {
-      const existingItem = prevItems.find(item => item.game.id === game.id);
+  const addToCart = (gameId: string) => {
+    const game = mockGames.find(g => g.id === gameId);
+    if (!game) return;
+
+    setItems(currentItems => {
+      const existingItem = currentItems.find(item => item.gameId === gameId);
       if (existingItem) {
-        return prevItems.map(item =>
-          item.game.id === game.id
+        return currentItems.map(item =>
+          item.gameId === gameId
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
-      return [...prevItems, { game, quantity: 1 }];
+      return [...currentItems, {
+        gameId,
+        quantity: 1,
+        price: game.price,
+        title: game.title,
+        platform: game.platform
+      }];
     });
   };
 
   const removeFromCart = (gameId: string) => {
-    setItems(prevItems => prevItems.filter(item => item.game.id !== gameId));
-  };
-
-  const updateQuantity = (gameId: string, quantity: number) => {
-    if (quantity < 1) return;
-    setItems(prevItems =>
-      prevItems.map(item =>
-        item.game.id === gameId
-          ? { ...item, quantity }
-          : item
-      )
-    );
+    setItems(currentItems => currentItems.filter(item => item.gameId !== gameId));
   };
 
   const clearCart = () => {
     setItems([]);
   };
 
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce(
-    (sum, item) => sum + (item.game.discountPrice || item.game.price) * item.quantity,
-    0
-  );
+  const getTotal = () => {
+    return items.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const checkout = async () => {
+    // Simular proceso de pago
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Generar claves de juego (simuladas)
+    const gameKeys = items.map(item => ({
+      gameId: item.gameId,
+      title: item.title,
+      key: `GAME-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
+    }));
+
+    // Enviar email con las claves (simulado)
+    console.log('Enviando email con las siguientes claves:', gameKeys);
+    
+    // Limpiar el carrito después de la compra
+    clearCart();
+    
+    return Promise.resolve();
+  };
 
   return (
-    <CartContext.Provider
-      value={{
-        items,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-        totalItems,
-        totalPrice
-      }}
-    >
+    <CartContext.Provider value={{
+      items,
+      addToCart,
+      removeFromCart,
+      clearCart,
+      getTotal,
+      checkout
+    }}>
       {children}
     </CartContext.Provider>
   );

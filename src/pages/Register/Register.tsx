@@ -28,6 +28,7 @@ export const Register = () => {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -92,7 +93,7 @@ export const Register = () => {
 
     try {
       await register(formData.name, formData.email, formData.password);
-      navigate('/');
+      setRegistrationSuccess(true);
     } catch (err) {
       setErrors({
         email: 'An account with this email already exists',
@@ -101,6 +102,38 @@ export const Register = () => {
       setIsLoading(false);
     }
   };
+
+  if (registrationSuccess) {
+    return (
+      <div className={styles.container}>
+        <div className={styles.registerCard}>
+          <div className={styles.header}>
+            <h1>Registration Successful!</h1>
+            <p>Please verify your email address</p>
+          </div>
+          <div className={styles.verificationMessage}>
+            <p>We've sent a verification email to:</p>
+            <p className={styles.email}>{formData.email}</p>
+            <p>Please check your inbox and click the verification link to activate your account.</p>
+            <div className={styles.verificationActions}>
+              <button
+                className={styles.resendButton}
+                onClick={() => {
+                  // TODO: Implement resend verification email
+                  alert('Verification email resent!');
+                }}
+              >
+                Resend Verification Email
+              </button>
+              <Link to="/login" className={styles.loginLink}>
+                Back to Login
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.container}>

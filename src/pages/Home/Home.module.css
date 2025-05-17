@@ -13,10 +13,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
+  color: rgba(35,186,255,255);
   padding: 2rem;
   margin: -2rem -2rem 2rem -2rem;
-  border-radius: 12px 12px 0 0;
+  border-radius: 1rem 1rem 0 0;
 }
 
 .heroContent {
@@ -65,12 +65,12 @@
   align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(35,186,255,0.3);
 }
 
 .sectionHeader h2 {
-  font-size: 1.75rem;
-  color: #2d3748;
+  font-size: 2rem;
+  color: rgba(35,186,255,255);
   margin: 0;
 }
 
@@ -82,19 +82,19 @@
 }
 
 .gameCard {
-  background: white;
-  border-radius: 8px;
+  background: rgb(21,20,55);
+  border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   text-decoration: none;
-  color: inherit;
+  color: rgba(35,186,255,255);
 }
 
 .gameCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
 }
 
 .gameImage {
@@ -112,8 +112,8 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
+  background: rgba(14,14,14,0.8);
+  color: rgba(35,186,255,255);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -125,7 +125,7 @@
   top: 1rem;
   left: 1rem;
   background: #e53e3e;
-  color: white;
+  color: rgba(14,14,14,255);
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.875rem;
@@ -137,8 +137,8 @@
 }
 
 .gameInfo h3 {
-  font-size: 1.125rem;
-  color: #2d3748;
+  font-size: 1.25rem;
+  color: rgba(35,186,255,255);
   margin: 0 0 0.5rem;
 }
 
@@ -147,12 +147,12 @@
   align-items: center;
   gap: 0.5rem;
   font-weight: 600;
-  color: #2d3748;
+  color: rgba(35,186,255,255);
 }
 
 .originalPrice {
   text-decoration: line-through;
-  color: #a0aec0;
+  color: rgba(35,186,255,0.6);
 }
 
 .discountPrice {
@@ -165,7 +165,7 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   padding: 4rem 2rem;
-  background-color: #f7fafc;
+  background-color: rgba(14,14,14,255);
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -181,21 +181,21 @@
 }
 
 .feature h3 {
-  font-size: 1.5rem;
-  color: #2d3748;
+  font-size: 1.75rem;
+  color: rgba(35,186,255,255);
   margin-bottom: 0.5rem;
 }
 
 .feature p {
-  color: #718096;
+  color: rgba(35,186,255,0.8);
   line-height: 1.6;
 }
 
 /* Newsletter Section */
 .newsletter {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  background: linear-gradient(135deg, rgb(52,5,130) 0%, rgb(30, 10, 60) 100%);
   padding: 4rem 2rem;
-  color: white;
+  color: rgba(35,186,255,255);
 }
 
 .newsletterContent {
@@ -225,12 +225,14 @@
   border: none;
   border-radius: 4px;
   font-size: 1rem;
+  background-color: rgba(35,186,255,0.1);
+  color: rgba(35,186,255,255);
 }
 
 .newsletterButton {
   padding: 0.75rem 1.5rem;
-  background-color: #2d3748;
-  color: white;
+  background-color: rgba(35,186,255,255);
+  color: rgba(14,14,14,255);
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -240,7 +242,7 @@
 }
 
 .newsletterButton:hover {
-  background-color: #1a202c;
+  background-color: rgba(35,186,255,0.8);
 }
 
 /* Buttons */
@@ -248,10 +250,11 @@
 .secondaryButton {
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 500;
+  background-color: rgba(35,186,255,255);
+  color: rgba(14,14,14,255);
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .primaryButton {
@@ -267,57 +270,147 @@
 
 .secondaryButton {
   background-color: transparent;
-  color: #4299e1;
-  border: 1px solid #4299e1;
+  color: rgba(35,186,255,255);
+  border: 1px solid rgba(35,186,255,255);
 }
 
 .secondaryButton:hover {
-  background-color: #ebf8ff;
-  transform: translateY(-2px);
+  background-color: rgba(35,186,255,0.1);
+  border-color: rgba(35,186,255,0.8);
+  color: rgba(35,186,255,255);
 }
 
-/* News Carousel Section */
+/* News Section */
 .newsSection {
   margin-bottom: 4rem;
 }
 
 .sectionTitle {
-  font-size: 2rem;
-  color: #2d3748;
-  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: rgba(35,186,255,255);
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .carousel {
   position: relative;
-  height: 400px;
-  background-color: #f7fafc;
-  border-radius: 16px;
+  width: 100%;
+  height: 500px;
+  background: rgb(21,20,55);
+  border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.carouselContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.newsCard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.newsCard.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.newsImage {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.newsImage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(21,20,55,0.9), rgba(21,20,55,0.4));
+}
+
+.newsInfo {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(21,20,55);
+  color: rgba(35,186,255,255);
+}
+
+.newsDate {
+  font-size: 0.9rem;
+  color: rgba(35,186,255,0.7);
+  margin-bottom: 1rem;
+}
+
+.newsTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: rgba(35,186,255,255);
+}
+
+.newsDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(35,186,255,0.9);
+  margin-bottom: 2rem;
+}
+
+.readMore {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: rgba(35,186,255,255);
+  color: rgb(21,20,55);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.readMore:hover {
+  background: rgba(35,186,255,0.8);
 }
 
 .carouselButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  background-color: rgba(255, 255, 255, 0.9);
+  width: 50px;
+  height: 50px;
+  background: rgba(35,186,255,0.2);
   border: none;
   border-radius: 50%;
-  font-size: 1.5rem;
-  color: #4a5568;
+  color: rgba(35,186,255,255);
+  font-size: 2rem;
   cursor: pointer;
-  z-index: 2;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  z-index: 10;
+  transition: background-color 0.2s ease;
 }
 
 .carouselButton:hover {
-  background-color: white;
-  color: #2d3748;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: rgba(35,186,255,0.4);
 }
 
 .prevButton {
@@ -328,180 +421,160 @@
   right: 1rem;
 }
 
-.carouselContent {
-  position: relative;
-  height: 100%;
-}
-
-.newsCard {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.newsCard.active {
-  opacity: 1;
-}
-
-.newsImage {
-  flex: 1;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.newsImage::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-}
-
-.newsInfo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  color: white;
-  z-index: 1;
-}
-
-.newsDate {
-  font-size: 0.875rem;
-  opacity: 0.8;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.newsTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.newsDescription {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-  max-width: 600px;
-}
-
-.readMore {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #4299e1;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
-}
-
-.readMore:hover {
-  background-color: #3182ce;
-}
-
 .carouselIndicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
   gap: 0.5rem;
-  margin-top: 1rem;
+  z-index: 10;
 }
 
 .indicator {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #cbd5e0;
+  background: rgba(35,186,255,0.3);
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .indicator.active {
-  background-color: #4299e1;
-  transform: scale(1.2);
+  background: rgba(35,186,255,255);
 }
 
-/* Latest Games Section */
+/* Games Section */
 .gamesSection {
   margin-bottom: 4rem;
 }
 
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  color: rgba(35,186,255,255);
+  margin: 0;
+}
+
 .viewAll {
-  color: #4299e1;
+  padding: 0.75rem 1.5rem;
+  background: rgba(35,186,255,0.1);
+  color: rgba(35,186,255,255);
   text-decoration: none;
+  border-radius: 4px;
   font-weight: 500;
-  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .viewAll:hover {
-  color: #3182ce;
-  text-decoration: underline;
+  background: rgba(35,186,255,0.2);
 }
 
 .gamesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
 .gameCard {
-  background-color: white;
-  border-radius: 8px;
+  background: rgb(21,20,55);
+  border-radius: 1rem;
   overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
-  color: inherit;
+  color: rgba(35,186,255,255);
 }
 
 .gameCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 .gameImage {
-  height: 200px;
-  background-size: cover;
-  background-position: center;
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.gameImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gameCard:hover .gameImage img {
+  transform: scale(1.05);
 }
 
 .gameInfo {
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
 .gameTitle {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  margin: 0 0 1rem;
+  color: rgba(35,186,255,255);
 }
 
 .gameMeta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
 }
 
 .gamePlatform {
-  color: #718096;
+  color: rgba(35,186,255,0.7);
 }
 
 .gamePrice {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 600;
-  color: #4299e1;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: rgba(35,186,255,0.5);
+}
+
+.discountPrice {
+  color: #48bb78;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: #e53e3e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.platform {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(21,20,55,0.8);
+  color: rgba(35,186,255,255);
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  z-index: 1;
 }
 
 /* Responsive Design */
@@ -514,16 +587,25 @@
     font-size: 1.25rem;
   }
 
-  .carousel {
-    height: 350px;
+  .newsCard {
+    flex-direction: column;
+  }
+
+  .newsImage {
+    height: 40%;
+  }
+
+  .newsInfo {
+    height: 60%;
+    padding: 1.5rem;
   }
 
   .newsTitle {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 
   .newsDescription {
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 }
 
@@ -564,25 +646,16 @@
   }
 
   .carousel {
-    height: 300px;
+    height: 600px;
   }
 
-  .carouselButton {
-    width: 40px;
-    height: 40px;
-    font-size: 1.25rem;
-  }
-
-  .newsInfo {
-    padding: 1.5rem;
-  }
-
-  .newsTitle {
-    font-size: 1.125rem;
+  .sectionTitle,
+  .sectionHeader h2 {
+    font-size: 2rem;
   }
 
   .gamesGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 }
 
@@ -611,30 +684,25 @@
   }
 
   .carousel {
-    height: 250px;
-  }
-
-  .carouselButton {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-  }
-
-  .newsInfo {
-    padding: 1rem;
+    height: 700px;
   }
 
   .newsTitle {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .newsDescription {
-    display: none;
+    font-size: 0.9rem;
+  }
+
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
   }
 
   .gamesGrid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr;
   }
 
   .gameImage {

@@ -14,6 +14,7 @@ export interface Game {
   price: number;
   discountPrice?: number;
   imageUrl: string;
+  thumbnailUrl: string;
   platform: 'PC' | 'PlayStation' | 'Xbox' | 'Nintendo';
   releaseDate: string;
   rating: number;
@@ -26,6 +27,7 @@ export interface Game {
     recommended: string[];
   };
   screenshots: string[];
+  thumbnails: string[];
   videos?: string[];
   reviews: Review[];
 }

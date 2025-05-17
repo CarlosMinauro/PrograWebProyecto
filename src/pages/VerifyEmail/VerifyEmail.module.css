@@ -4,15 +4,15 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #f6f8fc 0%, #e9f0f7 100%);
+  background: linear-gradient(135deg, rgba(14,14,14,255) 0%, rgb(30, 10, 60) 100%);
 }
 
 .card {
   width: 100%;
   max-width: 450px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: rgb(21,20,55);
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   padding: 2rem;
   animation: fadeIn 0.5s ease-out;
 }
@@ -55,33 +55,35 @@
 
 .header h1 {
   font-size: 2rem;
-  color: #2d3748;
+  color: rgba(35,186,255,255);
   margin-bottom: 0.5rem;
 }
 
 .header p {
-  color: #718096;
+  color: rgba(35,186,255,0.8);
   font-size: 1rem;
 }
 
 .error {
-  background-color: #fff5f5;
-  color: #c53030;
+  background-color: rgba(255, 68, 68, 0.2);
+  color: #ff4444;
   padding: 0.75rem;
   border-radius: 4px;
   margin-bottom: 1rem;
   font-size: 0.875rem;
   text-align: center;
+  border: 1px solid #ff4444;
 }
 
 .message {
-  background-color: #f0fff4;
-  color: #2f855a;
+  background-color: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
   padding: 0.75rem;
   border-radius: 4px;
   margin-bottom: 1rem;
   font-size: 0.875rem;
   text-align: center;
+  border: 1px solid #48bb78;
 }
 
 .content {
@@ -91,7 +93,7 @@
 }
 
 .description {
-  color: #4a5568;
+  color: rgba(35,186,255,255);
   font-size: 1rem;
   line-height: 1.5;
   text-align: center;
@@ -104,8 +106,8 @@
 
 .verifyButton,
 .resendButton {
-  background-color: #4299e1;
-  color: white;
+  background-color: rgba(35,186,255,255);
+  color: rgba(14,14,14,255);
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -117,7 +119,7 @@
 
 .verifyButton:hover:not(:disabled),
 .resendButton:hover:not(:disabled) {
-  background-color: #3182ce;
+  background-color: rgba(35,186,255,0.8);
   transform: translateY(-1px);
 }
 
@@ -129,14 +131,14 @@
 
 .footer {
   text-align: center;
-  color: #718096;
+  color: rgba(35,186,255,0.8);
   font-size: 0.875rem;
 }
 
 .resendLink {
   background: none;
   border: none;
-  color: #4299e1;
+  color: rgba(35,186,255,255);
   font-weight: 500;
   cursor: pointer;
   padding: 0;
@@ -145,7 +147,7 @@
 }
 
 .resendLink:hover:not(:disabled) {
-  color: #3182ce;
+  color: rgba(35,186,255,0.8);
   text-decoration: underline;
 }
 
