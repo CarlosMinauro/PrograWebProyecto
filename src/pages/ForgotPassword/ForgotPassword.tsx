@@ -18,10 +18,10 @@ export const ForgotPassword = () => {
 
     try {
       await resetPassword(email);
-      setMessage('Check your email for password reset instructions');
+      setMessage('Revisa tu correo electrónico para las instrucciones de restablecimiento de contraseña');
       setEmail('');
     } catch (err) {
-      setError('Failed to send reset email. Please try again.');
+      setError('No se pudo enviar el correo de restablecimiento. Por favor, inténtalo de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -31,8 +31,8 @@ export const ForgotPassword = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1>Forgot Password</h1>
-          <p>Enter your email to reset your password</p>
+          <h1>¿Olvidaste tu contraseña?</h1>
+          <p>Ingresa tu correo electrónico para restablecer tu contraseña</p>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
@@ -40,13 +40,13 @@ export const ForgotPassword = () => {
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Ingresa tu correo electrónico"
               required
             />
           </div>
@@ -56,19 +56,19 @@ export const ForgotPassword = () => {
             className={styles.resetButton}
             disabled={isLoading}
           >
-            {isLoading ? 'Sending...' : 'Send Reset Link'}
+            {isLoading ? 'Enviando...' : 'Enviar enlace de restablecimiento'}
           </button>
         </form>
 
         <div className={styles.footer}>
           <p>
-            Remember your password?{' '}
+            ¿Recuerdas tu contraseña?{' '}
             <Link to="/login" className={styles.loginLink}>
-              Sign in
+              Iniciar sesión
             </Link>
           </p>
         </div>
       </div>
     </div>
   );
-}; 
+};
