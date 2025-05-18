@@ -3,11 +3,11 @@ import { RevenueChart } from '../../components/Admin/RevenueChart';
 import { NewsManager } from '../../components/Admin/NewsManager';
 import styles from './AdminDashboard.module.css';
 
-// Mock data for frontend visualization only
+// Datos simulados solo para visualización frontend
 const mockGames = [
   {
     id: '1',
-    title: 'Cyber Adventure 2077',
+    title: 'Aventura Cibernética 2077',
     platform: 'PC',
     price: 59.99,
     category: 'RPG',
@@ -15,10 +15,10 @@ const mockGames = [
   },
   {
     id: '2',
-    title: 'Space Warriors',
+    title: 'Guerreros Espaciales',
     platform: 'PS5',
     price: 49.99,
-    category: 'Action',
+    category: 'Acción',
     imageUrl: 'https://via.placeholder.com/100'
   }
 ];
@@ -26,18 +26,18 @@ const mockGames = [
 const mockUsers = [
   {
     id: '1',
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: 'Juan Pérez',
+    email: 'juan@ejemplo.com',
     role: 'admin',
-    status: 'active',
+    status: 'activo',
     lastLogin: '2024-03-15'
   },
   {
     id: '2',
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    role: 'user',
-    status: 'active',
+    name: 'Ana García',
+    email: 'ana@ejemplo.com',
+    role: 'usuario',
+    status: 'activo',
     lastLogin: '2024-03-14'
   }
 ];
@@ -45,20 +45,20 @@ const mockUsers = [
 export const AdminDashboard = () => {
   return (
     <div className={styles.container}>
-      <h1>Admin Dashboard</h1>
+      <h1>Panel de Administración</h1>
 
       <div className={styles.tabs}>
         <button className={`${styles.tab} ${styles.active}`}>
-          Products
+          Productos
         </button>
         <button className={styles.tab}>
-          Users
+          Usuarios
         </button>
         <button className={styles.tab}>
-          News
+          Noticias
         </button>
         <button className={styles.tab}>
-          Statistics
+          Estadísticas
         </button>
       </div>
 
@@ -67,11 +67,11 @@ export const AdminDashboard = () => {
           <div className={styles.searchBar}>
             <input
               type="text"
-              placeholder="Search products..."
+              placeholder="Buscar productos..."
             />
           </div>
           <button className={styles.addButton}>
-            Add Product
+            Agregar producto
           </button>
         </div>
 
@@ -79,12 +79,12 @@ export const AdminDashboard = () => {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Title</th>
-                <th>Platform</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Actions</th>
+                <th>Imagen</th>
+                <th>Título</th>
+                <th>Plataforma</th>
+                <th>Precio</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -103,10 +103,10 @@ export const AdminDashboard = () => {
                   <td>{game.category}</td>
                   <td>
                     <button className={styles.editButton}>
-                      Edit
+                      Editar
                     </button>
                     <button className={styles.deleteButton}>
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </tr>
@@ -119,12 +119,12 @@ export const AdminDashboard = () => {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Status</th>
-                <th>Last Login</th>
-                <th>Actions</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Estado</th>
+                <th>Último acceso</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -134,8 +134,8 @@ export const AdminDashboard = () => {
                   <td>{user.email}</td>
                   <td>
                     <select className={styles.roleSelect}>
-                      <option value="admin">Admin</option>
-                      <option value="user">User</option>
+                      <option value="admin">Administrador</option>
+                      <option value="usuario">Usuario</option>
                     </select>
                   </td>
                   <td>
@@ -145,8 +145,8 @@ export const AdminDashboard = () => {
                   </td>
                   <td>{user.lastLogin}</td>
                   <td>
-                    <button className={styles.editButton}>Edit</button>
-                    <button className={styles.deleteButton}>Delete</button>
+                    <button className={styles.editButton}>Editar</button>
+                    <button className={styles.deleteButton}>Eliminar</button>
                   </td>
                 </tr>
               ))}
@@ -159,4 +159,4 @@ export const AdminDashboard = () => {
       </div>
     </div>
   );
-}; 
+};
