@@ -35,10 +35,9 @@ export const UserSettings = () => {
   const handleProfileUpdate = (e: React.FormEvent) => {
     e.preventDefault();
     // Mock profile update
-    console.log('Updating profile:', { name: userData.name, email: userData.email });
     setMessage({
       type: 'success',
-      text: 'Profile updated successfully!'
+      text: '¡Perfil actualizado correctamente!'
     });
   };
 
@@ -47,15 +46,14 @@ export const UserSettings = () => {
     if (userData.newPassword !== userData.confirmPassword) {
       setMessage({
         type: 'error',
-        text: 'New passwords do not match!'
+        text: '¡Las nuevas contraseñas no coinciden!'
       });
       return;
     }
     // Mock password update
-    console.log('Updating password');
     setMessage({
       type: 'success',
-      text: 'Password updated successfully!'
+      text: '¡Contraseña actualizada correctamente!'
     });
     setUserData(prev => ({
       ...prev,
@@ -67,20 +65,20 @@ export const UserSettings = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Account Settings</h1>
+      <h1>Configuración de la cuenta</h1>
 
       <div className={styles.tabs}>
         <button
           className={`${styles.tab} ${activeTab === 'profile' ? styles.active : ''}`}
           onClick={() => setActiveTab('profile')}
         >
-          Profile Information
+          Información de perfil
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'security' ? styles.active : ''}`}
           onClick={() => setActiveTab('security')}
         >
-          Security
+          Seguridad
         </button>
       </div>
 
@@ -93,7 +91,7 @@ export const UserSettings = () => {
       {activeTab === 'profile' ? (
         <form onSubmit={handleProfileUpdate} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Nombre</label>
             <input
               type="text"
               id="name"
@@ -105,7 +103,7 @@ export const UserSettings = () => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
@@ -117,13 +115,13 @@ export const UserSettings = () => {
           </div>
 
           <button type="submit" className={styles.submitButton}>
-            Update Profile
+            Actualizar perfil
           </button>
         </form>
       ) : (
         <form onSubmit={handlePasswordUpdate} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="currentPassword">Current Password</label>
+            <label htmlFor="currentPassword">Contraseña actual</label>
             <input
               type="password"
               id="currentPassword"
@@ -135,7 +133,7 @@ export const UserSettings = () => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="newPassword">New Password</label>
+            <label htmlFor="newPassword">Nueva contraseña</label>
             <input
               type="password"
               id="newPassword"
@@ -147,7 +145,7 @@ export const UserSettings = () => {
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword">Confirm New Password</label>
+            <label htmlFor="confirmPassword">Confirmar nueva contraseña</label>
             <input
               type="password"
               id="confirmPassword"
@@ -159,10 +157,13 @@ export const UserSettings = () => {
           </div>
 
           <button type="submit" className={styles.submitButton}>
-            Update Password
+            Actualizar contraseña
           </button>
         </form>
       )}
     </div>
   );
-}; 
+};
+
+
+
