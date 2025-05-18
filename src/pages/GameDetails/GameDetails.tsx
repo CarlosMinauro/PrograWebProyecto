@@ -37,19 +37,19 @@ export const GameDetails = () => {
       return;
     }
     addToCart(game.id);
-    showNotification('Game added to cart!', 'success');
+    showNotification('Juego Agregado al Carrito!', 'success');
   };
 
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!isAuthenticated) {
-      showNotification('Please log in to submit a review', 'info');
+      showNotification('Por favor inicia sesión para enviar una reseña', 'info');
       return;
     }
 
     if (!hasPurchasedGame(game.id)) {
-      showNotification('You can only review games you have purchased', 'error');
+      showNotification('Solo puedes reseñar juegos que hayas comprado', 'error');
       return;
     }
 
@@ -70,7 +70,7 @@ export const GameDetails = () => {
     } : null);
 
     setNewReview({ rating: 5, comment: '' });
-    showNotification('Review submitted successfully!', 'success');
+    showNotification('¡Reseña enviada con éxito!', 'success');
   };
 
   const renderStars = (rating: number) => {
@@ -93,9 +93,9 @@ export const GameDetails = () => {
       return (
         <button 
           className={`${styles.addToCart} ${styles.loginRequired}`}
-          onClick={() => alert('Please log in to purchase games')}
+          onClick={() => alert('Por favor inicia sesión para comprar juegos')}
         >
-          Log in to Purchase
+          Inicia sesión para comprar
         </button>
       );
     }
@@ -103,7 +103,7 @@ export const GameDetails = () => {
     if (hasPurchasedGame(game.id)) {
       return (
         <button className={`${styles.addToCart} ${styles.purchased}`} disabled>
-          Purchased
+          Comprado
         </button>
       );
     }
@@ -114,10 +114,10 @@ export const GameDetails = () => {
         onClick={handlePurchase}
         disabled={purchaseStatus === 'processing'}
       >
-        {purchaseStatus === 'processing' ? 'Processing...' :
-         purchaseStatus === 'success' ? 'Purchase Successful!' :
-         purchaseStatus === 'error' ? 'Error - Try Again' :
-         'Add to Cart'}
+        {purchaseStatus === 'processing' ? 'Procesando...' :
+         purchaseStatus === 'success' ? '¡Compra exitosa!' :
+         purchaseStatus === 'error' ? 'Error - Intenta de nuevo' :
+         'Agregar al carrito'}
       </button>
     );
   };
@@ -126,8 +126,8 @@ export const GameDetails = () => {
     if (!isAuthenticated) {
       return (
         <div className={styles.reviewForm}>
-          <h3>Write a Review</h3>
-          <p className={styles.loginRequired}>Please log in to write a review</p>
+          <h3>Escribe una reseña</h3>
+          <p className={styles.loginRequired}>Por favor inicia sesión para escribir una reseña</p>
         </div>
       );
     }
@@ -135,18 +135,18 @@ export const GameDetails = () => {
     if (!hasPurchasedGame(game.id)) {
       return (
         <div className={styles.reviewForm}>
-          <h3>Write a Review</h3>
-          <p className={styles.purchaseRequired}>You need to purchase this game to write a review</p>
+          <h3>Escribe una reseña</h3>
+          <p className={styles.purchaseRequired}>Debes comprar este juego para escribir una reseña</p>
         </div>
       );
     }
 
     return (
       <div className={styles.reviewForm}>
-        <h3>Write a Review</h3>
+        <h3>Escribe una reseña</h3>
         <form onSubmit={handleReviewSubmit}>
           <div className={styles.ratingInput}>
-            <label>Rating:</label>
+            <label>Calificación:</label>
             <select
               value={newReview.rating}
               onChange={(e) => setNewReview(prev => ({
@@ -167,7 +167,7 @@ export const GameDetails = () => {
               ...prev,
               comment: e.target.value
             }))}
-            placeholder="Write your review..."
+            placeholder="Escribe tu reseña..."
             required
           />
           <button type="submit" className={styles.submitReview}>
@@ -191,7 +191,7 @@ export const GameDetails = () => {
           <div className={styles.badges}>
             {game.discountPrice && (
               <span className={`${styles.badge} ${styles.discount}`}>
-                {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% OFF
+                {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% DESCUENTO
               </span>
             )}
           </div>
@@ -243,31 +243,31 @@ export const GameDetails = () => {
 
             <div className={styles.gameInfo}>
               <div className={styles.infoSection}>
-                <h3>Game Information</h3>
+                <h3>Información del Juego</h3>
                 <div className={styles.infoGrid}>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>Developer</span>
+                    <span className={styles.infoLabel}>Desarrollador</span>
                     <span className={styles.infoValue}>{game.developer}</span>
                   </div>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>Publisher</span>
+                    <span className={styles.infoLabel}>Distribuidor</span>
                     <span className={styles.infoValue}>{game.publisher}</span>
                   </div>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>Release Date</span>
+                    <span className={styles.infoLabel}>Fecha de Lanzamiento</span>
                     <span className={styles.infoValue}>
                       {new Date(game.releaseDate).toLocaleDateString()}
                     </span>
                   </div>
                   <div className={styles.infoItem}>
-                    <span className={styles.infoLabel}>Platform</span>
+                    <span className={styles.infoLabel}>Plataforma</span>
                     <span className={styles.infoValue}>{game.platform}</span>
                   </div>
                 </div>
               </div>
 
               <div className={styles.genres}>
-                <h3>Genres</h3>
+                <h3>Géneros</h3>
                 <div className={styles.genreTags}>
                   {game.genre.map((genre, index) => (
                     <span key={index} className={styles.genreTag}>
@@ -278,7 +278,7 @@ export const GameDetails = () => {
               </div>
 
               <div className={styles.features}>
-                <h3>Features</h3>
+                <h3>Características</h3>
                 <ul className={styles.featureList}>
                   {game.features.map((feature, index) => (
                     <li key={index} className={styles.featureItem}>
@@ -289,17 +289,17 @@ export const GameDetails = () => {
               </div>
 
               <div className={styles.description}>
-                <h3>Description</h3>
+                <h3>Descripción</h3>
                 <p>{game.description}</p>
               </div>
 
               {game.videos && game.videos.length > 0 && (
                 <div className={styles.trailer}>
-                  <h3>Trailer</h3>
+                  <h3>Tráiler</h3>
                   <div className={styles.videoContainer}>
                     <iframe
                       src={`https://www.youtube.com/embed/${game.videos[0]}`}
-                      title={`${game.title} Trailer`}
+                      title={`Tráiler de ${game.title}`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
@@ -309,11 +309,11 @@ export const GameDetails = () => {
 
               {game.requirements && (
                 <div className={styles.requirements}>
-                  <h3>System Requirements</h3>
+                  <h3>Requisitos del sistema</h3>
                   <div className={styles.requirementsGrid}>
                     {game.requirements.minimum && (
                       <div className={styles.requirementSection}>
-                        <h4>Minimum Requirements</h4>
+                        <h4>Requisitos mínimos</h4>
                         <ul>
                           {game.requirements.minimum.map((req, index) => (
                             <li key={index}>{req}</li>
@@ -323,7 +323,7 @@ export const GameDetails = () => {
                     )}
                     {game.requirements.recommended && (
                       <div className={styles.requirementSection}>
-                        <h4>Recommended Requirements</h4>
+                        <h4>Requisitos recomendados</h4>
                         <ul>
                           {game.requirements.recommended.map((req, index) => (
                             <li key={index}>{req}</li>
@@ -339,13 +339,13 @@ export const GameDetails = () => {
         </div>
 
         <div className={styles.reviews}>
-          <h2>Reviews</h2>
+          <h2>Reseñas</h2>
           <div className={styles.reviewStats}>
             <div className={styles.overallRating}>
               <span className={styles.ratingNumber}>{game.rating}</span>
               {renderStars(Math.round(game.rating))}
               <span className={styles.reviewCount}>
-                {game.reviews.length} reviews
+                {game.reviews.length} reseñas
               </span>
             </div>
           </div>
@@ -367,10 +367,10 @@ export const GameDetails = () => {
                 <p className={styles.reviewComment}>{review.comment}</p>
                 <div className={styles.reviewActions}>
                   <button className={styles.helpfulButton}>
-                    Helpful ({review.helpful})
+                    Útil ({review.helpful})
                   </button>
                   <button className={styles.notHelpfulButton}>
-                    Not Helpful ({review.notHelpful})
+                    No es útil ({review.notHelpful})
                   </button>
                 </div>
               </div>
@@ -380,4 +380,4 @@ export const GameDetails = () => {
       </div>
     </div>
   );
-}; 
+};
