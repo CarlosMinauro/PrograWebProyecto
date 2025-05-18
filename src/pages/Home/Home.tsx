@@ -33,14 +33,14 @@ export const Home = () => {
 
   return (
     <div className={styles.container}>
-      {/* News Carousel Section */}
+      {/* Sección de Carrusel de Noticias */}
       <section className={styles.newsSection}>
-        <h2 className={styles.sectionTitle}>Latest News</h2>
+        <h2 className={styles.sectionTitle}>Últimas Noticias</h2>
         <div className={styles.carousel}>
           <button 
             className={`${styles.carouselButton} ${styles.prevButton}`}
             onClick={handlePrevNews}
-            aria-label="Previous news"
+            aria-label="Noticia anterior"
           >
             ‹
           </button>
@@ -62,7 +62,7 @@ export const Home = () => {
                   <h3 className={styles.newsTitle}>{news.title}</h3>
                   <p className={styles.newsDescription}>{news.content}</p>
                   <Link to={`/news/${news.id}`} className={styles.readMore}>
-                    Read More
+                    Leer más
                   </Link>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export const Home = () => {
           <button 
             className={`${styles.carouselButton} ${styles.nextButton}`}
             onClick={handleNextNews}
-            aria-label="Next news"
+            aria-label="Siguiente noticia"
           >
             ›
           </button>
@@ -83,19 +83,19 @@ export const Home = () => {
                 key={index}
                 className={`${styles.indicator} ${index === currentNewsIndex ? styles.active : ''}`}
                 onClick={() => setCurrentNewsIndex(index)}
-                aria-label={`Go to news ${index + 1}`}
+                aria-label={`Ir a la noticia ${index + 1}`}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Recent Games Section */}
+      {/* Sección de Juegos Recientes */}
       <section className={styles.gamesSection}>
         <div className={styles.sectionHeader}>
-          <h2>Latest Releases</h2>
+          <h2>Últimos Lanzamientos</h2>
           <Link to="/catalog" className={styles.viewAll}>
-            View All Games
+            Ver todos los juegos
           </Link>
         </div>
         <div className={styles.gamesGrid}>
@@ -105,7 +105,7 @@ export const Home = () => {
                 <img src={game.imageUrl} alt={game.title} />
                 {game.discountPrice && (
                   <span className={styles.discountBadge}>
-                    {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% OFF
+                    {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% DTO
                   </span>
                 )}
                 <span className={styles.platform}>{game.platform}</span>
@@ -132,4 +132,4 @@ export const Home = () => {
       </section>
     </div>
   );
-}; 
+};
