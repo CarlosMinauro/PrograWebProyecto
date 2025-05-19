@@ -7,7 +7,7 @@ import styles from './AdminDashboard.module.css';
 const mockGames = [
   {
     id: '1',
-    title: 'Aventura Cibernética 2077',
+    title: 'Cyberpunk 2077',
     platform: 'PC',
     price: 59.99,
     category: 'RPG',

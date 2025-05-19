@@ -28,14 +28,14 @@ export const Cart = () => {
     try {
       await checkout();
       setShowSuccess(true);
-      showNotification('Purchase successful! Your game keys have been sent to your email.', 'success');
+      showNotification('¡Compra exitosa! Las claves de tus juegos han sido enviadas a tu correo.', 'success');
       setTimeout(() => {
         setShowSuccess(false);
         navigate('/');
       }, 3000);
     } catch (error) {
       console.error('Checkout failed:', error);
-      showNotification('Failed to process checkout. Please try again.', 'error');
+      showNotification('No se pudo procesar el pago. Por favor, intenta de nuevo.', 'error');
     } finally {
       setIsCheckingOut(false);
     }
@@ -44,13 +44,13 @@ export const Cart = () => {
   if (items.length === 0) {
     return (
       <div className={styles.emptyCart}>
-        <h2>Your cart is empty</h2>
-        <p>Add some games to your cart to start shopping!</p>
+        <h2>Tu carrito está vacío</h2>
+        <p>¡Agrega algunos juegos a tu carrito para comenzar a comprar!</p>
         <button 
           className={styles.continueShopping}
           onClick={() => navigate('/catalog')}
         >
-          Continue Shopping
+          Seguir comprando
         </button>
       </div>
     );
@@ -58,12 +58,12 @@ export const Cart = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Shopping Cart</h1>
+      <h1>Carrito de compras</h1>
       
       {showSuccess && (
         <div className={styles.successMessage}>
-          <h3>Purchase Successful!</h3>
-          <p>Your game keys have been sent to your email: {user?.email}</p>
+          <h3>¡Compra exitosa!</h3>
+          <p>Las claves de tus juegos han sido enviadas a tu correo: {user?.email}</p>
         </div>
       )}
 
@@ -81,7 +81,7 @@ export const Cart = () => {
                 onClick={() => removeFromCart(item.gameId)}
                 disabled={isCheckingOut}
               >
-                Remove
+                Quitar
               </button>
             </div>
           </div>
@@ -98,9 +98,9 @@ export const Cart = () => {
           onClick={handleCheckout}
           disabled={isCheckingOut}
         >
-          {isCheckingOut ? 'Processing...' : 'Proceed to Checkout'}
+          {isCheckingOut ? 'Procesando...' : 'Finalizar compra'}
         </button>
       </div>
     </div>
   );
-}; 
+};

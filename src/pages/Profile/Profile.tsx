@@ -50,26 +50,26 @@ export const Profile = () => {
 
   return (
     <div className={styles.container}>
-      <h1>My Profile</h1>
+      <h1>Mi Perfil</h1>
 
       <div className={styles.tabs}>
         <button
           className={`${styles.tab} ${activeTab === 'personal' ? styles.active : ''}`}
           onClick={() => setActiveTab('personal')}
         >
-          Personal Data
+          Datos Personales
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'purchases' ? styles.active : ''}`}
           onClick={() => setActiveTab('purchases')}
         >
-          Purchase History
+          Historial de Compras
         </button>
         <button
           className={`${styles.tab} ${activeTab === 'wishlist' ? styles.active : ''}`}
           onClick={() => setActiveTab('wishlist')}
         >
-          Wishlist
+          Lista de Deseos
         </button>
       </div>
 
@@ -77,18 +77,18 @@ export const Profile = () => {
         {activeTab === 'personal' && (
           <div className={styles.personalData}>
             <div className={styles.header}>
-              <h2>Personal Information</h2>
+              <h2>Información Personal</h2>
               <button
                 className={styles.editButton}
                 onClick={() => setIsEditing(!isEditing)}
               >
-                {isEditing ? 'Cancel' : 'Edit'}
+                {isEditing ? 'Cancelar' : 'Editar'}
               </button>
             </div>
 
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.formGroup}>
-                <label htmlFor="name">Full Name</label>
+                <label htmlFor="name">Nombre Completo</label>
                 <input
                   type="text"
                   id="name"
@@ -100,7 +100,7 @@ export const Profile = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Correo Electrónico</label>
                 <input
                   type="email"
                   id="email"
@@ -112,7 +112,7 @@ export const Profile = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">Teléfono</label>
                 <input
                   type="tel"
                   id="phone"
@@ -124,7 +124,7 @@ export const Profile = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="address">Address</label>
+                <label htmlFor="address">Dirección</label>
                 <input
                   type="text"
                   id="address"
@@ -137,7 +137,7 @@ export const Profile = () => {
 
               {isEditing && (
                 <button type="submit" className={styles.saveButton}>
-                  Save Changes
+                  Guardar Cambios
                 </button>
               )}
             </form>
@@ -146,16 +146,16 @@ export const Profile = () => {
 
         {activeTab === 'purchases' && (
           <div className={styles.purchases}>
-            <h2>Purchase History</h2>
+            <h2>Historial de Compras</h2>
             {purchases.map(purchase => (
               <div key={purchase.id} className={styles.purchaseCard}>
                 <div className={styles.purchaseHeader}>
                   <div>
-                    <span className={styles.orderId}>Order #{purchase.id}</span>
+                    <span className={styles.orderId}>Pedido #{purchase.id}</span>
                     <span className={styles.date}>{purchase.date}</span>
                   </div>
                   <span className={`${styles.status} ${styles[purchase.status.toLowerCase()]}`}>
-                    {purchase.status}
+                    {purchase.status === 'Delivered' ? 'Entregado' : purchase.status === 'Processing' ? 'Procesando' : purchase.status}
                   </span>
                 </div>
                 <div className={styles.purchaseItems}>
@@ -183,7 +183,7 @@ export const Profile = () => {
 
         {activeTab === 'wishlist' && (
           <div className={styles.wishlist}>
-            <h2>My Wishlist</h2>
+            <h2>Mi Lista de Deseos</h2>
             <div className={styles.wishlistGrid}>
               {wishlist.map(game => (
                 <div key={game.id} className={styles.wishlistItem}>
@@ -207,10 +207,10 @@ export const Profile = () => {
                     </div>
                   </div>
                   <button className={styles.addToCartButton}>
-                    Add to Cart
+                    Agregar al carrito
                   </button>
                   <button className={styles.removeButton}>
-                    Remove
+                    Quitar
                   </button>
                 </div>
               ))}
@@ -220,4 +220,4 @@ export const Profile = () => {
       </div>
     </div>
   );
-}; 
+};

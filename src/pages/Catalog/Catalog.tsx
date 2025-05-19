@@ -65,14 +65,14 @@ export const Catalog = () => {
           <div className={styles.searchBar}>
             <input
               type="text"
-              placeholder="Search games..."
+              placeholder="Buscar juegos..."
               value={filters.searchQuery}
               onChange={(e) => handleFilterChange('searchQuery', e.target.value)}
             />
           </div>
 
           <div className={styles.filterGroup}>
-            <h3>Price Range</h3>
+            <h3>Rango de precio</h3>
             <div className={styles.priceRange}>
               <input
                 type="range"
@@ -86,12 +86,12 @@ export const Catalog = () => {
           </div>
 
           <div className={styles.filterGroup}>
-            <h3>Platform</h3>
+            <h3>Plataforma</h3>
             <select
               value={filters.platform}
               onChange={(e) => handleFilterChange('platform', e.target.value)}
             >
-              <option value="">All Platforms</option>
+              <option value="">Todas las plataformas</option>
               {platforms.map(platform => (
                 <option key={platform} value={platform}>{platform}</option>
               ))}
@@ -99,12 +99,12 @@ export const Catalog = () => {
           </div>
 
           <div className={styles.filterGroup}>
-            <h3>Genre</h3>
+            <h3>Género</h3>
             <select
               value={filters.genre}
               onChange={(e) => handleFilterChange('genre', e.target.value)}
             >
-              <option value="">All Genres</option>
+              <option value="">Todos los géneros</option>
               {genres.map(genre => (
                 <option key={genre} value={genre}>{genre}</option>
               ))}
@@ -112,12 +112,12 @@ export const Catalog = () => {
           </div>
 
           <div className={styles.filterGroup}>
-            <h3>Sort By</h3>
+            <h3>Ordenar por</h3>
             <select>
-              <option value="newest">Newest</option>
-              <option value="price-asc">Price: Low to High</option>
-              <option value="price-desc">Price: High to Low</option>
-              <option value="rating">Rating</option>
+              <option value="newest">Más nuevos</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="rating">Calificación</option>
             </select>
           </div>
         </aside>
@@ -129,7 +129,7 @@ export const Catalog = () => {
                 <img src={game.imageUrl} alt={game.title} className={styles.gameImage} />
                 {game.discountPrice && (
                   <span className={styles.saleBadge}>
-                    {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% OFF
+                    {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% DTO
                   </span>
                 )}
               </div>
@@ -156,4 +156,4 @@ export const Catalog = () => {
       </div>
     </>
   );
-}; 
+};
