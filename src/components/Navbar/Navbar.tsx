@@ -18,8 +18,8 @@ export const Navbar = () => {
   return (
     <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
       <div className={styles.container}>
-        <Link to="/" className={styles.brand} aria-label="Game Store Home">
-          Game Store
+        <Link to="/" className={styles.brand} aria-label="Inicio">
+          Uligames
         </Link>
 
         <div className={styles.navLinks} role="menubar">
@@ -29,7 +29,7 @@ export const Navbar = () => {
             role="menuitem"
             aria-current={isActive('/') ? 'page' : undefined}
           >
-            Home
+            Inicio
           </Link>
           <Link 
             to="/catalog" 
@@ -37,7 +37,7 @@ export const Navbar = () => {
             role="menuitem"
             aria-current={isActive('/catalog') ? 'page' : undefined}
           >
-            Catalog
+            Catalogo
           </Link>
           <Link 
             to="/best-sellers" 
@@ -45,7 +45,7 @@ export const Navbar = () => {
             role="menuitem"
             aria-current={isActive('/best-sellers') ? 'page' : undefined}
           >
-            Best Sellers
+            Los más vendidos
           </Link>
           <Link 
             to="/top-rated" 
@@ -53,7 +53,7 @@ export const Navbar = () => {
             role="menuitem"
             aria-current={isActive('/top-rated') ? 'page' : undefined}
           >
-            Top Rated
+            Más valorados 
           </Link>
         </div>
 
@@ -66,7 +66,7 @@ export const Navbar = () => {
                 role="menuitem"
                 aria-label="Shopping Cart"
               >
-                Cart
+                Carrito de compras
               </Link>
               <Link 
                 to="/settings" 
@@ -74,7 +74,7 @@ export const Navbar = () => {
                 role="menuitem"
                 aria-label="User Settings"
               >
-                Settings
+                Configuración
               </Link>
               {user?.isAdmin && (
                 <Link 
@@ -83,7 +83,7 @@ export const Navbar = () => {
                   role="menuitem"
                   aria-label="Admin Dashboard"
                 >
-                  Admin
+                  Administrador
                 </Link>
               )}
               <button
@@ -91,7 +91,7 @@ export const Navbar = () => {
                 className={`${styles.navLink} ${styles.logoutButton}`}
                 role="menuitem"
               >
-                Logout
+                Salir
               </button>
             </>
           ) : (
@@ -101,14 +101,14 @@ export const Navbar = () => {
                 className={styles.navLink}
                 role="menuitem"
               >
-                Login
+                Iniciar Sesión
               </Link>
               <Link 
                 to="/register" 
                 className={`${styles.navLink} ${styles.register}`}
                 role="menuitem"
               >
-                Register
+                Registro
               </Link>
             </>
           )}
