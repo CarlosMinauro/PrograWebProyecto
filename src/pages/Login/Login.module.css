@@ -78,12 +78,13 @@
 }
 
 .loginCard {
-  width: 100%; /* Allow card to take full width of its container */
-  max-width: 400px; /* Keep a max-width for the card */
-  background-color: rgb(21,20,55);
-  padding: 2rem;
-  border-radius: 1rem;
-  margin: auto; /* Center the card within the flex item */
+  background: linear-gradient(
+    45deg,
+    blue 25%,
+    yellow 25% 50%,
+    red 50% 75%,
+    green 75%
+  );
 }
 
 .header {

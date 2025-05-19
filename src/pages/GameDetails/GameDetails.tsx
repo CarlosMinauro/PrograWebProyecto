@@ -371,7 +371,9 @@ export const GameDetails = () => {
                   </button>
                   <button className={styles.notHelpfulButton}>
                     No es útil ({review.notHelpful})
+
                   </button>
+
                 </div>
               </div>
             ))}

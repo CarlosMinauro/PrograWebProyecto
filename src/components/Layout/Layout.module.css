@@ -7,16 +7,18 @@
 }
 
 .main {
+  position: relative; /* Necesario para posicionar hijos absolutamente */
   flex: 1;
   width: 100%;
-  /* min-height adjusted to take available space */
-  min-height: calc(100vh - var(--navbar-height, 64px) - var(--footer-height, 60px)); /* Calculate remaining height */
-  /* padding handled by container */
-  /* padding: 2rem 0; */
-  background-color: #3a3a3a; /* Greyish background */
-  display: flex; /* Use flexbox for centering content */
-  justify-content: center; /* Center content horizontally */
-  align-items: center; /* Center content vertically */
+  min-height: calc(100vh - var(--navbar-height, 64px) - var(--footer-height, 60px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Opcional: oculta desbordes */
+  background-image: url('/images/games/covers/ESCUDADRONSUCIDALOGO.jpg'); /* Usa tu foto aquí */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .container {
@@ -91,6 +93,13 @@
   }
 }
 
+@media (max-width: 992px) {
+  .cornerImage {
+    width: 180px;
+    height: 120px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     max-width: 540px;
@@ -109,6 +118,15 @@
   .pageHeader h1 {
     font-size: 1.75rem;
   }
+
+  .cornerImage {
+    width: 100px;
+    height: 70px;
+  }
+  /* Opcional: puedes ocultar algunas imágenes si molestan mucho */
+  .topleft2, .topleft3, .topcenter, .redredemption, .bottomright4, .bottomright5, .bottomright6, .bottomright7 {
+    display: none;
+  }
 }
 
 @media (max-width: 576px) {
@@ -124,4 +142,37 @@
   .pageHeader h1 {
     font-size: 1.5rem;
   }
-} 
+
+  .cornerImage {
+    width: 60px;
+    height: 40px;
+  }
+  /* Oculta aún más imágenes si es necesario */
+  .topRight, .bottomLeft, .bottomRight {
+    display: none;
+  }
+}
+
+.cornerImage {
+  position: absolute;
+  width: 350px;   /* Ajusta el tamaño a tu gusto */
+  height: 250px;
+  object-fit: contain;
+  border-radius: 0px; /* Opcional: bordes redondeados */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.topLeft     { top: -30px; left: 0px; }
+.topleft2   { top: -30px; right: 350px; }
+.topleft3   { top: 170px; left: 0px; }
+.topcenter   { top: 370px; left: 0px; }
+.topRight    { top: -30px; right: 0px; }
+.bottomLeft  { bottom: -30px; left: 0px; }
+.bottomRight { bottom: -30px; right: 0px; }
+.redredemption { top: 570px; right: 0px; }
+.bottomright4 { bottom: 570px; right: 0px; }
+.bottomright5 { bottom: 170px; right: 0px; }
+.bottomright6 { bottom: 370px; right: 0px; }
+.bottomright7 { bottom: 0px; right: 0px; }
+

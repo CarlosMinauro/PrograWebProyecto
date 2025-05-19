@@ -52,7 +52,7 @@ export const Settings = () => {
       return;
     }
     // Mock password update
-    console.log('Updating password');
+    console.log('Actualizar Contraseña:', { currentPassword: userData.currentPassword, newPassword: userData.newPassword });
     setMessage({
       type: 'success',
       text: '¡Contraseña actualizada exitosamente!'

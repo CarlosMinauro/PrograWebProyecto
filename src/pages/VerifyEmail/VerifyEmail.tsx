@@ -14,7 +14,7 @@ export const VerifyEmail = () => {
   const handleVerify = async () => {
     const oobCode = searchParams.get('oobCode');
     if (!oobCode) {
-      setError('Invalid or expired verification link');
+      setError('El enlace de verificación es inválido o ha expirado');
       return;
     }
 
@@ -24,14 +24,14 @@ export const VerifyEmail = () => {
 
     try {
       await verifyEmail(oobCode);
-      setMessage('Email verified successfully! Redirecting to login...');
+      setMessage('¡Correo verificado exitosamente! Redirigiendo al inicio de sesión...');
       setTimeout(() => {
         navigate('/login', {
-          state: { message: 'Email verified successfully. Please sign in.' }
+          state: { message: 'Correo verificado exitosamente. Por favor, inicia sesión.' }
         });
       }, 3000);
     } catch (err) {
-      setError('Failed to verify email. The link may have expired.');
+      setError('No se pudo verificar el correo. El enlace puede haber expirado.');
     } finally {
       setIsLoading(false);
     }
@@ -44,9 +44,9 @@ export const VerifyEmail = () => {
 
     try {
       await resendVerificationEmail();
-      setMessage('Verification email sent! Please check your inbox.');
+      setMessage('¡Correo de verificación enviado! Por favor revisa tu bandeja de entrada.');
     } catch (err) {
-      setError('Failed to send verification email. Please try again.');
+      setError('No se pudo enviar el correo de verificación. Intenta de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -68,8 +68,8 @@ export const VerifyEmail = () => {
               <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
             </svg>
           </div>
-          <h1>Verify Your Email</h1>
-          <p>Please verify your email address to continue</p>
+          <h1>Verifica tu correo electrónico</h1>
+          <p>Por favor, verifica tu dirección de correo para continuar</p>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
@@ -77,7 +77,7 @@ export const VerifyEmail = () => {
 
         <div className={styles.content}>
           <p className={styles.description}>
-            We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.
+            Hemos enviado un enlace de verificación a tu correo electrónico. Por favor, revisa tu bandeja de entrada y haz clic en el enlace para verificar tu cuenta.
           </p>
 
           <div className={styles.actions}>
@@ -87,7 +87,7 @@ export const VerifyEmail = () => {
                 className={styles.verifyButton}
                 disabled={isLoading}
               >
-                {isLoading ? 'Verifying...' : 'Verify Email'}
+                {isLoading ? 'Verificando...' : 'Verificar correo'}
               </button>
             ) : (
               <button
@@ -95,20 +95,20 @@ export const VerifyEmail = () => {
                 className={styles.resendButton}
                 disabled={isLoading}
               >
-                {isLoading ? 'Sending...' : 'Resend Verification Email'}
+                {isLoading ? 'Enviando...' : 'Reenviar correo de verificación'}
               </button>
             )}
           </div>
 
           <div className={styles.footer}>
             <p>
-              Didn't receive the email? Check your spam folder or{' '}
+              ¿No recibiste el correo? Revisa tu carpeta de spam o{' '}
               <button
                 onClick={handleResend}
                 className={styles.resendLink}
                 disabled={isLoading}
               >
-                click here to resend
+                haz clic aquí para reenviar
               </button>
             </p>
           </div>
@@ -116,4 +116,4 @@ export const VerifyEmail = () => {
       </div>
     </div>
   );
-}; 
+};
