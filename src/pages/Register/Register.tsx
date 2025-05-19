@@ -33,34 +33,34 @@ export const Register = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Name validation
+    // Validación de nombre
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'El nombre es obligatorio';
     } else if (formData.name.length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
+      newErrors.name = 'El nombre debe tener al menos 2 caracteres';
     }
 
-    // Email validation
+    // Validación de correo
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'El correo electrónico es obligatorio';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
+      newErrors.email = 'Formato de correo inválido';
     }
 
-    // Password validation
+    // Validación de contraseña
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'La contraseña es obligatoria';
     } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
     } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
-      newErrors.password = 'Password must contain uppercase, lowercase, and numbers';
+      newErrors.password = 'La contraseña debe contener mayúsculas, minúsculas y números';
     }
 
-    // Confirm password validation
+    // Validación de confirmación de contraseña
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
+      newErrors.confirmPassword = 'Confirma tu contraseña';
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
     setErrors(newErrors);
@@ -108,25 +108,25 @@ export const Register = () => {
       <div className={styles.container}>
         <div className={styles.registerCard}>
           <div className={styles.header}>
-            <h1>Registration Successful!</h1>
-            <p>Please verify your email address</p>
+            <h1>¡Registro exitoso!</h1>
+            <p>Por favor verifica tu correo electrónico</p>
           </div>
           <div className={styles.verificationMessage}>
-            <p>We've sent a verification email to:</p>
+            <p>Hemos enviado un correo de verificación a:</p>
             <p className={styles.email}>{formData.email}</p>
-            <p>Please check your inbox and click the verification link to activate your account.</p>
+            <p>Revisa tu bandeja de entrada y haz clic en el enlace de verificación para activar tu cuenta.</p>
             <div className={styles.verificationActions}>
               <button
                 className={styles.resendButton}
                 onClick={() => {
-                  // TODO: Implement resend verification email
-                  alert('Verification email resent!');
+                  // TODO: Implementar reenvío de correo de verificación
+                  alert('¡Correo de verificación reenviado!');
                 }}
               >
-                Resend Verification Email
+                Reenviar correo de verificación
               </button>
               <Link to="/login" className={styles.loginLink}>
-                Back to Login
+                Volver al inicio de sesión
               </Link>
             </div>
           </div>
@@ -139,62 +139,62 @@ export const Register = () => {
     <div className={styles.container}>
       <div className={styles.registerCard}>
         <div className={styles.header}>
-          <h1>Create Account</h1>
-          <p>Join our gaming community today</p>
+          <h1>Crear cuenta</h1>
+          <p>Únete a nuestra comunidad gamer hoy</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="name">Full Name</label>
+            <label htmlFor="name">Nombre completo</label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Enter your full name"
+              placeholder="Ingresa tu nombre completo"
               className={errors.name ? styles.inputError : ''}
             />
             {errors.name && <span className={styles.error}>{errors.name}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo electrónico</label>
             <input
               type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Ingresa tu correo electrónico"
               className={errors.email ? styles.inputError : ''}
             />
             {errors.email && <span className={styles.error}>{errors.email}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Contraseña</label>
             <input
               type="password"
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Create a password"
+              placeholder="Crea una contraseña"
               className={errors.password ? styles.inputError : ''}
             />
             {errors.password && <span className={styles.error}>{errors.password}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="confirmPassword">Confirmar contraseña</label>
             <input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm your password"
+              placeholder="Confirma tu contraseña"
               className={errors.confirmPassword ? styles.inputError : ''}
             />
             {errors.confirmPassword && (
@@ -207,12 +207,12 @@ export const Register = () => {
             className={styles.registerButton}
             disabled={isLoading}
           >
-            {isLoading ? 'Creating Account...' : 'Create Account'}
+            {isLoading ? 'Creando cuenta...' : 'Crear cuenta'}
           </button>
         </form>
 
         <div className={styles.divider}>
-          <span>or sign up with</span>
+          <span>o regístrate con</span>
         </div>
 
         <div className={styles.socialButtons}>
@@ -238,13 +238,13 @@ export const Register = () => {
 
         <div className={styles.footer}>
           <p>
-            Already have an account?{' '}
+            ¿Ya tienes una cuenta?{' '}
             <Link to="/login" className={styles.loginLink}>
-              Sign in
+              Iniciar sesión
             </Link>
           </p>
         </div>
       </div>
     </div>
   );
-}; 
+};

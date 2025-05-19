@@ -77,6 +77,7 @@ export const useGames = () => {
             publisher: 'Sony Interactive Entertainment',
             platform: ['PS4', 'PS5']
           }
+          
         ];
 
         setGames(mockGames);

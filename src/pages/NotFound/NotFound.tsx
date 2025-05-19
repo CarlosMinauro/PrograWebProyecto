@@ -9,26 +9,26 @@ export const NotFound = () => {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.errorCode}>404</div>
-        <h1 className={styles.title}>Page Not Found</h1>
+        <h1 className={styles.title}>Página no encontrada</h1>
         <p className={styles.message}>
-          Oops! The page you're looking for seems to have vanished into thin air.
-          Maybe it's playing hide and seek?
+          ¡Ups! La página que buscas parece haber desaparecido.
+          ¿Quizás está jugando a las escondidas?
         </p>
         <div className={styles.actions}>
           <button
             className={styles.primaryButton}
             onClick={() => navigate('/')}
           >
-            Return Home
+            Volver al inicio
           </button>
           <button
             className={styles.secondaryButton}
             onClick={() => navigate('/catalog')}
           >
-            Browse Games
+            Ver juegos
           </button>
         </div>
       </div>
     </div>
   );
-}; 
+};

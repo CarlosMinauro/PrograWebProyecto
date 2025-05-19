@@ -5,110 +5,110 @@ export const TermsAndConditions = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1>Terms and Conditions</h1>
-        <p className={styles.lastUpdated}>Last updated: {new Date().toLocaleDateString()}</p>
+        <h1>Términos y Condiciones</h1>
+        <p className={styles.lastUpdated}>Última actualización: {new Date().toLocaleDateString('es-ES')}</p>
 
         <section className={styles.section}>
-          <h2>1. Introduction</h2>
+          <h2>1. Introducción</h2>
           <p>
-            Welcome to GameStore. These terms and conditions outline the rules and regulations for the use of our website and services.
-            By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use GameStore if you do not accept all of the terms and conditions stated on this page.
+            Bienvenido a GameStore. Estos términos y condiciones describen las reglas y regulaciones para el uso de nuestro sitio web y servicios.
+            Al acceder a este sitio web, asumimos que aceptas estos términos y condiciones en su totalidad. No continúes usando GameStore si no aceptas todos los términos y condiciones establecidos en esta página.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>2. License to Use</h2>
+          <h2>2. Licencia de uso</h2>
           <p>
-            Unless otherwise stated, GameStore and/or its licensors own the intellectual property rights for all material on GameStore.
-            All intellectual property rights are reserved. You may view and/or print pages from GameStore for your own personal use subject to restrictions set in these terms and conditions.
+            A menos que se indique lo contrario, GameStore y/o sus licenciantes poseen los derechos de propiedad intelectual de todo el material en GameStore.
+            Todos los derechos de propiedad intelectual están reservados. Puedes ver y/o imprimir páginas de GameStore para tu uso personal sujeto a las restricciones establecidas en estos términos y condiciones.
           </p>
-          <p>You must not:</p>
+          <p>No debes:</p>
           <ul>
-            <li>Republish material from GameStore</li>
-            <li>Sell, rent or sub-license material from GameStore</li>
-            <li>Reproduce, duplicate or copy material from GameStore</li>
-            <li>Redistribute content from GameStore (unless content is specifically made for redistribution)</li>
+            <li>Republicar material de GameStore</li>
+            <li>Vender, alquilar o sublicenciar material de GameStore</li>
+            <li>Reproducir, duplicar o copiar material de GameStore</li>
+            <li>Redistribuir contenido de GameStore (a menos que el contenido esté específicamente hecho para su redistribución)</li>
           </ul>
         </section>
 
         <section className={styles.section}>
-          <h2>3. User Account</h2>
+          <h2>3. Cuenta de usuario</h2>
           <p>
-            To access certain features of the website, you must register for an account. You agree to provide accurate, current, and complete information during the registration process.
-            You are responsible for safeguarding your password and for all activities that occur under your account.
+            Para acceder a ciertas funciones del sitio web, debes registrarte para obtener una cuenta. Aceptas proporcionar información precisa, actual y completa durante el proceso de registro.
+            Eres responsable de proteger tu contraseña y de todas las actividades que ocurran bajo tu cuenta.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>4. Purchases and Payments</h2>
+          <h2>4. Compras y pagos</h2>
           <p>
-            All purchases through our website are subject to these terms and conditions. Prices for our products are subject to change without notice.
-            We reserve the right to modify or discontinue any product without notice at any time.
+            Todas las compras a través de nuestro sitio web están sujetas a estos términos y condiciones. Los precios de nuestros productos pueden cambiar sin previo aviso.
+            Nos reservamos el derecho de modificar o discontinuar cualquier producto sin previo aviso en cualquier momento.
           </p>
-          <p>Payment terms:</p>
+          <p>Términos de pago:</p>
           <ul>
-            <li>All payments must be made in full at the time of purchase</li>
-            <li>We accept various payment methods as indicated during checkout</li>
-            <li>Prices are inclusive of applicable taxes</li>
-            <li>Digital products are non-refundable unless required by law</li>
+            <li>Todos los pagos deben realizarse en su totalidad al momento de la compra</li>
+            <li>Aceptamos varios métodos de pago indicados durante el proceso de compra</li>
+            <li>Los precios incluyen los impuestos aplicables</li>
+            <li>Los productos digitales no son reembolsables salvo que la ley lo requiera</li>
           </ul>
         </section>
 
         <section className={styles.section}>
-          <h2>5. Digital Products</h2>
+          <h2>5. Productos digitales</h2>
           <p>
-            When you purchase a digital product from GameStore, you are purchasing a license to use that product.
-            The license is non-transferable and may be subject to additional terms and conditions from the game publisher.
+            Cuando compras un producto digital en GameStore, adquieres una licencia para usar ese producto.
+            La licencia no es transferible y puede estar sujeta a términos y condiciones adicionales del editor del juego.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>6. User Conduct</h2>
-          <p>You agree not to:</p>
+          <h2>6. Conducta del usuario</h2>
+          <p>Aceptas no:</p>
           <ul>
-            <li>Use the website for any illegal purpose</li>
-            <li>Violate any laws in your jurisdiction</li>
-            <li>Infringe upon the rights of others</li>
-            <li>Interfere with the proper functioning of the website</li>
-            <li>Attempt to gain unauthorized access to any portion of the website</li>
+            <li>Utilizar el sitio web para cualquier propósito ilegal</li>
+            <li>Violar cualquier ley en tu jurisdicción</li>
+            <li>Infringir los derechos de otros</li>
+            <li>Interferir con el funcionamiento adecuado del sitio web</li>
+            <li>Intentar obtener acceso no autorizado a cualquier parte del sitio web</li>
           </ul>
         </section>
 
         <section className={styles.section}>
-          <h2>7. Privacy Policy</h2>
+          <h2>7. Política de privacidad</h2>
           <p>
-            Your use of GameStore is also governed by our Privacy Policy. Please review our Privacy Policy, which also governs the website and informs users of our data collection practices.
+            Tu uso de GameStore también está regido por nuestra Política de Privacidad. Por favor, revisa nuestra Política de Privacidad, que también regula el sitio web e informa a los usuarios sobre nuestras prácticas de recopilación de datos.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>8. Limitation of Liability</h2>
+          <h2>8. Limitación de responsabilidad</h2>
           <p>
-            In no event shall GameStore, nor any of its officers, directors, and employees, be liable to you for anything arising out of or in any way connected with your use of this website.
-            GameStore, including its officers, directors, and employees shall not be liable for any indirect, consequential, or special liability arising out of or in any way related to your use of this website.
+            En ningún caso GameStore, ni ninguno de sus directores, empleados o representantes, será responsable ante ti por cualquier cosa derivada de o relacionada de cualquier manera con tu uso de este sitio web.
+            GameStore, incluidos sus directores, empleados y representantes, no será responsable de ninguna responsabilidad indirecta, consecuente o especial derivada de o relacionada de cualquier manera con tu uso de este sitio web.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>9. Changes to Terms</h2>
+          <h2>9. Cambios en los términos</h2>
           <p>
-            We reserve the right to modify these terms and conditions at any time. We will notify users of any changes by updating the "Last updated" date at the top of this page.
-            Your continued use of the website following the posting of revised terms means that you accept and agree to the changes.
+            Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Notificaremos a los usuarios sobre cualquier cambio actualizando la fecha de "Última actualización" en la parte superior de esta página.
+            Tu uso continuado del sitio web después de la publicación de los términos revisados significa que aceptas y estás de acuerdo con los cambios.
           </p>
         </section>
 
         <section className={styles.section}>
-          <h2>10. Contact Information</h2>
+          <h2>10. Información de contacto</h2>
           <p>
-            If you have any questions about these Terms and Conditions, please contact us at:
+            Si tienes alguna pregunta sobre estos Términos y Condiciones, por favor contáctanos en:
           </p>
           <ul>
-            <li>Email: support@gamestore.com</li>
-            <li>Phone: +1 (555) 123-4567</li>
-            <li>Address: 123 Gaming Street, Digital City, 12345</li>
+            <li>Correo electrónico: soporte@gamestore.com</li>
+            <li>Teléfono: +1 (555) 123-4567</li>
+            <li>Dirección: 123 Gaming Street, Digital City, 12345</li>
           </ul>
         </section>
       </div>
     </div>
   );
-}; 
+};
