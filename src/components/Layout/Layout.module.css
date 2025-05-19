@@ -130,30 +130,15 @@
 
 .cornerImage {
   position: absolute;
-  width: 350px;   /* Ajusta el tamaño a tu gusto */
-  height: 250px;
+  width: 200px;   /* Ajusta el tamaño a tu gusto */
+  height: 140px;
   object-fit: contain;
   border-radius: 0px; /* Opcional: bordes redondeados */
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   z-index: 1;
-  animation: float 4s ease-in-out infinite alternate;
 }
 
-@keyframes float {
-  0%   { transform: translateY(0px); }
-  100% { transform: translateY(20px); }
-}
-
-.topLeft     { top: -30px; left: 0px; }
-.topleft2   { top: -30px; right: 350px; }
-.topleft3   { top: 170px; left: 0px; }
-.topcenter   { top: 370px; left: 0px; }
-.topRight    { top: -30px; right: 0px; }
-.bottomLeft  { bottom: -30px; left: 0px; }
-.bottomRight { bottom: -30px; right: 0px; }
-.redredemption { top: 570px; right: 0px; }
-.bottomright4 { bottom: px; right: 350px; }
-.bottomright5 { bottom: 170px; right: 0px; }
-.bottomright6 { bottom: 370px; right: 0px; }
-.bottomright7 { bottom: 0px; right: 0px; }
-
+.topLeft     { top: 100px; left: 16px; }
+.topRight    { top: 16px; right: 16px; }
+.bottomLeft  { bottom: 16px; left: 16px; }
+.bottomRight { bottom: 16px; right: 16px; }
