@@ -29,7 +29,7 @@ export const useGames = () => {
           {
             id: '1',
             title: 'The Witcher 3: Wild Hunt',
-            description: 'An epic open-world RPG with a compelling story and memorable characters.',
+            description: 'Un épico RPG de mundo abierto con una historia cautivadora y personajes memorables.',
             price: 29.99,
             discount: 50,
             image: '/images/games/witcher3.jpg',
@@ -42,11 +42,11 @@ export const useGames = () => {
           {
             id: '2',
             title: 'Red Dead Redemption 2',
-            description: 'A vast and atmospheric world that tells the story of Arthur Morgan and the Van der Linde gang.',
+            description: 'Un mundo vasto y atmosférico que cuenta la historia de Arthur Morgan y la banda Van der Linde.',
             price: 59.99,
             discount: 30,
             image: '/images/games/rdr2.jpg',
-            category: 'Action',
+            category: 'Acción',
             rating: 4.8,
             releaseDate: '2018-10-26',
             publisher: 'Rockstar Games',
@@ -55,7 +55,7 @@ export const useGames = () => {
           {
             id: '3',
             title: 'Cyberpunk 2077',
-            description: 'An open-world action-adventure story set in Night City, a megalopolis obsessed with power, glamour, and body modification.',
+            description: 'Una aventura de acción en mundo abierto ambientada en Night City, una megalópolis obsesionada con el poder, el glamour y la modificación corporal.',
             price: 49.99,
             discount: 40,
             image: '/images/games/cyberpunk.jpg',
@@ -68,10 +68,10 @@ export const useGames = () => {
           {
             id: '4',
             title: 'God of War Ragnarök',
-            description: 'Join Kratos and Atreus on a mythic journey for answers before Ragnarök arrives.',
+            description: 'Acompaña a Kratos y Atreus en un viaje mítico en busca de respuestas antes de la llegada del Ragnarök.',
             price: 69.99,
             image: '/images/games/gow.jpg',
-            category: 'Action',
+            category: 'Acción',
             rating: 4.9,
             releaseDate: '2022-11-09',
             publisher: 'Sony Interactive Entertainment',
@@ -82,7 +82,7 @@ export const useGames = () => {
         setGames(mockGames);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch games');
+        setError('No se pudieron obtener los juegos');
         setLoading(false);
       }
     };
@@ -125,4 +125,4 @@ export const useGames = () => {
     getGameById,
     searchGames
   };
-}; 
+};

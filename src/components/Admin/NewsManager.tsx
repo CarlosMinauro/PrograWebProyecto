@@ -27,58 +27,58 @@ export const NewsManager = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2>News Management</h2>
+        <h2>Gestión de Noticias</h2>
         <button className={styles.addButton}>
-          Add News
+          Agregar Noticia
         </button>
       </div>
 
       <div className={styles.formContainer}>
         <form className={styles.form}>
-          <h3>Add News</h3>
+          <h3>Agregar Noticia</h3>
           
           <div className={styles.formGroup}>
-            <label htmlFor="title">Title</label>
+            <label htmlFor="title">Título</label>
             <input
               type="text"
               id="title"
               name="title"
               required
-              placeholder="Enter news title"
+              placeholder="Ingresa el título de la noticia"
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Descripción</label>
             <textarea
               id="description"
               name="description"
               required
               rows={4}
-              placeholder="Enter news description"
+              placeholder="Ingresa la descripción de la noticia"
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="imageUrl">Image URL</label>
+            <label htmlFor="imageUrl">URL de la imagen</label>
             <input
               type="url"
               id="imageUrl"
               name="imageUrl"
               required
-              placeholder="Enter image URL"
+              placeholder="Ingresa la URL de la imagen"
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="status">Status</label>
+            <label htmlFor="status">Estado</label>
             <select
               id="status"
               name="status"
               required
             >
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
+              <option value="draft">Borrador</option>
+              <option value="published">Publicado</option>
             </select>
           </div>
 
@@ -87,10 +87,10 @@ export const NewsManager = () => {
               type="button"
               className={styles.cancelButton}
             >
-              Cancel
+              Cancelar
             </button>
             <button type="submit" className={styles.submitButton}>
-              Add News
+              Agregar Noticia
             </button>
           </div>
         </form>
@@ -106,21 +106,21 @@ export const NewsManager = () => {
               <div className={styles.newsHeader}>
                 <h3>{item.title}</h3>
                 <span className={`${styles.status} ${styles[item.status]}`}>
-                  {item.status}
+                  {item.status === 'published' ? 'Publicado' : 'Borrador'}
                 </span>
               </div>
               <p className={styles.description}>{item.description}</p>
               <div className={styles.newsMeta}>
-                <span>By {item.author}</span>
+                <span>Por {item.author}</span>
                 <span>•</span>
                 <span>{item.date}</span>
               </div>
               <div className={styles.actions}>
                 <button className={styles.editButton}>
-                  Edit
+                  Editar
                 </button>
                 <button className={styles.deleteButton}>
-                  Delete
+                  Eliminar
                 </button>
               </div>
             </div>
@@ -129,4 +129,4 @@ export const NewsManager = () => {
       </div>
     </div>
   );
-}; 
+};

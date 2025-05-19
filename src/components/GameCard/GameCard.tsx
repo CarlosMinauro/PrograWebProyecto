@@ -35,7 +35,7 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onAddToCart }) => {
             className={styles.addToCart}
             onClick={() => onAddToCart(game)}
           >
-            Add to Cart
+            Agregar al carrito
           </button>
         )}
       </div>
