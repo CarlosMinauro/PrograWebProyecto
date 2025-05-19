@@ -19,7 +19,7 @@ export const Review = () => {
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
 
   if (!game) {
-    return <div className={styles.notFound}>Game not found</div>;
+    return <div className={styles.notFound}>Juego no encontrado</div>;
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -28,7 +28,7 @@ export const Review = () => {
     console.log('Submitting review:', { gameId: id, ...review });
     setMessage({
       type: 'success',
-      text: 'Review submitted successfully!'
+      text: '¡Reseña enviada con éxito!'
     });
     // Navigate back to game detail after 2 seconds
     setTimeout(() => {
@@ -38,7 +38,7 @@ export const Review = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Write a Review</h1>
+      <h1>Escribe una reseña</h1>
       <div className={styles.gameInfo}>
         <img src={game.imageUrl} alt={game.title} />
         <div>
@@ -55,7 +55,7 @@ export const Review = () => {
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
-          <label>Rating</label>
+          <label>Calificación</label>
           <div className={styles.rating}>
             {[1, 2, 3, 4, 5].map((star) => (
               <button
@@ -71,18 +71,18 @@ export const Review = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label htmlFor="comment">Your Review</label>
+          <label htmlFor="comment">Tu reseña</label>
           <textarea
             id="comment"
             value={review.comment}
             onChange={(e) => setReview(prev => ({ ...prev, comment: e.target.value }))}
-            placeholder="Share your experience with this game..."
+            placeholder="Comparte tu experiencia con este juego..."
             required
             minLength={10}
             maxLength={500}
           />
           <span className={styles.charCount}>
-            {review.comment.length}/500 characters
+            {review.comment.length}/500 caracteres
           </span>
         </div>
 
@@ -92,13 +92,13 @@ export const Review = () => {
             className={styles.cancelButton}
             onClick={() => navigate(`/game/${id}`)}
           >
-            Cancel
+            Cancelar
           </button>
           <button type="submit" className={styles.submitButton}>
-            Submit Review
+            Enviar reseña
           </button>
         </div>
       </form>
     </div>
   );
-}; 
+};

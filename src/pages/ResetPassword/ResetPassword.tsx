@@ -28,20 +28,20 @@ export const ResetPassword = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Password validation
+    // Validación de contraseña
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'La contraseña es obligatoria';
     } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+      newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
     } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
-      newErrors.password = 'Password must contain uppercase, lowercase, and numbers';
+      newErrors.password = 'La contraseña debe contener mayúsculas, minúsculas y números';
     }
 
-    // Confirm password validation
+    // Validación de confirmación de contraseña
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
+      newErrors.confirmPassword = 'Confirma tu contraseña';
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = 'Las contraseñas no coinciden';
     }
 
     setErrors(newErrors);
@@ -73,7 +73,7 @@ export const ResetPassword = () => {
 
     const oobCode = searchParams.get('oobCode');
     if (!oobCode) {
-      setError('Invalid or expired reset link');
+      setError('El enlace de restablecimiento es inválido o ha expirado');
       return;
     }
 
@@ -82,10 +82,10 @@ export const ResetPassword = () => {
     try {
       await confirmPasswordReset(oobCode, formData.password);
       navigate('/login', { 
-        state: { message: 'Password has been reset successfully. Please sign in with your new password.' }
+        state: { message: 'La contraseña se ha restablecido correctamente. Por favor, inicia sesión con tu nueva contraseña.' }
       });
     } catch (err) {
-      setError('Failed to reset password. The link may have expired.');
+      setError('No se pudo restablecer la contraseña. El enlace puede haber expirado.');
     } finally {
       setIsLoading(false);
     }
@@ -95,36 +95,36 @@ export const ResetPassword = () => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.header}>
-          <h1>Reset Password</h1>
-          <p>Enter your new password below</p>
+          <h1>Restablecer contraseña</h1>
+          <p>Ingresa tu nueva contraseña abajo</p>
         </div>
 
         {error && <div className={styles.error}>{error}</div>}
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor="password">New Password</label>
+            <label htmlFor="password">Nueva contraseña</label>
             <input
               type="password"
               id="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your new password"
+              placeholder="Ingresa tu nueva contraseña"
               className={errors.password ? styles.inputError : ''}
             />
             {errors.password && <span className={styles.error}>{errors.password}</span>}
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor="confirmPassword">Confirm New Password</label>
+            <label htmlFor="confirmPassword">Confirmar nueva contraseña</label>
             <input
               type="password"
               id="confirmPassword"
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
-              placeholder="Confirm your new password"
+              placeholder="Confirma tu nueva contraseña"
               className={errors.confirmPassword ? styles.inputError : ''}
             />
             {errors.confirmPassword && (
@@ -137,10 +137,10 @@ export const ResetPassword = () => {
             className={styles.resetButton}
             disabled={isLoading}
           >
-            {isLoading ? 'Resetting Password...' : 'Reset Password'}
+            {isLoading ? 'Restableciendo...' : 'Restablecer contraseña'}
           </button>
         </form>
       </div>
     </div>
   );
-}; 
+};
