@@ -32,29 +32,29 @@ export const CheckoutSuccess = () => {
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
           </div>
-          <h1>Thank You for Your Order!</h1>
+          <h1>¡Gracias por tu compra!</h1>
           <p className={styles.message}>
-            Your order has been successfully placed and is being processed.
+            Tu pedido ha sido procesado con éxito y está en camino.
           </p>
         </div>
 
         <div className={styles.orderInfo}>
           <div className={styles.infoRow}>
-            <span>Order Number:</span>
+            <span>Número de orden:</span>
             <span className={styles.value}>{orderNumber}</span>
           </div>
           <div className={styles.infoRow}>
-            <span>Date:</span>
+            <span>Fecha:</span>
             <span className={styles.value}>{currentDate}</span>
           </div>
           <div className={styles.infoRow}>
-            <span>Total Amount:</span>
+            <span>Total:</span>
             <span className={styles.value}>${totalPrice.toFixed(2)}</span>
           </div>
         </div>
 
         <div className={styles.orderSummary}>
-          <h2>Order Summary</h2>
+          <h2>Resumen</h2>
           <div className={styles.items}>
             {items.map(item => (
               <div key={item.game.id} className={styles.item}>
@@ -90,27 +90,27 @@ export const CheckoutSuccess = () => {
         </div>
 
         <div className={styles.nextSteps}>
-          <h2>What's Next?</h2>
+          <h2>¿Qué sigue?</h2>
           <ul>
             <li>
               <span className={styles.stepNumber}>1</span>
               <div>
-                <h3>Order Confirmation</h3>
-                <p>A confirmation email has been sent to your registered email address.</p>
+                <h3>Confirmación de pedido</h3>
+                <p>Se ha enviado un correo de confirmación a tu dirección de correo registrada.</p>
               </div>
             </li>
             <li>
               <span className={styles.stepNumber}>2</span>
               <div>
-                <h3>Order Processing</h3>
-                <p>Your order will be processed and prepared for delivery.</p>
+                <h3>Procesando pedido</h3>
+                <p>Tu pedido será procesado y preparado para la entrega.</p>
               </div>
             </li>
             <li>
               <span className={styles.stepNumber}>3</span>
               <div>
-                <h3>Delivery</h3>
-                <p>You will receive updates about your order's delivery status.</p>
+                <h3>Entrega</h3>
+                <p>Recibirás actualizaciones sobre el estado de entrega de tu pedido.</p>
               </div>
             </li>
           </ul>
@@ -121,16 +121,16 @@ export const CheckoutSuccess = () => {
             className={styles.continueShopping}
             onClick={() => navigate('/catalog')}
           >
-            Continue Shopping
+            Seguir comprando
           </button>
           <button
             className={styles.viewOrder}
             onClick={() => navigate('/profile')}
           >
-            View Order in Profile
+            Ver pedido en tu perfil
           </button>
         </div>
       </div>
     </div>
   );
-}; 
+};
