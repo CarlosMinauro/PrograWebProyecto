@@ -29,9 +29,9 @@ export const TopRated = () => {
 
   return (
     <div className={styles.container}>
-      <h1>Top Rated Games</h1>
+      <h1>Juegos Mejor Valorados</h1>
       <p className={styles.description}>
-        Discover our highest rated games, as voted by our community.
+        Descubre nuestros juegos con mejores calificaciones, elegidos por la comunidad.
       </p>
 
       <div className={styles.gameGrid}>
@@ -42,7 +42,7 @@ export const TopRated = () => {
               <img src={game.imageUrl} alt={game.title} className={styles.gameImage} />
               {game.discountPrice && (
                 <span className={styles.saleBadge}>
-                  {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% OFF
+                  {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% DTO
                 </span>
               )}
             </div>
@@ -53,7 +53,7 @@ export const TopRated = () => {
                 <span className={styles.rating}>★ {game.rating}</span>
               </div>
               <div className={styles.reviews}>
-                {game.reviews?.length || 0} reviews
+                {game.reviews?.length || 0} reseñas
               </div>
               <div className={styles.gamePrice}>
                 {game.discountPrice ? (
@@ -71,4 +71,4 @@ export const TopRated = () => {
       </div>
     </div>
   );
-}; 
+};
