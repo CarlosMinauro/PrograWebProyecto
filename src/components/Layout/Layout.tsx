@@ -13,7 +13,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Navbar />
       <main className={styles.main}>
         {/* Collage de imágenes en las esquinas */}
-        <img src='/images/games/covers/GOWLOGO.jpg' className={`${styles.cornerImage} ${styles.topLeft}`} alt="Arriba Izquierda" />
+        {/*<img src='/images/games/covers/GOWLOGO.jpg' className={`${styles.cornerImage} ${styles.topLeft}`} alt="Arriba Izquierda" />
         <img src='public/images/games/covers/uncharted-5-pc-jogo-cover.jpg' className={`${styles.cornerImage} ${styles.topleft2}`} alt="Arriba Izquierda 2" />
 
         <img src='public/images/games/covers/TLOU2.jpg' className={`${styles.cornerImage} ${styles.topRight}`} alt="Arriba Derecha" />
@@ -25,7 +25,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
         <img src='public/images/games/covers/multiversuslogo.jpg' className={`${styles.cornerImage} ${styles.bottomright4}`} alt="Abajo Derecha 4" />
         <img src='public/images/games/covers/REDEADREDEMPTION.jpg' className={`${styles.cornerImage} ${styles.bottomright5}`} alt="Abajo Derecha 5" />
         <img src='public/images/games/covers/eldenringlogo.jpg' className={`${styles.cornerImage} ${styles.bottomright6}`} alt="Abajo Derecha 6" />
-
+        */}
         <div className={styles.container}>
           <div className={styles.pageContainer}>
             {title && (
