@@ -140,7 +140,7 @@ export const mockGames: Game[] = [
     price: 59.99,
     imageUrl: '/images/games/covers/zelda cover.jfif',
     thumbnailUrl: '/images/games/thumbnails/zelda/thumb-1.jpg',
-    platform: 'Nintendo',
+    platform: 'Nintendo Swtich',
     releaseDate: '2023-05-12',
     rating: 4.9,
     genre: ['Action', 'Adventure', 'RPG'],
