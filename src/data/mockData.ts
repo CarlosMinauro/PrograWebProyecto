@@ -586,7 +586,7 @@ export const mockGames: Game[] = [
     '/images/games/thumbnails/uncharted5/thumb-1.jpg'
   ],
   videos: [
-    '3hE2lLFGk5U'
+    '5Fp3v4aKWkc'
   ],
   reviews: [
     {
@@ -602,129 +602,137 @@ export const mockGames: Game[] = [
   ]
 },
 {
-  id: '11',
-  title: 'Star Wars Jedi: Fallen Order',
-  description: 'Vive una nueva historia en el universo Star Wars como Cal Kestis, un joven padawan que debe sobrevivir tras la Orden 66.',
-  price: 39.99,
-  discountPrice: 19.99,
-  imageUrl: '/images/games/covers/STARWARS.jpg',
-  thumbnailUrl: '/images/games/thumbnails/starwars/thumb-1.jpg',
+  id: '14',
+  title: 'Plants vs Zombies: Garden Warfare 2',
+  description: 'La batalla por Suburbia alcanza nuevas alturas en este shooter multijugador lleno de acción y humor entre plantas y zombis.',
+  price: 29.99,
+  discountPrice: 14.99,
+  imageUrl: '/images/games/covers/PVSZ.jpg', // Guarda la imagen y usa esta ruta
+  thumbnailUrl: '/images/games/thumbnails/pvz-gw2/thumb-1.jpg',
   platform: 'PC',
-  releaseDate: '2019-11-15',
-  rating: 4.7,
-  genre: ['Acción', 'Aventura', 'Star Wars'],
-  developer: 'Respawn Entertainment',
+  releaseDate: '2016-02-23',
+  rating: 4.4,
+  genre: ['Shooter', 'Multijugador', 'Acción'],
+  developer: 'PopCap Games',
   publisher: 'Electronic Arts',
   features: [
-    'Historia Original',
-    'Combate con Sable de Luz',
-    'Exploración de Planetas',
-    'Poderes de la Fuerza'
+    'Multijugador Online',
+    'Cooperativo',
+    'Personajes Personalizables',
+    'Modos de Juego Variados'
   ],
   requirements: {
     minimum: [
-      'Windows 7/8.1/10 64-bit',
-      'AMD FX-6100/Intel i3-3220',
-      '8GB RAM',
-      'AMD Radeon HD 7750/NVIDIA GeForce GTX 650'
+      'Windows 7 64-bit',
+      'Intel i5 650, AMD Phenom X4 9850',
+      '4GB RAM',
+      'NVIDIA GeForce GT 640, AMD Radeon HD 7730'
     ],
     recommended: [
       'Windows 10 64-bit',
-      'AMD Ryzen 7 1700/Intel i7-6700K',
-      '16GB RAM',
-      'AMD RX Vega 56/NVIDIA GTX 1070'
+      'Intel i5 750, AMD Phenom II X4 965',
+      '8GB RAM',
+      'NVIDIA GeForce GTX 970, AMD Radeon R9 270X'
     ]
   },
   screenshots: [
-    '/images/games/screenshots/starwars/screen1.jpg',
-    '/images/games/screenshots/starwars/screen2.jpg'
+    '/images/games/screenshots/pvz-gw2/screen1.jpg',
+    '/images/games/screenshots/pvz-gw2/screen2.jpg'
   ],
   thumbnails: [
-    '/images/games/thumbnails/starwars/thumb-1.jpg'
+    '/images/games/thumbnails/pvz-gw2/thumb-1.jpg'
   ],
   videos: [
-    '0GLbwkfhYZk'
+    '5b6ZvzF4FjY'
   ],
   reviews: [
     {
-      id: '14',
-      userId: 'user14',
-      userName: 'Sergio Campos',
+      id: '17',
+      userId: 'user17',
+      userName: 'Andrea Flores',
       rating: 5,
-      comment: 'Una historia de Star Wars emocionante y jugabilidad desafiante.',
+      comment: 'Muy divertido para jugar con amigos, muchas clases y modos.',
       date: '2024-03-01',
-      helpful: 36,
+      helpful: 18,
+      notHelpful: 0
+    },
+    {
+      id: '18',
+      userId: 'user18',
+      userName: 'Jorge Pérez',
+      rating: 4,
+      comment: 'Gran variedad de personajes, aunque el online puede tardar.',
+      date: '2024-02-28',
+      helpful: 7,
       notHelpful: 1
     }
   ]
 },
 {
-  id: '12',
-  title: 'Formula 1 2025',
-  description: 'Vive la emoción de la Fórmula 1 con todos los equipos, pilotos y circuitos oficiales de la temporada 2023.',
-  price: 69.99,
-  discountPrice: 54.99,
-  imageUrl: '/images/games/covers/F1LOGO.jpg',
-  thumbnailUrl: '/images/games/thumbnails/f1/thumb-1.jpg',
+  id: '15',
+  title: 'MultiVersus',
+  description: 'Pelea con tus personajes favoritos de Warner Bros. en este juego de lucha multijugador lleno de acción y diversión.',
+  price: 24.99,
+  discountPrice: 17.99,
+  imageUrl: '/images/games/covers/multiversuslogo.jpg', // Guarda la imagen y usa esta ruta
+  thumbnailUrl: '/images/games/covers/multiversuslogo.jpg',
   platform: 'PC',
-  releaseDate: '2023-06-16',
-  rating: 4.4,
-  genre: ['Carreras', 'Deportes', 'Simulación'],
-  developer: 'Codemasters',
-  publisher: 'EA Sports',
+  releaseDate: '2024-05-28',
+  rating: 4.2,
+  genre: ['Lucha', 'Plataformas', 'Multijugador'],
+  developer: 'Player First Games',
+  publisher: 'Warner Bros. Games',
   features: [
-    'Modo Carrera',
     'Multijugador Online',
-    'Todos los Circuitos Oficiales',
-    'Personalización de Escudería'
+    'Personajes de Warner Bros.',
+    'Batallas 2v2',
+    'Crossplay'
   ],
   requirements: {
     minimum: [
       'Windows 10 64-bit',
-      'Intel Core i3-2130',
-      '8GB RAM',
-      'NVIDIA GTX 950'
+      'Intel Core i5-2300',
+      '4GB RAM',
+      'NVIDIA GeForce GTX 550 Ti'
     ],
     recommended: [
       'Windows 10 64-bit',
-      'Intel Core i5-9600K',
-      '16GB RAM',
-      'NVIDIA GTX 1660 Ti'
+      'Intel Core i5-3470',
+      '8GB RAM',
+      'NVIDIA GeForce GTX 660'
     ]
   },
   screenshots: [
-    '/images/games/screenshots/f1/screen1.jpg',
-    '/images/games/screenshots/f1/screen2.jpg'
+    '/images/games/screenshots/multiversus/multivsSS.jpg',
+    '/images/games/screenshots/multiversus/MultiVersus-Season-1-Artwork.jpg'
   ],
   thumbnails: [
-    '/images/games/thumbnails/f1/thumb-1.jpg'
+    'public/images/games/covers/multiversuslogo.jpg'
   ],
   videos: [
-    'QJv1kBz4F6g'
+    'VDNhDe4eo9g'
   ],
   reviews: [
     {
-      id: '15',
-      userId: 'user15',
-      userName: 'Fernando Alonso',
-      rating: 5,
-      comment: 'La simulación de manejo es excelente y el modo carrera es muy adictivo.',
-      date: '2024-03-01',
-      helpful: 25,
-      notHelpful: 0
+      id: '19',
+      userId: 'user19',
+      userName: 'Valeria Torres',
+      rating: 4,
+      comment: 'Muy entretenido y fácil de jugar con amigos, personajes icónicos.',
+      date: '2024-05-29',
+      helpful: 10,
+      notHelpful: 1
     },
     {
-      id: '16',
-      userId: 'user16',
-      userName: 'Sofía Martínez',
-      rating: 4,
-      comment: 'Muy divertido, aunque el online podría mejorar.',
-      date: '2024-02-27',
-      helpful: 12,
-      notHelpful: 2
+      id: '20',
+      userId: 'user20',
+      userName: 'Samuel Díaz',
+      rating: 5,
+      comment: 'Excelente juego gratuito, el sistema de combate es muy divertido.',
+      date: '2024-05-29',
+      helpful: 8,
+      notHelpful: 0
     }
   ]
 },
-// ...existing code...
-
 ];
