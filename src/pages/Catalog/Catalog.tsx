@@ -7,7 +7,7 @@ import styles from './Catalog.module.css';
 export const Catalog = () => {
   const [games, setGames] = useState<Game[]>(mockGames);
   const [filters, setFilters] = useState({
-    priceRange: [0, 120],
+    priceRange: [0, 100],
     genre: '',
     platform: '',
     onSale: false,

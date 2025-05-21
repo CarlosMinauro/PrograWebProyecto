@@ -25,10 +25,10 @@ export const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.loginBox}>
-        <h1>Login</h1>
+        <h1>Inicio de sesión</h1>
         <form onSubmit={handleSubmit}>
           <div className={styles.formGroup}>
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email">Correo electronico:</label>
             <input
               type="email"
               id="email"
@@ -38,7 +38,7 @@ export const Login = () => {
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password">Contraseña:</label>
             <input
               type="password"
               id="password"
@@ -47,12 +47,18 @@ export const Login = () => {
               required
             />
           </div>
+          <div className={styles.formOptions}>
+            <label className={styles.rememberMe}>
+             <input type="checkbox" />
+              Recuérdame
+            </label>
+          </div>
           <button type="submit" className={styles.loginButton}>
-            Login
+            Iniciar sesión
           </button>
         </form>
         <p className={styles.note}>
-          Note: This is a demo login. Use any email and password to test.
+          Nota: Esto es una demo, puedes utilizar cualquier correo, no se guardara.
         </p>
       </div>
     </div>
