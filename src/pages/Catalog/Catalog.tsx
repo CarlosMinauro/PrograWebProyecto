@@ -20,7 +20,7 @@ export const Catalog = () => {
   useEffect(() => {
     let filteredGames = [...mockGames];
 
-    // Apply search filter
+    // Aplicar filtro de búsqueda
     if (filters.searchQuery) {
       filteredGames = filteredGames.filter(game =>
         game.title.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
@@ -28,24 +28,24 @@ export const Catalog = () => {
       );
     }
 
-    // Apply price range filter
+    // Aplicar filtro de rango de precio
     filteredGames = filteredGames.filter(game => {
       const actualPrice = game.discountPrice ?? game.price; 
       return actualPrice >= filters.priceRange[0] && actualPrice <= filters.priceRange[1];
     });
 
 
-    // Apply genre filter
+    // Aplicar filtro de género
     if (filters.genre) {
       filteredGames = filteredGames.filter(game => game.genre.includes(filters.genre));
     }
 
-    // Apply platform filter
+    // Aplicar filtro de plataforma
     if (filters.platform) {
       filteredGames = filteredGames.filter(game => game.platform === filters.platform);
     }
 
-    // Apply sale filter
+    // Aplicar filtro de venta
     if (filters.onSale) {
       filteredGames = filteredGames.filter(game => game.discountPrice !== undefined);
     }

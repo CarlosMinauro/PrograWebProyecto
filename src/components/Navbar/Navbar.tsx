@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './Navbar.module.css';
 import logo from '/src/assets/logo.png';
+
 export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,15 +16,22 @@ export const Navbar = () => {
     navigate('/');
   };
 
+  const handleSwitch = () => {
+    if (location.pathname.startsWith('/admin')) {
+      navigate('/'); // Cambia '/' por la ruta principal de usuario si es diferente
+    } else {
+      navigate('/admin/dashboard');
+    }
+  };
+
   return (
     <nav className={styles.navbar} role="navigation" aria-label="Main navigation">
       <div className={styles.container}>
-       <img
-    src={logo}
-    alt="Logo Uligames"
-    className={styles.logo}
-
-  />
+        <img
+          src={logo}
+          alt="Logo Uligames"
+          className={styles.logo}
+        />
         <Link to="/" className={styles.brand} aria-label="Inicio">
           Uligames
         </Link>
@@ -82,16 +90,22 @@ export const Navbar = () => {
               >
                 Configuración
               </Link>
-              {user?.isAdmin && (
-                <Link 
-                  to="/admin/dashboard" 
-                  className={styles.navLink}
-                  role="menuitem"
-                  aria-label="Admin Dashboard"
-                >
-                  Administrador
-                </Link>
-              )}
+              <button
+                onClick={handleSwitch}
+                className={styles.navLink}
+                style={{
+                  background: 'blue',
+                  color: 'white',
+                  border: '2px solid blue',
+                  cursor: 'pointer',
+                  padding: '5px 10px',
+                  marginLeft: '10px',
+                  fontWeight: 'bold'
+                }}
+                role="menuitem"
+              >
+                {location.pathname.startsWith('/admin') ? 'Ir a Usuario' : 'Ir a Administrador'}
+              </button>
               <button
                 onClick={handleLogout}
                 className={`${styles.navLink} ${styles.logoutButton}`}

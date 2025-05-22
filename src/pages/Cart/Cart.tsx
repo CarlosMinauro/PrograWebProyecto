@@ -11,34 +11,36 @@ import { useNotification } from '../../contexts/NotificationContext';
 import styles from './Cart.module.css';
 
 export const Cart = () => {
-  const { items, removeFromCart, getTotal, checkout } = useCart();
+  const { items, removeFromCart, getTotal } = useCart();
   const { user } = useAuth();
   const { showNotification } = useNotification();
   const navigate = useNavigate();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleCheckout = async () => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+  // Estado para el formulario de tarjeta
+  const [showCardForm, setShowCardForm] = useState(false);
+  const [cardData, setCardData] = useState({
+    nombre: '',
+    numero: '',
+    fechaVencimiento: '',
+    cvv: ''
+  });
 
-    setIsCheckingOut(true);
-    try {
-      await checkout();
-      setShowSuccess(true);
-      showNotification('¡Compra exitosa! Las claves de tus juegos han sido enviadas a tu correo.', 'success');
-      setTimeout(() => {
-        setShowSuccess(false);
-        navigate('/');
-      }, 3000);
-    } catch (error) {
-      console.error('Checkout failed:', error);
-      showNotification('No se pudo procesar el pago. Por favor, intenta de nuevo.', 'error');
-    } finally {
-      setIsCheckingOut(false);
-    }
+  const handleCardChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCardData({ ...cardData, [e.target.name]: e.target.value });
+  };
+
+  const handleCardSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowSuccess(true);
+    showNotification('¡Pago con tarjeta exitoso! Las claves de tus juegos han sido enviadas a tu correo.', 'success');
+    setShowCardForm(false);
+    setCardData({ nombre: '', numero: '', fechaVencimiento: '', cvv: '' });
+    setTimeout(() => {
+      setShowSuccess(false);
+      navigate('/');
+    }, 3000);
   };
 
   if (items.length === 0) {
@@ -95,11 +97,35 @@ export const Cart = () => {
         </div>
         <button
           className={styles.checkoutButton}
-          onClick={handleCheckout}
+          style={{ marginTop: '10px', background: '#1976d2' }}
+          onClick={() => setShowCardForm(!showCardForm)}
           disabled={isCheckingOut}
         >
-          {isCheckingOut ? 'Procesando...' : 'Finalizar compra'}
+          Pagar con tarjeta
         </button>
+        {showCardForm && (
+          <form onSubmit={handleCardSubmit} style={{ marginTop: '20px', background: '#222', padding: '20px', borderRadius: '8px' }}>
+            <div>
+              <label>Nombre en la tarjeta:</label>
+              <input type="text" name="nombre" value={cardData.nombre} onChange={handleCardChange} required />
+            </div>
+            <div>
+              <label>Número de tarjeta:</label>
+              <input type="text" name="numero" value={cardData.numero} onChange={handleCardChange} required maxLength={16} />
+            </div>
+            <div>
+              <label>Fecha de vencimiento:</label>
+              <input type="text" name="fechaVencimiento" value={cardData.fechaVencimiento} onChange={handleCardChange} placeholder="MM/AA" required maxLength={5} />
+            </div>
+            <div>
+              <label>CVV:</label>
+              <input type="password" name="cvv" value={cardData.cvv} onChange={handleCardChange} required maxLength={4} />
+            </div>
+            <button type="submit" className={styles.checkoutButton} style={{ marginTop: '10px' }}>
+              Pagar
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

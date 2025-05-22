@@ -241,13 +241,6 @@
   text-align: center;
 }
 
-/* Ensure the card itself is centered within the flex container */
-/* The .container in Layout.module.css handles centering the pageContainer */
-.loginCard {
-  /* ... existing styles ... */
-  /* margin: auto; */ /* Centering handled by Layout */
-}
-
 @media (max-width: 480px) {
   .container {
     padding: 1rem;

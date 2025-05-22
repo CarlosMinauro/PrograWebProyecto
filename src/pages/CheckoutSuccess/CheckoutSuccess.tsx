@@ -7,7 +7,7 @@ export const CheckoutSuccess = () => {
   const navigate = useNavigate();
   const { items, totalPrice } = useCart();
 
-  // Generate a random order number
+  // Generar un número de orden aleatorio
   const orderNumber = `ORD-${Math.floor(Math.random() * 1000000).toString().padStart(6, '0')}`;
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',

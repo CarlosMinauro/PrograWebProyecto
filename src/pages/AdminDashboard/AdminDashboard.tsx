@@ -6,7 +6,7 @@ import { UserManager } from '../../components/Admin/UserManage';
 import styles from './AdminDashboard.module.css';
 
 export const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState<'productos' | 'usuarios' | 'noticias' | 'estadisticas'>('productos');
+  const [activeTab, setActiveTab] = useState<|'productos' | 'usuarios' | 'noticias' | 'estadisticas'>('productos');
 
   return (
     <div className={styles.container}>

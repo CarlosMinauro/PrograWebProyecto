@@ -470,7 +470,8 @@ export const mockGames: Game[] = [
   },
   screenshots: [
     '/images/games/screenshots/streetfighter6/screen1.jpg',
-    '/images/games/screenshots/streetfighter6/screen2.jpg'
+    '/images/games/screenshots/streetfighter6/screen2.jpg',
+    '/images/games/screenshots/streetfighter6/screen3.jpg'
   ],
   thumbnails: [
     '/images/games/thumbnails/streetfighter6/thumb-1.jpg'
@@ -527,7 +528,8 @@ export const mockGames: Game[] = [
   },
   screenshots: [
     '/images/games/screenshots/vicecity/screen1.jpg',
-    '/images/games/screenshots/vicecity/screen2.jpg'
+    '/images/games/screenshots/vicecity/screen2.jpg',
+    '/images/games/screenshots/vicecity/screen3.jpg'
   ],
   thumbnails: [
     '/images/games/thumbnails/vicecity/thumb-1.jpg'
@@ -580,7 +582,8 @@ export const mockGames: Game[] = [
   },
   screenshots: [
     '/images/games/screenshots/uncharted5/screen1.jpg',
-    '/images/games/screenshots/uncharted5/screen2.jpg'
+    '/images/games/screenshots/uncharted5/screen2.jpg',
+    '/images/games/screenshots/uncharted5/screen3.jpg'
   ],
   thumbnails: [
     '/images/games/thumbnails/uncharted5/thumb-1.jpg'
@@ -637,7 +640,8 @@ export const mockGames: Game[] = [
   },
   screenshots: [
     '/images/games/screenshots/starwars/screen1.jpg',
-    '/images/games/screenshots/starwars/screen2.jpg'
+    '/images/games/screenshots/starwars/screen2.jpg',
+    '/images/games/screenshots/starwars/screen3.jpg'
   ],
   thumbnails: [
     '/images/games/thumbnails/starwars/thumb-1.jpg'
@@ -694,7 +698,8 @@ export const mockGames: Game[] = [
   },
   screenshots: [
     '/images/games/screenshots/f1/screen1.jpg',
-    '/images/games/screenshots/f1/screen2.jpg'
+    '/images/games/screenshots/f1/screen2.jpg',
+    '/images/games/screenshots/f1/screen3.jpg'
   ],
   thumbnails: [
     '/images/games/thumbnails/f1/thumb-1.jpg'
@@ -725,6 +730,6 @@ export const mockGames: Game[] = [
     }
   ]
 },
-// ...existing code...
+
 
 ];
