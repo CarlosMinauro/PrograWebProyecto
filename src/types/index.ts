@@ -15,7 +15,7 @@ export interface Game {
   discountPrice?: number;
   imageUrl: string;
   thumbnailUrl: string;
-  platform: 'PC' | 'PlayStation' | 'Xbox' | 'Nintendo';
+  platform: (' PC ' | ' PlayStation ' | ' Xbox ' | ' Nintendo ')[];
   releaseDate: string;
   rating: number;
   genre: string[];
@@ -64,7 +64,7 @@ export interface Order {
   userId: string;
   items: CartItem[];
   total: number;
-  status: 'pending' | 'processing' | 'completed' | 'cancelled';
+  status: 'pendiente' | 'procesando' | 'completado' | 'cancelado';
   paymentMethod: string;
   createdAt: string;
   updatedAt: string;

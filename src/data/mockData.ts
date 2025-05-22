@@ -36,7 +36,7 @@ export const mockGames: Game[] = [
     discountPrice: 29.99,
     imageUrl: '/images/games/covers/cyberpunkcover.jpg',
     thumbnailUrl: '/images/games/thumbnails/cyberpunk/thumb-1.jpg',
-    platform: 'PC',
+    platform: [' PC '],
     releaseDate: '2020-12-10',
     rating: 4.5,
     genre: ['RPG', 'Acción', 'Mundo Abierto'],
@@ -95,7 +95,7 @@ export const mockGames: Game[] = [
     price: 69.99,
     imageUrl: 'public/images/games/covers/TLOU2.jpg',
     thumbnailUrl: '/images/games/thumbnails/last-of-us/thumb-1.jpg',
-    platform: 'PlayStation',
+    platform: [' PlayStation '],
     releaseDate: '2020-06-19',
     rating: 4.8,
     genre: ['Acción', 'Aventura', 'Survival Horror'],
@@ -140,7 +140,7 @@ export const mockGames: Game[] = [
     price: 59.99,
     imageUrl: '/images/games/covers/zelda cover.jfif',
     thumbnailUrl: '/images/games/thumbnails/zelda/thumb-1.jpg',
-    platform: 'Nintendo',
+    platform: [' Nintendo '],
     releaseDate: '2023-05-12',
     rating: 4.9,
     genre: ['Acción', 'Aventura', 'RPG'],
@@ -186,7 +186,7 @@ export const mockGames: Game[] = [
     discountPrice: 39.99,
     imageUrl: 'public/images/games/covers/HALO.jpg',
     thumbnailUrl: '/images/games/thumbnails/halo/thumb-1.jpg',
-    platform: 'Xbox',
+    platform: [' Xbox '],
     releaseDate: '2021-12-08',
     rating: 4.3,
     genre: ['FPS', 'Acción', 'Ciencia Ficción'],
@@ -232,7 +232,7 @@ export const mockGames: Game[] = [
     discountPrice: 19.99,
     imageUrl: 'public/images/games/covers/GTAV.jpg',
     thumbnailUrl: '/images/games/thumbnails/gtav/thumb-1.jpg',
-    platform: 'PC',
+    platform: [' PC '],
     releaseDate: '2015-04-14',
     rating: 4.7,
     genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -302,7 +302,7 @@ export const mockGames: Game[] = [
     discountPrice: 39.99,
     imageUrl: 'public/images/games/covers/REDEADREDEMPTION.jpg',
     thumbnailUrl: 'public/images/games/covers/REDEADREDEMPTION.jpg',
-    platform: 'PC',
+    platform: [' PC '],
     releaseDate: '2019-11-05',
     rating: 4.9,
     genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -372,7 +372,7 @@ export const mockGames: Game[] = [
     discountPrice: 29.99,
     imageUrl: 'public/images/games/covers/SPIDERMAN.jpg',
     thumbnailUrl: '/images/games/thumbnails/spiderman/thumb-1.jpg',
-    platform: 'PC',
+    platform: [' PC '],
     releaseDate: '2022-08-12',
     rating: 4.8,
     genre: ['Acción', 'Aventura', 'Superhéroes'],
@@ -442,7 +442,7 @@ export const mockGames: Game[] = [
   discountPrice: 49.99,
   imageUrl: '/images/games/covers/STREETFIGHTER6LOGO.jpg',
   thumbnailUrl: '/images/games/thumbnails/streetfighter6/thumb-1.jpg',
-  platform: 'PC',
+  platform: [' PC ', ' PlayStation ', ' Xbox '],
   releaseDate: '2023-06-02',
   rating: 4.6,
   genre: ['Lucha', 'Competitivo', 'Acción'],
@@ -499,7 +499,7 @@ export const mockGames: Game[] = [
   discountPrice: 9.99,
   imageUrl: '/images/games/covers/vicecitylogo.jpg',
   thumbnailUrl: '/images/games/thumbnails/vicecity/thumb-1.jpg',
-  platform: 'PC',
+  platform: [' PC '],
   releaseDate: '2003-05-12',
   rating: 4.5,
   genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -556,7 +556,7 @@ export const mockGames: Game[] = [
   discountPrice: 59.99,
   imageUrl: '/images/games/covers/uncharted-5-pc-jogo-cover.jpg',
   thumbnailUrl: '/images/games/thumbnails/uncharted5/thumb-1.jpg',
-  platform: 'PlayStation',
+  platform: [' PlayStation ', ' PC '],
   releaseDate: '2024-02-20',
   rating: 4.9,
   genre: ['Acción', 'Aventura', 'Exploración'],
@@ -609,7 +609,7 @@ export const mockGames: Game[] = [
   discountPrice: 14.99,
   imageUrl: '/images/games/covers/PVSZ.jpg', // Guarda la imagen y usa esta ruta
   thumbnailUrl: '/images/games/thumbnails/pvz-gw2/thumb-1.jpg',
-  platform: 'PC',
+  platform: [' PC '],
   releaseDate: '2016-02-23',
   rating: 4.4,
   genre: ['Shooter', 'Multijugador', 'Acción'],
@@ -676,7 +676,7 @@ export const mockGames: Game[] = [
   discountPrice: 17.99,
   imageUrl: '/images/games/covers/multiversuslogo.jpg', // Guarda la imagen y usa esta ruta
   thumbnailUrl: '/images/games/covers/multiversuslogo.jpg',
-  platform: 'PC',
+  platform: [' PC '],
   releaseDate: '2024-05-28',
   rating: 4.2,
   genre: ['Lucha', 'Plataformas', 'Multijugador'],
@@ -735,4 +735,259 @@ export const mockGames: Game[] = [
     }
   ]
 },
+{
+    id: '16',
+    title: 'Days Gone',
+    description: 'Un juego de acción y supervivencia en mundo abierto ambientado en un duro entorno postapocalíptico, protagonizado por el motociclista Deacon St. John.',
+    price: 49.99,
+    discountPrice: 19.99,
+    imageUrl: '/images/games/covers/days-gonelogo.jpg',
+    thumbnailUrl: '/images/games/thumbnails/days-gone/thumb-1.jpg',
+    platform: [' PlayStation '],
+    releaseDate: '2019-04-26',
+    rating: 4.2,
+    genre: ['Action', 'Adventure', 'Survival'],
+    developer: 'Bend Studio',
+    publisher: 'Sony Interactive Entertainment',
+    features: [
+      'Open World',
+      'Survival',
+      'Motorcycle Exploration',
+      'Dynamic Weather'
+    ],
+    requirements: {
+      minimum: [
+        'Windows 10 64-bit',
+        'Intel Core i5-2500K@3.3GHz o AMD FX 6300@3.5GHz',
+        '8GB RAM',
+        'Nvidia GeForce GTX 780 (3 GB) o AMD Radeon R9 290 (4 GB)'
+      ],
+      recommended: [
+        'Windows 10 64-bit',
+        'Intel Core i7-4770K@3.5GHz o Ryzen 5 1500X@3.5GHz',
+        '16GB RAM',
+        'Nvidia GeForce GTX 1060 (6 GB) o AMD Radeon RX 580 (8 GB)'
+      ]
+    },
+    screenshots: [
+      '/images/games/screenshots/daysgone/screen1.jpg',
+      '/images/games/screenshots/daysgone/screen2.jpg',
+      '/images/games/screenshots/daysgone/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/daysgone/thumb-1.jpg',
+      '/images/games/thumbnails/daysgone/thumb-2.jpg'
+    ],
+    videos: [
+      'yGZGSdgJVPM'
+    ],
+    reviews: [
+      {
+        id: '21',
+        userId: 'user21',
+        userName: 'Alex Torres',
+        rating: 4,
+        comment: 'Muy buen juego, la historia es atrapante y el ambiente postapocalíptico está muy logrado.',
+        date: '2024-03-11',
+        helpful: 10,
+        notHelpful: 1
+      }
+    ]
+  },
+  {
+    id: '17',
+    title: 'Elden Ring',
+    description: 'Un juego de rol y acción en mundo abierto creado por FromSoftware y George R. R. Martin, famoso por su dificultad y su extenso mundo de fantasía.',
+    price: 69.99,
+    discountPrice: 49.99,
+    imageUrl: '/images/games/covers/eldenringlogo.jpg',
+    thumbnailUrl: '/images/games/thumbnails/eldenring/thumb-1.jpg',
+    platform: [' PC '],
+    releaseDate: '2022-02-25',
+    rating: 4.9,
+    genre: ['RPG', 'Action', 'Open World'],
+    developer: 'FromSoftware',
+    publisher: 'Bandai Namco',
+    features: [
+      'Open World',
+      'Challenging Combat',
+      'Multiplayer',
+      'Character Customization'
+    ],
+    requirements: {
+      minimum: [
+        'Windows 10',
+        'Intel Core i5-8400 o AMD Ryzen 3 3300X',
+        '12GB RAM',
+        'NVIDIA GeForce GTX 1060 3GB o AMD Radeon RX 580 4GB'
+      ],
+      recommended: [
+        'Windows 11/10',
+        'Intel Core i7-8700K o AMD Ryzen 5 3600X',
+        '16GB RAM',
+        'NVIDIA GeForce GTX 1070 8GB o AMD Radeon RX VEGA 56 8GB'
+      ]
+    },
+    screenshots: [
+      '/images/games/screenshots/eldenring/screen1.jpg',
+      '/images/games/screenshots/eldenring/screen2.jpg',
+      '/images/games/screenshots/eldenring/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/eldenring/thumb-1.jpg',
+      '/images/games/thumbnails/eldenring/thumb-2.jpg',
+      '/images/games/thumbnails/eldenring/thumb-3.jpg'
+    ],
+    videos: [
+      'E3Huy2cdih0'
+    ],
+    reviews: [
+      {
+        id: '22',
+        userId: 'user22',
+        userName: 'Lucía Mendoza',
+        rating: 5,
+        comment: 'Una obra maestra, desafiante y con un mundo impresionante por explorar.',
+        date: '2024-03-10',
+        helpful: 24,
+        notHelpful: 0
+      }
+    ]
+  },
+  // ... (código anterior)
+
+  {
+    id: '18',
+    title: 'God of War: Ragnarok',
+    description: 'Kratos y Atreus se embarcan en una épica aventura mientras enfrentan el fin de los tiempos en la mitología nórdica. Lucha contra dioses y monstruos en este aclamado juego de acción y aventura.',
+    price: 69.99,
+    discountPrice: 54.99,
+    imageUrl: '/images/games/covers/GOWLOGO.jpg',
+    thumbnailUrl: '/images/games/thumbnails/gowragnarok/thumb-1.jpg',
+    platform: [' PlayStation '],
+    releaseDate: '2022-11-09',
+    rating: 4.9,
+    genre: ['Action', 'Adventure'],
+    developer: 'Santa Monica Studio',
+    publisher: 'Sony Interactive Entertainment',
+    features: [
+      'Story Rich',
+      'Single Player',
+      'Action Combat',
+      'Mythological Setting'
+    ],
+    requirements: {
+      minimum: [
+        'PlayStation 4 o PlayStation 5'
+      ],
+      recommended: [
+        'PlayStation 5'
+      ]
+    },
+    screenshots: [
+      '/images/games/screenshots/gowragnarok/screen1.jpg',
+      '/images/games/screenshots/gowragnarok/screen2.jpg',
+      '/images/games/screenshots/gowragnarok/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/gowragnarok/thumb-1.jpg',
+      '/images/games/thumbnails/gowragnarok/thumb-2.jpg'
+    ],
+    videos: [
+      'EE-4GvjKcfs'
+    ],
+    reviews: [
+      {
+        id: '7-1',
+        userId: 'user7',
+        userName: 'Carlos Pérez',
+        rating: 5,
+        comment: 'Una obra maestra, la narrativa y los combates son increíbles.',
+        date: '2024-03-09',
+        helpful: 21,
+        notHelpful: 0
+      },
+      {
+        id: '7-2',
+        userId: 'user8',
+        userName: 'Marta Gómez',
+        rating: 5,
+        comment: 'El mejor God of War de la saga, gráficos impresionantes y gameplay adictivo.',
+        date: '2024-03-08',
+        helpful: 17,
+        notHelpful: 1
+      }
+    ]
+  },
+  {
+    id: '19',
+    title: 'FIFA 25',
+    description: 'La experiencia de fútbol definitiva regresa con FIFA 25, con nuevas mecánicas de juego, gráficos mejorados y modos competitivos tanto online como offline.',
+    price: 69.99,
+    discountPrice: 59.99,
+    imageUrl: 'public/images/games/covers/fifa25logo.jpg',
+    thumbnailUrl: '/images/games/thumbnails/fifa25/thumb-1.jpg',
+    platform: [' Xbox ', ' PC ', ' PlayStation '],
+    releaseDate: '2024-09-27',
+    rating: 4.4,
+    genre: ['Sports', 'Simulation'],
+    developer: 'EA Sports',
+    publisher: 'Electronic Arts',
+    features: [
+      'Multiplayer',
+      'Career Mode',
+      'Online Competitions',
+      'Licensed Teams'
+    ],
+    requirements: {
+      minimum: [
+        'Windows 10 64-bit',
+        'Intel Core i5-6600k o AMD Ryzen 5 1600',
+        '8GB RAM',
+        'NVIDIA GeForce GTX 1050 Ti o AMD Radeon RX 570'
+      ],
+      recommended: [
+        'Windows 10/11 64-bit',
+        'Intel Core i7-6700 o AMD Ryzen 7 2700X',
+        '12GB RAM',
+        'NVIDIA GeForce GTX 1660 o AMD Radeon RX 5600 XT'
+      ]
+    },
+    screenshots: [
+      '/images/games/screenshots/fifa25/screen1.jpg',
+      '/images/games/screenshots/fifa25/screen2.jpg',
+      '/images/games/screenshots/fifa25/screen3.jpg'
+    ],
+    thumbnails: [
+      '/images/games/thumbnails/fifa25/thumb-1.jpg',
+      '/images/games/thumbnails/fifa25/thumb-2.jpg'
+    ],
+    videos: [
+      'dQw4w9WgXcQ'
+    ],
+    reviews: [
+      {
+        id: '8-1',
+        userId: 'user9',
+        userName: 'Diego Herrera',
+        rating: 4,
+        comment: 'Muy divertido, aunque me gustaría que mejoraran el modo carrera.',
+        date: '2024-03-07',
+        helpful: 8,
+        notHelpful: 0
+      },
+      {
+        id: '8-2',
+        userId: 'user10',
+        userName: 'Sofía Ruiz',
+        rating: 5,
+        comment: 'El mejor FIFA hasta ahora, los gráficos y la jugabilidad son top.',
+        date: '2024-03-06',
+        helpful: 11,
+        notHelpful: 2
+      }
+    ]
+  }
+// ... (cierre del array y archivo)
+
 ];
