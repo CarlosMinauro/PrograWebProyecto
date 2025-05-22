@@ -58,6 +58,9 @@ export const Login = () => {
         <p className={styles.forgotPassword}>
           <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
         </p>
+        <p className={styles.createAcc}>
+          ¿No tienes cuenta? <Link to="/register">Crea una</Link>
+        </p>
       </div>
     </div>
   );

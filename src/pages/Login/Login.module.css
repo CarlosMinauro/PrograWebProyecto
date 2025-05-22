@@ -127,6 +127,15 @@
   color: rgba(35,186,255,255);
   text-decoration: none;
   font-size: 0.8rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+   
+}
+
+.createAcc {
+  color: rgba(35,186,255,255);
+  text-decoration: none;
+  font-size: 0.8rem;
 }
 
 .loginButton:disabled {

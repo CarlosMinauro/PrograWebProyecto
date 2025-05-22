@@ -29,9 +29,11 @@ export const Catalog = () => {
     }
 
     // Apply price range filter
-    filteredGames = filteredGames.filter(game =>
-      game.price >= filters.priceRange[0] && game.price <= filters.priceRange[1]
-    );
+    filteredGames = filteredGames.filter(game => {
+      const actualPrice = game.discountPrice ?? game.price; 
+      return actualPrice >= filters.priceRange[0] && actualPrice <= filters.priceRange[1];
+    });
+
 
     // Apply genre filter
     if (filters.genre) {
@@ -112,12 +114,13 @@ export const Catalog = () => {
           </div>
 
           <div className={styles.filterGroup}>
-            <h3>Ordenar por</h3>
-            <select>
-              <option value="newest">Más nuevos</option>
-              <option value="price-asc">Precio: menor a mayor</option>
-              <option value="price-desc">Precio: mayor a menor</option>
-              <option value="rating">Calificación</option>
+            <h3>Juegos en oferta</h3>
+            <select
+                value={filters.onSale ? 'onSale' : ''}
+                onChange={(e) => handleFilterChange('onSale', e.target.value === 'onSale')}
+            >
+              <option value="">Todos los juegos</option>
+              <option value="onSale">Solo juegos en oferta</option>
             </select>
           </div>
         </aside>
