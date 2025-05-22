@@ -1,42 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="src/assets/favicon.png"/>
     <title>Uligames Store</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./images/uligames-store-ico.png"
-    />
-    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <img
-        src="images/uligames-store-logo-removebg-preview.png"
-        alt="uligames-store-logo"
-        class="logo"
-      />
-      <h1><a href="" target="_blank">Uligames Store</a></h1>
-    </header>
-    <main>
-    <section class="container">
-      <h2>Iniciar sesion en Uligames Store</h2>
-      <form action="">
-        <label for="user-id">Nombre de usuario o Correo electronico.</label>
-        <input type="text" id="user-id" />
-        <label for="user-password">Contraseña:</label>
-        <a href="" target="_blank">¿Olvidaste tu contraseña</a>
-        <input type="password" id="user-password"/>
-        <button type="submit" id="sign-in">Iniciar sesion</button>
-        <section class="sub-container">
-        <span>¿Nuevo en Uligames Store?</span
-        ><a href="" target="_blank">Crear una cuenta</a>
-        </section>
-      </form>
-    </section>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
