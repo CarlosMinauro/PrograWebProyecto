@@ -33,30 +33,26 @@ export const Register = () => {
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Validación de nombre
     if (!formData.name.trim()) {
       newErrors.name = 'El nombre es obligatorio';
     } else if (formData.name.length < 2) {
       newErrors.name = 'El nombre debe tener al menos 2 caracteres';
     }
 
-    // Validación de correo
     if (!formData.email.trim()) {
       newErrors.email = 'El correo electrónico es obligatorio';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Formato de correo inválido';
     }
 
-    // Validación de contraseña
     if (!formData.password) {
       newErrors.password = 'La contraseña es obligatoria';
     } else if (formData.password.length < 8) {
       newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
+    } else if (!/(?=.[a-z])(?=.[A-Z])(?=.*\d)/.test(formData.password)) {
       newErrors.password = 'La contraseña debe contener mayúsculas, minúsculas y números';
     }
 
-    // Validación de confirmación de contraseña
     if (!formData.confirmPassword) {
       newErrors.confirmPassword = 'Confirma tu contraseña';
     } else if (formData.password !== formData.confirmPassword) {
@@ -73,7 +69,6 @@ export const Register = () => {
       ...prev,
       [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({
         ...prev,
@@ -84,13 +79,10 @@ export const Register = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!validateForm()) {
       return;
     }
-
     setIsLoading(true);
-
     try {
       await register(formData.name, formData.email, formData.password);
       setRegistrationSuccess(true);
@@ -116,15 +108,6 @@ export const Register = () => {
             <p className={styles.email}>{formData.email}</p>
             <p>Revisa tu bandeja de entrada y haz clic en el enlace de verificación para activar tu cuenta.</p>
             <div className={styles.verificationActions}>
-              <button
-                className={styles.resendButton}
-                onClick={() => {
-                  // TODO: Implementar reenvío de correo de verificación
-                  alert('¡Correo de verificación reenviado!');
-                }}
-              >
-                Reenviar correo de verificación
-              </button>
               <Link to="/login" className={styles.loginLink}>
                 Volver al inicio de sesión
               </Link>
@@ -217,23 +200,31 @@ export const Register = () => {
 
         <div className={styles.socialButtons}>
           <button
-            type="button"
-            className={styles.socialButton}
-            onClick={() => console.log('Google signup')}
-            disabled={isLoading}
-          >
-            <img src="/images/google-icon.svg" alt="Google" />
-            Google
-          </button>
-          <button
-            type="button"
-            className={styles.socialButton}
-            onClick={() => console.log('Facebook signup')}
-            disabled={isLoading}
-          >
-            <img src="/images/facebook-icon.svg" alt="Facebook" />
-            Facebook
-          </button>
+  type="button"
+  className={styles.socialButton}
+  onClick={() => console.log('Google signup')}
+  disabled={isLoading}
+>
+  <img
+    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg"
+    alt="Google"
+    style={{ width: 24, height: 24, marginRight: 8 }}
+  />
+  Google
+</button>
+<button
+  type="button"
+  className={styles.socialButton}
+  onClick={() => console.log('Facebook signup')}
+  disabled={isLoading}
+>
+  <img
+    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg"
+    alt="Facebook"
+    style={{ width: 24, height: 24, marginRight: 8 }}
+  />
+  Facebook
+</button>
         </div>
 
         <div className={styles.footer}>

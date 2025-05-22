@@ -33,7 +33,6 @@ const mockRevenueData = [
 const years = Array.from(new Set(mockRevenueData.map(d => d.year))).sort((a, b) => b - a);
 
 const periods = [
-  { value: 'all', label: 'Todo el tiempo' },
   { value: 'year', label: 'Este año' },
   { value: 'month', label: 'Este mes' },
   { value: 'week', label: 'Esta semana' }

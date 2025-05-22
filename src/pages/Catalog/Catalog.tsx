@@ -42,7 +42,7 @@ export const Catalog = () => {
 
     // Aplicar filtro de plataforma
     if (filters.platform) {
-      filteredGames = filteredGames.filter(game => game.platform === filters.platform);
+      filteredGames = filteredGames.filter(game =>String( game.platform) === String(filters.platform));
     }
 
     // Aplicar filtro de venta

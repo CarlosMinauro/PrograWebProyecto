@@ -15,7 +15,7 @@ const mockGames = [
   {
     id: '2',
     title: 'Guerreros Espaciales',
-    platform: 'PS5',
+    platform: 'PlayStation 5',
     price: 49.99,
     category: 'Acción',
     imageUrl: 'https://wccftech.com/cyberpunk-2077-sequel-new-chicago-city/',

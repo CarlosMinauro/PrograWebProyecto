@@ -7,19 +7,19 @@ import { AuthProvider } from '../../contexts/AuthContext';
 const initialNews = [
   {
     id: '1',
-    title: 'New Game Release: Cyber Adventure 2077',
-    description: 'Experience the future of gaming with our latest release...',
-    imageUrl: 'https://variety.com/wp-content/uploads/2023/10/cyberpunk.jpeg?w=1000&h=667&crop=1&resize=910%2C607',
-    date: '2024-03-15',
+    title: 'Ha salido un nuevo Doom: Doom: The Dark Ages',
+    description: 'Experiencia el futuro del gaming con este juego...',
+    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/7/7f/DOOM%2C_The_Dark_Ages_Game_Cover.jpeg',
+    date: '2025-03-15',
     author: 'John Doe',
     status: 'published'
   },
   {
     id: '2',
-    title: 'Summer Sale Coming Soon!',
-    description: 'Get ready for our biggest sale of the year...',
+    title: '¡Pronto iniciará nuestra venta de verano!',
+    description: 'Preparense para nuestras mejores ofertas del año...',
     imageUrl: 'https://img.freepik.com/vector-gratis/proximamente-fondo-diseno-efecto-luz-enfoque_1017-27277.jpg?semt=ais_hybrid&w=740',
-    date: '2024-03-14',
+    date: '2025-03-14',
     author: 'Jane Smith',
     status: 'draft'
   },
@@ -27,18 +27,18 @@ const initialNews = [
     id: '3',
     title: 'Nuevos juegos de playstation 5 llegan este mes',
     description: 'Descubre los nuevos lanzamientos de juegos para PS5 que llegarán este mes...',
-    imageUrl: 'https://www.playstation.com/cdn/cdn/ps5/ps5-games.jpg',
-    date: '2024-03-13',
-    autor: 'john doe',
+    imageUrl: 'https://cdn.mos.cms.futurecdn.net/TuKryVEAvYRxzSaUaVcfBW-970-80.jpg.webp',
+    date: '2025-03-13',
+    author: 'john doe',
     status: 'published'
   },
   {
     id: '4',
     title: 'Rumores sobre Nintendo Switch Pro: Lo que sabemos',
     description: 'Los últimos rumores sobre la próxima Nintendo Switch Pro y lo que podría significar para la comunidad gamer.',
-    imageUrl: 'https://www.nintendo.com/content/dam/noa/en_US/games/switch/nintendo-switch-pro/hero.jpg',
-    date: '2024-03-12',
-    autor : 'Jane Smith',
+    imageUrl: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/12/nintendo-switch-pro-rumors.jpg?q=50&fit=crop&w=1140&h=&dpr=1.5',
+    date: '2025-03-12',
+    author : 'Jane Smith',
     status: 'published'
   },
   {
@@ -47,7 +47,7 @@ const initialNews = [
     description: 'Cómo los juegos indie están moldeando el futuro del gaming en PC y qué esperar en los próximos meses',    
     imageUrl: '../public/images/news/pc new.png',
     date: '2024-03-11',
-    autor : 'John Doe',
+    author : 'John Doe',
     status: 'published'
   }
 ];
