@@ -49,7 +49,7 @@ export const Register = () => {
       newErrors.password = 'La contraseña es obligatoria';
     } else if (formData.password.length < 8) {
       newErrors.password = 'La contraseña debe tener al menos 8 caracteres';
-    } else if (!/(?=.[a-z])(?=.[A-Z])(?=.*\d)/.test(formData.password)) {
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
       newErrors.password = 'La contraseña debe contener mayúsculas, minúsculas y números';
     }
 
@@ -211,7 +211,7 @@ export const Register = () => {
     style={{ width: 24, height: 24, marginRight: 8 }}
   />
   Google
-</button>
+  </button>
 <button
   type="button"
   className={styles.socialButton}

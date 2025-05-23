@@ -15,7 +15,7 @@ export interface Game {
   discountPrice?: number;
   imageUrl: string;
   thumbnailUrl: string;
-  platform: (' Windows ' | ' PlayStation 4 ' | ' Xbox ' | ' Nintendo Swtich ' | ' MacOS ' | ' PlayStation 5 ')[];
+  platform:' Windows ' | ' PlayStation 4 ' | ' Xbox ' | ' Nintendo Swtich ' | ' MacOS ' | ' PlayStation 5 ';
   releaseDate: string;
   rating: number;
   genre: string[];

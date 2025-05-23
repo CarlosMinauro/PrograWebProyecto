@@ -10,7 +10,7 @@ const initialGames = [
     price: 59.99,
     category: 'RPG',
     releaseDate: '2020-12-10',
-    imageUrl: 'https://via.placeholder.com/100',
+    imageUrl: 'https://image.api.playstation.com/vulcan/ap/rnd/202008/0416/6Bo40lnWU0BhgrOUm7Cb6by3.png?w=780&thumb=false',
     status: 'published'
   },
   {
@@ -40,7 +40,7 @@ const initialGames = [
     price: 69.99,
     category: 'Aventura',
     releaseDate: '2025-03-10',
-    imageUrl: 'https://image.api.playstation.com/vulcan/ap/rnd/202010/2918/1d6w6k3kQwZ0pniS3pS1Qw3A.png',
+    imageUrl: 'https://alfabetajuega.com/hero/2025/05/uncharted-5-fan-art.jpg?width=1200&aspect_ratio=16:9',
     status: 'published'
   },
   {
@@ -50,7 +50,7 @@ const initialGames = [
     price: 59.99,
     category: 'Deportes',
     releaseDate: '2025-06-15',
-    imageUrl: 'https://cdn-1.motorsport.com/images/amp/6yA2y2y0/s1000/f1-2025-formula-1-launch-render.jpg',
+    imageUrl: 'https://drop-assets.ea.com/images/4V5si2O8AjStpUbM4u2pbo/42f53716766ef6a4c43c4d49102ec17e/EAS_F1_25_LH_ICONIC_ED_w_STANDING_POSE_02_9000x9000_RGB_CLEAN_Opti.jpg?w=160',
     status: 'draft'
   },
   {
@@ -80,7 +80,7 @@ const initialGames = [
     price: 49.99,
     category: 'Acción',
     releaseDate: '2022-08-12',
-    imageUrl: 'https://image.api.playstation.com/vulcan/ap/rnd/202010/2918/1d6w6k3kQwZ0pniS3pS1Qw3A.png',
+    imageUrl: 'https://sm.ign.com/t/ign_latam/cover/m/marvels-sp/marvels-spider-man-remastered_mx15.1200.jpg',
     status: 'published'
   },
   {
@@ -90,7 +90,7 @@ const initialGames = [
     price: 59.99,
     category: 'Shooter',
     releaseDate: '2021-12-08',
-    imageUrl: 'https://compass-ssl.xbox.com/assets/2e/5d/2e5d2b8c-6b2a-4e5a-8e8b-7f6b690e54cf.jpg?n=Halo-Infinite_GLP-Page-Hero-1084_1920x1080.jpg',
+    imageUrl: 'https://images.cdn3.buscalibre.com/fit-in/360x360/5c/ff/5cff0805ea0e661ff9da3efc6a84ac5f.jpg',
     status: 'published'
   },
   {
@@ -100,7 +100,7 @@ const initialGames = [
     price: 39.99,
     category: 'Aventura',
     releaseDate: '2020-06-19',
-    imageUrl: 'https://image.api.playstation.com/vulcan/ap/rnd/202010/2918/1d6w6k3kQwZ0pniS3pS1Qw3A.png',
+    imageUrl: 'https://gmedia.playstation.com/is/image/SIEPDC/The-last-of-us-part-ii-remastered-hero-banner-desktop-02-en-16mar23?$2400px$',
     status: 'published'
   },
   {

@@ -36,7 +36,7 @@ export const mockGames: Game[] = [
     discountPrice: 29.99,
     imageUrl: '/images/games/covers/cyberpunkcover.jpg',
     thumbnailUrl: '/images/games/thumbnails/cyberpunk/thumb-1.jpg',
-    platform: [' Windows '],
+    platform: ' Windows ',
     releaseDate: '2020-12-10',
     rating: 4.5,
     genre: ['RPG', 'Acción', 'Mundo Abierto'],
@@ -95,7 +95,7 @@ export const mockGames: Game[] = [
     price: 69.99,
     imageUrl: '/images/games/covers/TLOU2.jpg',
     thumbnailUrl: '/images/games/thumbnails/last-of-us/thumb-1.jpg',
-    platform: [ ' PlayStation 4 ',' PlayStation 5 '],
+    platform: ' PlayStation 4 ',
     releaseDate: '2020-06-19',
     rating: 4.8,
     genre: ['Acción', 'Aventura', 'Survival Horror'],
@@ -140,7 +140,7 @@ export const mockGames: Game[] = [
     price: 59.99,
     imageUrl: '/images/games/covers/zelda cover.jfif',
     thumbnailUrl: '/images/games/thumbnails/zelda/thumb-1.jpg',
-    platform: [' Nintendo Swtich ' ],
+    platform: ' Nintendo Swtich ',
     releaseDate: '2023-05-12',
     rating: 4.9,
     genre: ['Acción', 'Aventura', 'RPG'],
@@ -186,7 +186,7 @@ export const mockGames: Game[] = [
     discountPrice: 39.99,
     imageUrl: '/images/games/covers/HALO.jpg',
     thumbnailUrl: '/images/games/thumbnails/halo/thumb-1.jpg',
-    platform: [' Xbox '],
+    platform: ' Xbox ',
     releaseDate: '2021-12-08',
     rating: 4.3,
     genre: ['FPS', 'Acción', 'Ciencia Ficción'],
@@ -232,7 +232,7 @@ export const mockGames: Game[] = [
     discountPrice: 19.99,
     imageUrl: '/images/games/covers/GTAV.jpg',
     thumbnailUrl: '/images/games/thumbnails/gtav/thumb-1.jpg',
-    platform:[' Windows ',' PlayStation 4 '] ,
+    platform: ' Windows ',
     releaseDate: '2015-04-14',
     rating: 4.7,
     genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -302,7 +302,7 @@ export const mockGames: Game[] = [
     discountPrice: 39.99,
     imageUrl: '/images/games/covers/REDEADREDEMPTION.jpg',
     thumbnailUrl: '/images/games/covers/REDEADREDEMPTION.jpg',
-    platform: [' Windows ', ' PlayStation 4 ',' PlayStation 5 '],
+    platform: ' Windows ',
     releaseDate: '2019-11-05',
     rating: 4.9,
     genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -372,7 +372,7 @@ export const mockGames: Game[] = [
     discountPrice: 29.99,
     imageUrl: '/images/games/covers/SPIDERMAN.jpg',
     thumbnailUrl: '/images/games/thumbnails/spiderman/thumb-1.jpg',
-    platform: [' Windows ',' PlayStation 5 '],
+    platform: ' Windows ',
     releaseDate: '2022-08-12',
     rating: 4.8,
     genre: ['Acción', 'Aventura', 'Superhéroes'],
@@ -442,7 +442,7 @@ export const mockGames: Game[] = [
   discountPrice: 49.99,
   imageUrl: '/images/games/covers/STREETFIGHTER6LOGO.jpg',
   thumbnailUrl: '/images/games/thumbnails/streetfighter6/thumb-1.jpg',
-  platform: [' Windows ',' PlayStation 5 '],
+  platform: ' Windows ',
   releaseDate: '2023-06-02',
   rating: 4.6,
   genre: ['Lucha', 'Competitivo', 'Acción'],
@@ -500,7 +500,7 @@ export const mockGames: Game[] = [
   discountPrice: 9.99,
   imageUrl: '/images/games/covers/vicecitylogo.jpg',
   thumbnailUrl: '/images/games/thumbnails/vicecity/thumb-1.jpg',
-  platform: [' Windows '],
+  platform: ' Windows ',
   releaseDate: '2003-05-12',
   rating: 4.5,
   genre: ['Acción', 'Aventura', 'Mundo Abierto'],
@@ -535,7 +535,7 @@ export const mockGames: Game[] = [
     '/images/games/thumbnails/vicecity/thumb-1.jpg'
   ],
   videos: [
-    'dR7f2U8Cr3k'
+    'BcqMaYdYow0'
   ],
   reviews: [
     {
@@ -558,7 +558,7 @@ export const mockGames: Game[] = [
   discountPrice: 59.99,
   imageUrl: '/images/games/covers/uncharted-5-pc-jogo-cover.jpg',
   thumbnailUrl: '/images/games/thumbnails/uncharted5/thumb-1.jpg',
-  platform: [' PlayStation 5 '],
+  platform: ' PlayStation 5 ',
   releaseDate: '2024-02-20',
   rating: 4.9,
   genre: ['Acción', 'Aventura', 'Exploración'],
@@ -589,7 +589,7 @@ export const mockGames: Game[] = [
     '/images/games/thumbnails/uncharted5/thumb-1.jpg'
   ],
   videos: [
-    '3hE2lLFGk5U'
+    '5Fp3v4aKWkc'
   ],
   reviews: [
     {
@@ -612,7 +612,7 @@ export const mockGames: Game[] = [
   discountPrice: 19.99,
   imageUrl: '/images/games/covers/STARWARS.jpg',
   thumbnailUrl: '/images/games/thumbnails/starwars/thumb-1.jpg',
-  platform: [' Windows '],
+  platform: ' Windows ',
   releaseDate: '2019-11-15',
   rating: 4.7,
   genre: ['Acción', 'Aventura', 'Star Wars'],
@@ -665,12 +665,12 @@ export const mockGames: Game[] = [
 {
   id: '12',
   title: 'Formula 1 2025',
-  description: 'Vive la emoción de la Fórmula 1 con todos los equipos, pilotos y circuitos oficiales de la temporada 2023.',
+  description: 'Vive la emoción de la Fórmula 1 con todos los equipos, pilotos y circuitos oficiales de la temporada 2025.',
   price: 69.99,
   discountPrice: 54.99,
   imageUrl: '/images/games/covers/F1LOGO.jpg',
   thumbnailUrl: '/images/games/thumbnails/f1/thumb-1.jpg',
-  platform:[ ' Windows ', ' PlayStation 5 '] ,
+  platform:' Windows ',
   releaseDate: '2023-06-16',
   rating: 4.4,
   genre: ['Carreras', 'Deportes', 'Simulación'],
@@ -705,7 +705,7 @@ export const mockGames: Game[] = [
     '/images/games/thumbnails/f1/thumb-1.jpg'
   ],
   videos: [
-    'QJv1kBz4F6g'
+    'NnyCWsA6KSI'
   ],
   reviews: [
     {
