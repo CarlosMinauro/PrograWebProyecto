@@ -4,6 +4,7 @@ import { body, validationResult } from 'express-validator';
 import { query } from '../config/database';
 import { generateToken } from '../middleware/auth';
 import { createError } from '../middleware/errorHandler';
+import { emailService } from '../services/emailService';
 import { LoginRequest, RegisterRequest, AuthResponse } from '../types';
 
 const router = express.Router();
@@ -64,6 +65,14 @@ router.post('/register', [
         estado: user.estado
       }
     };
+
+    // Send welcome email
+    try {
+      await emailService.sendWelcomeEmail(user.correo, user.nombre);
+    } catch (emailError) {
+      console.error('Error sending welcome email:', emailError);
+      // Don't fail registration if email fails
+    }
 
     res.status(201).json(response);
   } catch (error) {

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gameService } from '../../services/api/gameService';
-import type { Game, Review } from '../../types/index';
+import { reviewService, type Review } from '../../services/api/reviewService';
+import type { Game } from '../../types/index';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 import { useNotification } from '../../contexts/NotificationContext';
+import { getGameImage, getGameScreenshots, getGameTrailer } from '../../utils/imageMapping';
 import styles from './GameDetails.module.css';
 
 export const GameDetails = () => {
@@ -13,13 +15,16 @@ export const GameDetails = () => {
   const { addToCart } = useCart();
   const { showNotification } = useNotification();
   const [game, setGame] = useState<Game | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
+  const [reviewsLoading, setReviewsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(0);
   const [newReview, setNewReview] = useState({
     rating: 5,
     comment: ''
   });
   const [purchaseStatus, setPurchaseStatus] = useState<'idle' | 'processing' | 'success' | 'error'>('idle');
+  const [showTrailer, setShowTrailer] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +43,22 @@ export const GameDetails = () => {
       }
     };
 
+    const fetchReviews = async () => {
+      if (!id) return;
+      
+      try {
+        setReviewsLoading(true);
+        const response = await reviewService.getGameReviews(id);
+        setReviews(response.data);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      } finally {
+        setReviewsLoading(false);
+      }
+    };
+
     fetchGame();
+    fetchReviews();
   }, [id, showNotification]);
 
   if (loading) {
@@ -86,7 +106,7 @@ export const GameDetails = () => {
     }
   };
 
-  const handleReviewSubmit = (e: React.FormEvent) => {
+  const handleReviewSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!isAuthenticated) {
@@ -94,30 +114,23 @@ export const GameDetails = () => {
       return;
     }
 
-    if (!hasPurchasedGame(game.id.toString())) {
-      showNotification('Solo puedes reseñar juegos que hayas comprado', 'error');
-      return;
+    if (!game) return;
+
+    try {
+      const response = await reviewService.createReview({
+        juego_id: game.id,
+        valoracion: newReview.rating,
+        comentario: newReview.comment || undefined
+      });
+
+      // Add the new review to the list
+      setReviews(prev => [response.data, ...prev]);
+      setNewReview({ rating: 5, comment: '' });
+      showNotification('¡Reseña enviada con éxito!', 'success');
+    } catch (error: any) {
+      console.error('Error submitting review:', error);
+      showNotification(error.response?.data?.error || 'Error al enviar la reseña', 'error');
     }
-
-    // TODO: Implement review submission to API
-    const review: Review = {
-      id: Date.now().toString(),
-      userId: user!.id.toString(),
-      userName: user!.name,
-      rating: newReview.rating,
-      comment: newReview.comment,
-      date: new Date().toISOString(),
-      helpful: 0,
-      notHelpful: 0
-    };
-
-    setGame(prev => prev ? {
-      ...prev,
-      reviews: [...(prev.reviews || []), review]
-    } : null);
-
-    setNewReview({ rating: 5, comment: '' });
-    showNotification('¡Reseña enviada con éxito!', 'success');
   };
 
   const renderStars = (rating: number) => {
@@ -225,18 +238,24 @@ export const GameDetails = () => {
     );
   };
 
+  // Obtener datos del juego
+  const gameName = game.nombre || game.title || '';
+  const gameImage = getGameImage(gameName);
+  const gameScreenshots = getGameScreenshots(gameName);
+  const gameTrailer = getGameTrailer(gameName);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>{game.nombre}</h1>
+        <h1>{gameName}</h1>
         <div className={styles.meta}>
           <span className={styles.platform}>
             {game.plataformas?.[0] || 'PC'}
           </span>
           <div className={styles.rating}>
-            {renderStars(Math.round(game.calificacion_promedio || 0))}
+            {renderStars(Math.round(Number(game.calificacion_promedio) || 0))}
             <span className={styles.ratingNumber}>
-              {game.calificacion_promedio?.toFixed(1) || 'N/A'}
+              {Number(game.calificacion_promedio)?.toFixed(1) || 'N/A'}
             </span>
           </div>
           <div className={styles.badges}>
@@ -254,23 +273,35 @@ export const GameDetails = () => {
           <div className={styles.gameImages}>
             <div className={styles.mainImage}>
               <img 
-                src={`/images/games/covers/${game.nombre.toLowerCase().replace(/\s+/g, '')}.jpg`}
-                alt={game.nombre}
+                src={gameImage}
+                alt={gameName}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = "/images/games/covers/default-game.jpg";
                 }}
               />
+              {gameTrailer && (
+                <button 
+                  className={styles.trailerButton}
+                  onClick={() => setShowTrailer(true)}
+                >
+                  ▶ Ver Trailer
+                </button>
+              )}
             </div>
-            {game.screenshots && game.screenshots.length > 0 && (
+            {gameScreenshots.length > 0 && (
               <div className={styles.screenshots}>
-                {game.screenshots.map((screenshot, index) => (
+                {gameScreenshots.map((screenshot, index) => (
                   <img
                     key={index}
                     src={screenshot}
                     alt={`Screenshot ${index + 1}`}
                     className={selectedImage === index ? styles.active : ''}
                     onClick={() => setSelectedImage(index)}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
                   />
                 ))}
               </div>
@@ -280,7 +311,7 @@ export const GameDetails = () => {
           <div className={styles.gameInfo}>
             <div className={styles.priceSection}>
               <div className={styles.price}>
-                <span className={styles.currentPrice}>${game.precio}</span>
+                <span className={styles.currentPrice}>${Number(game.precio || game.price || 0).toFixed(2)}</span>
               </div>
               {renderPurchaseButton()}
             </div>
@@ -318,22 +349,47 @@ export const GameDetails = () => {
           </div>
         </div>
 
+        {/* Modal del Trailer */}
+        {showTrailer && gameTrailer && (
+          <div className={styles.trailerModal} onClick={() => setShowTrailer(false)}>
+            <div className={styles.trailerContent} onClick={(e) => e.stopPropagation()}>
+              <button 
+                className={styles.closeTrailer}
+                onClick={() => setShowTrailer(false)}
+              >
+                ×
+              </button>
+              <iframe
+                src={gameTrailer}
+                title={`Trailer de ${gameName}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
+
         <div className={styles.reviewsSection}>
-          <h3>Reseñas ({game.reviews?.length || 0})</h3>
-          {game.reviews && game.reviews.length > 0 ? (
+          <h3>Reseñas ({reviews.length})</h3>
+          {reviewsLoading ? (
+            <div className={styles.loading}>
+              <div className={styles.spinner}></div>
+              <p>Cargando reseñas...</p>
+            </div>
+          ) : reviews.length > 0 ? (
             <div className={styles.reviews}>
-              {game.reviews.map((review) => (
+              {reviews.map((review) => (
                 <div key={review.id} className={styles.review}>
                   <div className={styles.reviewHeader}>
-                    <span className={styles.reviewerName}>{review.userName}</span>
+                    <span className={styles.reviewerName}>{review.usuario_nombre || 'Usuario'}</span>
                     <div className={styles.reviewRating}>
-                      {renderStars(review.rating)}
+                      {renderStars(review.valoracion)}
                     </div>
-                    <span className={styles.reviewDate}>
-                      {new Date(review.date).toLocaleDateString()}
-                    </span>
                   </div>
-                  <p className={styles.reviewComment}>{review.comment}</p>
+                  {review.comentario && (
+                    <p className={styles.reviewComment}>{review.comentario}</p>
+                  )}
                 </div>
               ))}
             </div>

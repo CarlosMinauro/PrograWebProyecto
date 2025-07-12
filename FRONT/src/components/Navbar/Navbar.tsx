@@ -74,22 +74,60 @@ export const Navbar = () => {
         <div className={styles.authLinks}>
           {isAuthenticated ? (
             <>
-              <Link 
-                to="/cart" 
-                className={styles.navLink}
-                role="menuitem"
-                aria-label="Shopping Cart"
-              >
-                Carrito de compras
-              </Link>
-              <Link 
-                to="/settings" 
-                className={styles.navLink}
-                role="menuitem"
-                aria-label="User Settings"
-              >
-                Configuración
-              </Link>
+              {!location.pathname.startsWith('/admin') && (
+                <>
+                  <Link 
+                    to="/cart" 
+                    className={styles.navLink}
+                    role="menuitem"
+                    aria-label="Shopping Cart"
+                  >
+                    Carrito de compras
+                  </Link>
+                  <Link 
+                    to="/settings" 
+                    className={styles.navLink}
+                    role="menuitem"
+                    aria-label="User Settings"
+                  >
+                    Configuración
+                  </Link>
+                </>
+              )}
+              
+              {location.pathname.startsWith('/admin') && (
+                <>
+                  <Link 
+                    to="/admin/users" 
+                    className={`${styles.navLink} ${isActive('/admin/users') ? styles.active : ''}`}
+                    role="menuitem"
+                  >
+                    Usuarios
+                  </Link>
+                  <Link 
+                    to="/admin/games" 
+                    className={`${styles.navLink} ${isActive('/admin/games') ? styles.active : ''}`}
+                    role="menuitem"
+                  >
+                    Juegos
+                  </Link>
+                  <Link 
+                    to="/admin/news" 
+                    className={`${styles.navLink} ${isActive('/admin/news') ? styles.active : ''}`}
+                    role="menuitem"
+                  >
+                    Noticias
+                  </Link>
+                  <Link 
+                    to="/admin/dashboard" 
+                    className={`${styles.navLink} ${isActive('/admin/dashboard') ? styles.active : ''}`}
+                    role="menuitem"
+                  >
+                    Estadísticas
+                  </Link>
+                </>
+              )}
+              
               <button
                 onClick={handleSwitch}
                 className={styles.navLink}

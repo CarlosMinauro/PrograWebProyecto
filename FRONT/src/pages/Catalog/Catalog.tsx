@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { mockGames } from '../../data/mockData';
+import { useGames } from '../../hooks/useGames';
 import type { Game } from '../../types';
 import styles from './Catalog.module.css';
 
 export const Catalog = () => {
-  const [games, setGames] = useState<Game[]>(mockGames);
+  const { games, loading, error, refetch } = useGames();
+  const [filteredGames, setFilteredGames] = useState<Game[]>([]);
   const [filters, setFilters] = useState({
     priceRange: [0, 100],
     genre: '',
@@ -14,44 +15,49 @@ export const Catalog = () => {
     searchQuery: ''
   });
 
-  const genres = Array.from(new Set(mockGames.flatMap(game => game.genre)));
-  const platforms = Array.from(new Set(mockGames.map(game => game.platform)));
+  // Get unique genres and platforms from real data
+  const genres = Array.from(new Set(games.flatMap(game => game.categoria_nombre || game.generos || [])));
+  const platforms = Array.from(new Set(games.flatMap(game => game.plataformas || [])));
 
   useEffect(() => {
-    let filteredGames = [...mockGames];
+    let filtered = [...games];
 
     // Aplicar filtro de búsqueda
     if (filters.searchQuery) {
-      filteredGames = filteredGames.filter(game =>
-        game.title.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
-        game.description.toLowerCase().includes(filters.searchQuery.toLowerCase())
+      filtered = filtered.filter(game =>
+        game.nombre?.toLowerCase().includes(filters.searchQuery.toLowerCase()) ||
+        game.descripcion?.toLowerCase().includes(filters.searchQuery.toLowerCase())
       );
     }
 
     // Aplicar filtro de rango de precio
-    filteredGames = filteredGames.filter(game => {
-      const actualPrice = game.discountPrice ?? game.price; 
+    filtered = filtered.filter(game => {
+      const actualPrice = game.precio || 0; 
       return actualPrice >= filters.priceRange[0] && actualPrice <= filters.priceRange[1];
     });
 
-
     // Aplicar filtro de género
     if (filters.genre) {
-      filteredGames = filteredGames.filter(game => game.genre.includes(filters.genre));
+      filtered = filtered.filter(game => 
+        game.categoria_nombre === filters.genre || 
+        game.generos?.includes(filters.genre)
+      );
     }
 
     // Aplicar filtro de plataforma
     if (filters.platform) {
-      filteredGames = filteredGames.filter(game =>String( game.platform) === String(filters.platform));
+      filtered = filtered.filter(game => 
+        game.plataformas?.includes(filters.platform)
+      );
     }
 
     // Aplicar filtro de venta
     if (filters.onSale) {
-      filteredGames = filteredGames.filter(game => game.discountPrice !== undefined);
+      filtered = filtered.filter(game => game.esta_oferta);
     }
 
-    setGames(filteredGames);
-  }, [filters]);
+    setFilteredGames(filtered);
+  }, [filters, games]);
 
   const handleFilterChange = (filterName: string, value: any) => {
     setFilters(prev => ({
@@ -126,35 +132,51 @@ export const Catalog = () => {
         </aside>
 
         <main className={styles.gamesGrid}>
-          {games.map(game => (
-            <Link to={`/game/${game.id}`} key={game.id} className={styles.gameCard}>
-              <div className={styles.gameImageContainer}>
-                <img src={game.imageUrl} alt={game.title} className={styles.gameImage} />
-                {game.discountPrice && (
-                  <span className={styles.saleBadge}>
-                    {Math.round(((game.price - game.discountPrice) / game.price) * 100)}% DTO
-                  </span>
-                )}
-              </div>
-              <div className={styles.gameInfo}>
-                <h3>{game.title}</h3>
-                <div className={styles.gameMeta}>
-                  <span className={styles.platform}>{game.platform}</span>
-                  <span className={styles.rating}>★ {game.rating}</span>
-                </div>
-                <div className={styles.gamePrice}>
-                  {game.discountPrice ? (
-                    <>
-                      <span className={styles.originalPrice}>${game.price}</span>
-                      <span className={styles.discountPrice}>${game.discountPrice}</span>
-                    </>
-                  ) : (
-                    <span>${game.price}</span>
+          {loading ? (
+            <div className={styles.loading}>
+              <p>Cargando juegos...</p>
+            </div>
+          ) : error ? (
+            <div className={styles.error}>
+              <p>{error}</p>
+              <button onClick={refetch}>Reintentar</button>
+            </div>
+          ) : filteredGames.length === 0 ? (
+            <div className={styles.noResults}>
+              <p>No se encontraron juegos con los filtros seleccionados.</p>
+            </div>
+          ) : (
+            filteredGames.map(game => (
+              <Link to={`/game/${game.id}`} key={game.id} className={styles.gameCard}>
+                <div className={styles.gameImageContainer}>
+                  <img 
+                    src={`/images/games/covers/${game.nombre?.toLowerCase().replace(/\s+/g, '')}.jpg`} 
+                    alt={game.nombre} 
+                    className={styles.gameImage}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/images/games/covers/default-game.jpg";
+                    }}
+                  />
+                  {game.esta_oferta && (
+                    <span className={styles.saleBadge}>
+                      OFERTA
+                    </span>
                   )}
                 </div>
-              </div>
-            </Link>
-          ))}
+                <div className={styles.gameInfo}>
+                  <h3>{game.nombre}</h3>
+                  <div className={styles.gameMeta}>
+                    <span className={styles.platform}>{game.plataformas?.[0] || 'PC'}</span>
+                    <span className={styles.rating}>★ {Number(game.calificacion_promedio)?.toFixed(1) || 'N/A'}</span>
+                  </div>
+                  <div className={styles.gamePrice}>
+                    <span>${Number(game.precio || 0).toFixed(2)}</span>
+                  </div>
+                </div>
+              </Link>
+            ))
+          )}
         </main>
       </div>
     </>

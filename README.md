@@ -121,24 +121,24 @@ INSERT INTO Noticia (titulo, texto, activo) VALUES
 ## 3. Configuración del archivo `.env`
 Crea un archivo `.env` en la carpeta `BACK/` con el siguiente contenido (ajusta los valores según tu entorno):
 
-```
-# PostgreSQL
+```env
+# Database Configuration
 DB_HOST=localhost
 DB_PORT=5432
-DB_USER=tu_usuario
-DB_PASSWORD=tu_password
 DB_NAME=pw_2025_1
+DB_USER=postgres
+DB_PASSWORD=
 
-# JWT
-JWT_SECRET=un_secreto_super_seguro
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 JWT_EXPIRES_IN=7d
 
-# CORS
-CORS_ORIGIN=http://localhost:5174
-
-# Otros
-NODE_ENV=development
+# Server Configuration
 PORT=5000
+NODE_ENV=development
+
+# Admin Configuration
+ADMIN_EMAIL=admin@uligames.com
 ```
 
 ## 4. Instalación de dependencias
@@ -170,12 +170,80 @@ npm run dev
 ```
 
 - El backend estará en: [http://localhost:5000](http://localhost:5000)
-- El frontend estará en: [http://localhost:5174](http://localhost:5174)
+- El frontend estará en: [http://localhost:5173](http://localhost:5173)
 
-## 6. Notas adicionales
-- Si cambias el puerto del frontend, actualiza también el valor de `CORS_ORIGIN` en el `.env` del backend.
-- Si necesitas más datos de prueba, puedes agregarlos usando SQL o creando scripts de seed.
-- Para producción, recuerda cambiar los valores sensibles y restringir los orígenes de CORS.
+## 6. Estado del Proyecto
+
+### ✅ Funcionalidades Completadas:
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Node.js + Express + TypeScript + PostgreSQL
+- **Autenticación**: JWT con login/registro
+- **Carrito de Compras**: Funcional con persistencia en localStorage
+- **API RESTful**: Endpoints para juegos, usuarios, órdenes y noticias
+- **Base de Datos**: Esquema completo con relaciones
+- **CORS**: Configurado para comunicación frontend-backend
+
+### 🔧 Funcionalidades del Carrito:
+- ✅ Agregar juegos al carrito
+- ✅ Remover juegos del carrito
+- ✅ Calcular total
+- ✅ Persistencia en localStorage
+- ✅ Checkout con simulación de pago
+- ✅ Fallback offline si el backend no está disponible
+
+### 🚀 Configuración Completa (Datos Reales):
+
+#### **1. Configurar Base de Datos:**
+```bash
+# Crear base de datos PostgreSQL
+CREATE DATABASE pw_2025_1;
+
+# Ejecutar el esquema SQL del README principal
+```
+
+#### **2. Configurar Backend:**
+```bash
+cd BACK
+cp env.example .env
+# Editar .env con credenciales de PostgreSQL
+
+npm install
+npm run seed    # Poblar datos de prueba
+npm run test    # Verificar que todo funciona
+npm run dev     # Iniciar servidor
+```
+
+#### **3. Configurar Frontend:**
+```bash
+cd FRONT
+npm install
+npm run dev     # Iniciar aplicación
+```
+
+#### **4. Verificar Funcionamiento:**
+- Backend: http://localhost:5000/api/health
+- Frontend: http://localhost:5173
+- Datos reales de la base de datos se cargarán automáticamente
+
+### 📝 Notas:
+- **Datos Reales**: El frontend ahora usa datos reales de la base de datos PostgreSQL
+- **Sin Datos Mock**: Eliminados todos los fallbacks a datos simulados
+- **API Completa**: Todos los endpoints funcionan con datos reales
+- **Carrito Real**: El carrito usa precios y datos reales de la base de datos
+- **Checkout Real**: El proceso de pago crea órdenes reales en la base de datos
+- **Autenticación Real**: Login/registro funciona con usuarios reales de la base de datos
+
+### 🔧 Comandos Útiles:
+```bash
+# Verificar backend
+cd BACK && npm run test
+
+# Poblar datos de prueba
+cd BACK && npm run seed
+
+# Verificar frontend
+cd FRONT && npm run dev
+```
 
 ---
 

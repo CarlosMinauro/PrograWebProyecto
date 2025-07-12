@@ -3,7 +3,7 @@
 // ID 11: "Como usuario autenticado, deseo eliminar ítems de mi carrito de compras, en caso me arrepienta de la selección."
 // ID 12: "Como usuario autenticado, debo poder realizar el pago de los ítems que se encuentren en mi carrito de compras."
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
 import { useAuth } from '../../contexts/AuthContext';
@@ -11,12 +11,33 @@ import { useNotification } from '../../contexts/NotificationContext';
 import styles from './Cart.module.css';
 
 export const Cart = () => {
-  const { items, removeFromCart, getTotal } = useCart();
-  const { user } = useAuth();
+  const { items, removeFromCart, getTotal, checkout, cleanCorruptedCart } = useCart();
+  const { user, isAuthenticated } = useAuth();
   const { showNotification } = useNotification();
   const navigate = useNavigate();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // Handle cart errors
+  useEffect(() => {
+    try {
+      // Validate cart items
+      const validItems = items.filter(item => 
+        item && 
+        item.gameId && 
+        item.title && 
+        typeof item.price === 'number' && 
+        item.quantity > 0
+      );
+      
+      if (validItems.length !== items.length) {
+        setError('Algunos elementos del carrito son inválidos. Por favor, recarga la página.');
+      }
+    } catch (err) {
+      setError('Error al cargar el carrito. Por favor, recarga la página.');
+    }
+  }, [items]);
 
   // Estado para el formulario de tarjeta
   const [showCardForm, setShowCardForm] = useState(false);
@@ -31,17 +52,51 @@ export const Cart = () => {
     setCardData({ ...cardData, [e.target.name]: e.target.value });
   };
 
-  const handleCardSubmit = (e: React.FormEvent) => {
+  const handleCardSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowSuccess(true);
-    showNotification('¡Pago con tarjeta exitoso! Las claves de tus juegos han sido enviadas a tu correo.', 'success');
-    setShowCardForm(false);
-    setCardData({ nombre: '', numero: '', fechaVencimiento: '', cvv: '' });
-    setTimeout(() => {
-      setShowSuccess(false);
-      navigate('/');
-    }, 3000);
+    setIsCheckingOut(true);
+    
+    try {
+      // Simulate payment processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Process checkout through the API
+      const result = await checkout();
+      
+      setShowSuccess(true);
+      showNotification('¡Pago con tarjeta exitoso! Las claves de tus juegos han sido enviadas a tu correo.', 'success');
+      setShowCardForm(false);
+      setCardData({ nombre: '', numero: '', fechaVencimiento: '', cvv: '' });
+      
+      setTimeout(() => {
+        setShowSuccess(false);
+        navigate('/');
+      }, 3000);
+    } catch (error) {
+      console.error('Checkout error:', error);
+      showNotification('Error al procesar el pago. Por favor, intenta de nuevo.', 'error');
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
+
+  if (error) {
+    return (
+      <div className={styles.emptyCart}>
+        <h2>Error al cargar el carrito</h2>
+        <p>{error}</p>
+        <button 
+          className={styles.continueShopping}
+          onClick={() => {
+            setError(null);
+            cleanCorruptedCart();
+          }}
+        >
+          Limpiar carrito
+        </button>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -65,7 +120,7 @@ export const Cart = () => {
       {showSuccess && (
         <div className={styles.successMessage}>
           <h3>¡Compra exitosa!</h3>
-          <p>Las claves de tus juegos han sido enviadas a tu correo: {user?.email}</p>
+          <p>Las claves de tus juegos han sido enviadas a tu correo: {user?.email || 'tu correo registrado'}</p>
         </div>
       )}
 
@@ -75,7 +130,7 @@ export const Cart = () => {
             <div className={styles.itemInfo}>
               <h3>{item.title}</h3>
               <p className={styles.platform}>{item.platform}</p>
-              <p className={styles.price}>${item.price.toFixed(2)}</p>
+              <p className={styles.price}>${(Number(item.price) || 0).toFixed(2)}</p>
             </div>
             <div className={styles.itemActions}>
               <button

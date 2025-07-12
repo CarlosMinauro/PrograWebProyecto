@@ -33,7 +33,8 @@ export const orderService = {
       
       return orderResult;
     } catch (error) {
-      throw new Error('Checkout failed: ' + (error as Error).message);
+      console.error('Checkout API error:', error);
+      throw new Error('No se pudo procesar el pago. Verifica tu conexión a internet.');
     }
   },
 }; 

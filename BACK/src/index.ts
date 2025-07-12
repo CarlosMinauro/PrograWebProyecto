@@ -9,6 +9,7 @@ import gameRoutes from './routes/games';
 import newsRoutes from './routes/news';
 import userRoutes from './routes/users';
 import orderRoutes from './routes/orders';
+import reviewRoutes from './routes/reviews';
 import { errorHandler } from './middleware/errorHandler';
 
 // Load environment variables
@@ -21,7 +22,8 @@ const PORT = process.env.PORT || 5000;
 app.use(helmet());
 app.use(cors({
   origin: [
-    'http://localhost:5174', // Vite
+    'http://localhost:5173', // Vite (puerto por defecto)
+    'http://localhost:5174', // Vite (puerto alternativo)
     'http://localhost:3000'  // React por defecto
   ],
   credentials: true
@@ -36,6 +38,7 @@ app.use('/api/games', gameRoutes);
 app.use('/api/news', newsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

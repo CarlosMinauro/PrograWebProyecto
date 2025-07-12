@@ -32,7 +32,12 @@ export const authService = {
 
   // Get current user
   async getCurrentUser() {
-    return await apiRequest(API_ENDPOINTS.ME);
+    try {
+      return await apiRequest(API_ENDPOINTS.ME);
+    } catch (error) {
+      console.error('Failed to get current user:', error);
+      return { success: false, message: 'Failed to get current user' };
+    }
   },
 
   // Logout user

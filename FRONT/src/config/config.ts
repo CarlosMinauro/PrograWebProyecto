@@ -65,4 +65,9 @@ export const API_ENDPOINTS = {
   // Orders
   ORDERS: `${config.API_BASE_URL}/orders`,
   ORDER_BY_ID: (id: string) => `${config.API_BASE_URL}/orders/${id}`,
+  
+  // Reviews
+  REVIEWS: `${config.API_BASE_URL}/reviews`,
+  REVIEWS_BY_GAME: (gameId: string) => `${config.API_BASE_URL}/reviews/game/${gameId}`,
+  REVIEW_BY_ID: (id: string) => `${config.API_BASE_URL}/reviews/${id}`,
 }; 

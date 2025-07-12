@@ -200,6 +200,33 @@ select:focus {
   color: rgba(35,186,255,255);
 }
 
+.loading, .error, .noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: rgba(35,186,255,255);
+}
+
+.loading p, .error p, .noResults p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.error button {
+  background: rgba(35,186,255,255);
+  color: rgb(21,20,55);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.error button:hover {
+  background: rgba(35,186,255,0.8);
+}
+
 .originalPrice {
   text-decoration: line-through;
   color: rgba(35,186,255,0.6);

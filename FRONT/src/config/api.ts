@@ -11,13 +11,21 @@ export const getAuthHeaders = (): HeadersInit => {
 
 // Helper function to handle API responses
 export const handleApiResponse = async (response: Response) => {
-  const data = await response.json();
-  
-  if (!response.ok) {
-    throw new Error(data.error || 'Something went wrong');
+  try {
+    const data = await response.json();
+    
+    if (!response.ok) {
+      throw new Error(data.error || data.message || 'Something went wrong');
+    }
+    
+    return data;
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      // Response is not JSON
+      throw new Error('Invalid response from server');
+    }
+    throw error;
   }
-  
-  return data;
 };
 
 // Generic API request function
@@ -30,8 +38,16 @@ export const apiRequest = async (
     ...options,
   };
 
-  const response = await fetch(url, config);
-  return handleApiResponse(response);
+  try {
+    const response = await fetch(url, config);
+    return handleApiResponse(response);
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      // Network error - server is not available
+      throw new Error('Server is not available. Please try again later.');
+    }
+    throw error;
+  }
 };
 
 // Re-export API_ENDPOINTS for convenience

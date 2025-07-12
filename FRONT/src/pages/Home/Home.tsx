@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useGames } from '../../hooks/useGames';
 import { newsService } from '../../services/api/newsService';
+import { getGameImage } from '../../utils/imageMapping';
 import styles from './Home.module.css';
 
 export const Home = () => {
@@ -160,30 +161,30 @@ export const Home = () => {
             <Link to={`/game/${game.id}`} key={game.id} className={styles.gameCard}>
               <div className={styles.gameImage}>
                 <img 
-                  src={`/images/games/covers/${game.nombre.toLowerCase().replace(/\s+/g, '')}.jpg`} 
-                  alt={game.nombre}
+                  src={getGameImage(game.nombre || game.title)} 
+                  alt={game.nombre || game.title}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = "/images/games/covers/default-game.jpg";
                   }}
                 />
-                {game.esta_oferta && (
+                {(game.esta_oferta || game.onSale) && (
                   <span className={styles.discountBadge}>
                     OFERTA
                   </span>
                 )}
                 <span className={styles.platform}>
-                  {game.plataformas?.[0] || 'PC'}
+                  {game.plataformas?.[0] || game.platform || 'PC'}
                 </span>
               </div>
               <div className={styles.gameInfo}>
-                <h3 className={styles.gameTitle}>{game.nombre}</h3>
+                <h3 className={styles.gameTitle}>{game.nombre || game.title}</h3>
                 <div className={styles.gameMeta}>
                   <span className={styles.gamePlatform}>
-                    {game.plataformas?.[0] || 'PC'}
+                    {game.plataformas?.[0] || game.platform || 'PC'}
                   </span>
                   <div className={styles.gamePrice}>
-                    <span>${game.precio}</span>
+                    <span>${Number(game.precio || game.price || 0).toFixed(2)}</span>
                   </div>
                 </div>
               </div>

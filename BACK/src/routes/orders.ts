@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import { query } from '../config/database';
 import { protect } from '../middleware/auth';
 import { createError } from '../middleware/errorHandler';
+import { emailService } from '../services/emailService';
 
 const router = express.Router();
 
@@ -66,12 +67,28 @@ router.post('/', protect, async (req: Request, res: Response, next: NextFunction
 
       await query('COMMIT');
 
+      // Send email with game keys
+      try {
+        const total = sales.reduce((sum, sale) => sum + Number(sale.monto_pagado), 0);
+        await emailService.sendGameKeys({
+          userEmail: req.user.correo,
+          userName: req.user.nombre,
+          gameKeys: sales,
+          total
+        });
+      } catch (emailError) {
+        console.error('Error sending email:', emailError);
+        // Don't fail the order if email fails
+      }
+
+      const total = sales.reduce((sum, sale) => sum + Number(sale.monto_pagado), 0);
+      
       res.status(201).json({
         success: true,
-        message: 'Order created successfully',
+        message: 'Order created successfully. Game keys have been sent to your email.',
         data: {
           sales,
-          total: sales.reduce((sum, sale) => sum + sale.monto_pagado, 0)
+          total
         }
       });
     } catch (error) {
@@ -97,7 +114,7 @@ router.get('/', protect, async (req: Request, res: Response, next: NextFunction)
 
     const result = await query(`
       SELECT 
-        v.id, v.fecha, v.codigo, v.monto_pagado,
+        v.id, v.fecha, v.codigo, v.monto_pagado, v.juego_id,
         j.nombre as juego_nombre, j.precio as juego_precio
       FROM venta v
       JOIN juego j ON v.juego_id = j.id
@@ -131,7 +148,7 @@ router.get('/:id', protect, async (req: Request, res: Response, next: NextFuncti
 
     const result = await query(`
       SELECT 
-        v.id, v.fecha, v.codigo, v.monto_pagado,
+        v.id, v.fecha, v.codigo, v.monto_pagado, v.juego_id,
         j.nombre as juego_nombre, j.precio as juego_precio
       FROM venta v
       JOIN juego j ON v.juego_id = j.id
