@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
-import { mockGames } from '../../data/mockData';
 import styles from './Profile.module.css';
 
 export const Profile = () => {
@@ -14,25 +13,9 @@ export const Profile = () => {
     address: '',
   });
 
-  // Mock data for purchases and wishlist
-  const purchases = [
-    {
-      id: '1',
-      date: '2024-03-15',
-      total: 59.99,
-      status: 'Delivered',
-      items: [mockGames[0]],
-    },
-    {
-      id: '2',
-      date: '2024-03-10',
-      total: 39.99,
-      status: 'Processing',
-      items: [mockGames[1]],
-    },
-  ];
-
-  const wishlist = [mockGames[0], mockGames[1]];
+  // Aquí deberías obtener compras y wishlist reales desde la API
+  const purchases = [];
+  const wishlist = [];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -147,74 +130,82 @@ export const Profile = () => {
         {activeTab === 'purchases' && (
           <div className={styles.purchases}>
             <h2>Historial de Compras</h2>
-            {purchases.map(purchase => (
-              <div key={purchase.id} className={styles.purchaseCard}>
-                <div className={styles.purchaseHeader}>
-                  <div>
-                    <span className={styles.orderId}>Pedido #{purchase.id}</span>
-                    <span className={styles.date}>{purchase.date}</span>
-                  </div>
-                  <span className={`${styles.status} ${styles[purchase.status.toLowerCase()]}`}>
-                    {purchase.status === 'Delivered' ? 'Entregado' : purchase.status === 'Processing' ? 'Procesando' : purchase.status}
-                  </span>
-                </div>
-                <div className={styles.purchaseItems}>
-                  {purchase.items.map(game => (
-                    <div key={game.id} className={styles.purchaseItem}>
-                      <img src={game.imageUrl} alt={game.title} />
-                      <div className={styles.itemDetails}>
-                        <h3>{game.title}</h3>
-                        <span className={styles.platform}>{game.platform}</span>
-                      </div>
-                      <div className={styles.price}>
-                        ${game.discountPrice || game.price}
-                      </div>
+            {purchases.length === 0 ? (
+              <p>No hay compras registradas.</p>
+            ) : (
+              purchases.map(purchase => (
+                <div key={purchase.id} className={styles.purchaseCard}>
+                  <div className={styles.purchaseHeader}>
+                    <div>
+                      <span className={styles.orderId}>Pedido #{purchase.id}</span>
+                      <span className={styles.date}>{purchase.date}</span>
                     </div>
-                  ))}
+                    <span className={`${styles.status} ${styles[purchase.status.toLowerCase()]}`}>
+                      {purchase.status === 'Delivered' ? 'Entregado' : purchase.status === 'Processing' ? 'Procesando' : purchase.status}
+                    </span>
+                  </div>
+                  <div className={styles.purchaseItems}>
+                    {purchase.items.map(game => (
+                      <div key={game.id} className={styles.purchaseItem}>
+                        <img src={game.imageUrl} alt={game.title} />
+                        <div className={styles.itemDetails}>
+                          <h3>{game.title}</h3>
+                          <span className={styles.platform}>{game.platform}</span>
+                        </div>
+                        <div className={styles.price}>
+                          ${game.discountPrice || game.price}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.purchaseTotal}>
+                    <span>Total:</span>
+                    <span>${purchase.total}</span>
+                  </div>
                 </div>
-                <div className={styles.purchaseTotal}>
-                  <span>Total:</span>
-                  <span>${purchase.total}</span>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         )}
 
         {activeTab === 'wishlist' && (
           <div className={styles.wishlist}>
             <h2>Mi Lista de Deseos</h2>
-            <div className={styles.wishlistGrid}>
-              {wishlist.map(game => (
-                <div key={game.id} className={styles.wishlistItem}>
-                  <img src={game.imageUrl} alt={game.title} />
-                  <div className={styles.itemDetails}>
-                    <h3>{game.title}</h3>
-                    <span className={styles.platform}>{game.platform}</span>
-                    <div className={styles.price}>
-                      {game.discountPrice ? (
-                        <>
-                          <span className={styles.originalPrice}>
-                            ${game.price}
-                          </span>
-                          <span className={styles.discountPrice}>
-                            ${game.discountPrice}
-                          </span>
-                        </>
-                      ) : (
-                        <span>${game.price}</span>
-                      )}
+            {wishlist.length === 0 ? (
+              <p>No tienes juegos en tu lista de deseos.</p>
+            ) : (
+              <div className={styles.wishlistGrid}>
+                {wishlist.map(game => (
+                  <div key={game.id} className={styles.wishlistItem}>
+                    <img src={game.imageUrl} alt={game.title} />
+                    <div className={styles.itemDetails}>
+                      <h3>{game.title}</h3>
+                      <span className={styles.platform}>{game.platform}</span>
+                      <div className={styles.price}>
+                        {game.discountPrice ? (
+                          <>
+                            <span className={styles.originalPrice}>
+                              ${game.price}
+                            </span>
+                            <span className={styles.discountPrice}>
+                              ${game.discountPrice}
+                            </span>
+                          </>
+                        ) : (
+                          <span>${game.price}</span>
+                        )}
+                      </div>
                     </div>
+                    <button className={styles.addToCartButton}>
+                      Agregar al carrito
+                    </button>
+                    <button className={styles.removeButton}>
+                      Quitar
+                    </button>
                   </div>
-                  <button className={styles.addToCartButton}>
-                    Agregar al carrito
-                  </button>
-                  <button className={styles.removeButton}>
-                    Quitar
-                  </button>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>

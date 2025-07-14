@@ -108,6 +108,53 @@ router.get('/', protect, authorize('admin'), async (req: Request, res: Response,
   }
 });
 
+// @route   POST /api/users (Admin only)
+// @desc    Create a new user
+// @access  Private/Admin
+router.post('/', protect, authorize('admin'), async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { nombre, correo, password, estado } = req.body;
+
+    if (!nombre || !correo || !password) {
+      return res.status(400).json({
+        success: false,
+        error: 'Name, email and password are required'
+      });
+    }
+
+    // Check if user already exists
+    const existingUser = await query(
+      'SELECT id FROM usuario WHERE correo = $1',
+      [correo]
+    );
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'User already exists'
+      });
+    }
+
+    // Hash password
+    const bcrypt = require('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // Insert user
+    const result = await query(
+      'INSERT INTO usuario (nombre, correo, password, estado) VALUES ($1, $2, $3, $4) RETURNING id, nombre, correo, estado',
+      [nombre, correo, hashedPassword, estado !== undefined ? estado : true]
+    );
+
+    res.status(201).json({
+      success: true,
+      message: 'User created successfully',
+      data: result.rows[0]
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // @route   PUT /api/users/:id (Admin only)
 // @desc    Update user status
 // @access  Private/Admin
@@ -128,6 +175,36 @@ router.put('/:id', protect, authorize('admin'), async (req: Request, res: Respon
     res.json({
       success: true,
       message: 'User updated successfully',
+      data: result.rows[0]
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// @route   DELETE /api/users/:id (Admin only)
+// @desc    Delete a user
+// @access  Private/Admin
+router.delete('/:id', protect, authorize('admin'), async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+
+    // Borrado físico
+    const result = await query(
+      'DELETE FROM usuario WHERE id = $1 RETURNING id, nombre, correo',
+      [id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        error: 'User not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'User deleted successfully',
       data: result.rows[0]
     });
   } catch (error) {

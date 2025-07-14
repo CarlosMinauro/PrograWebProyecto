@@ -9,6 +9,10 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
 
+  // Determinar si el usuario es admin
+  const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || 'admin@uligames.com';
+  const isAdmin = user && user.correo === ADMIN_EMAIL;
+
   const isActive = (path: string) => location.pathname === path;
 
   const handleLogout = () => {
@@ -95,55 +99,25 @@ export const Navbar = () => {
                 </>
               )}
               
-              {location.pathname.startsWith('/admin') && (
-                <>
-                  <Link 
-                    to="/admin/users" 
-                    className={`${styles.navLink} ${isActive('/admin/users') ? styles.active : ''}`}
-                    role="menuitem"
-                  >
-                    Usuarios
-                  </Link>
-                  <Link 
-                    to="/admin/games" 
-                    className={`${styles.navLink} ${isActive('/admin/games') ? styles.active : ''}`}
-                    role="menuitem"
-                  >
-                    Juegos
-                  </Link>
-                  <Link 
-                    to="/admin/news" 
-                    className={`${styles.navLink} ${isActive('/admin/news') ? styles.active : ''}`}
-                    role="menuitem"
-                  >
-                    Noticias
-                  </Link>
-                  <Link 
-                    to="/admin/dashboard" 
-                    className={`${styles.navLink} ${isActive('/admin/dashboard') ? styles.active : ''}`}
-                    role="menuitem"
-                  >
-                    Estadísticas
-                  </Link>
-                </>
+              {/* Mostrar el botón solo si es admin */}
+              {isAdmin && (
+                <button
+                  onClick={handleSwitch}
+                  className={styles.navLink}
+                  style={{
+                    background: 'blue',
+                    color: 'white',
+                    border: '2px solid blue',
+                    cursor: 'pointer',
+                    padding: '5px 10px',
+                    marginLeft: '10px',
+                    fontWeight: 'bold'
+                  }}
+                  role="menuitem"
+                >
+                  {location.pathname.startsWith('/admin') ? 'Ir a Usuario' : 'Ir a Administrador'}
+                </button>
               )}
-              
-              <button
-                onClick={handleSwitch}
-                className={styles.navLink}
-                style={{
-                  background: 'blue',
-                  color: 'white',
-                  border: '2px solid blue',
-                  cursor: 'pointer',
-                  padding: '5px 10px',
-                  marginLeft: '10px',
-                  fontWeight: 'bold'
-                }}
-                role="menuitem"
-              >
-                {location.pathname.startsWith('/admin') ? 'Ir a Usuario' : 'Ir a Administrador'}
-              </button>
               <button
                 onClick={handleLogout}
                 className={`${styles.navLink} ${styles.logoutButton}`}

@@ -1,122 +1,167 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './GameManager.module.css'; // Reutiliza el CSS para mantener coherencia
-
-// Mock data para usuarios
-const mockUsers = [
-  {
-    id: '1',
-    name: 'Juan Pérez',
-    email: 'juan.perez@email.com',
-    role: 'admin',
-    status: 'activo'
-  },
-  {
-    id: '2',
-    name: 'Ana Gómez',
-    email: 'ana.gomez@email.com',
-    role: 'usuario',
-    status: 'inactivo'
-  }
-];
+import { userService } from '../../services/api/userService';
 
 export const UserManager = () => {
-  const [users, setUsers] = useState(mockUsers);
+  const [users, setUsers] = useState([]);
   const [form, setForm] = useState({
     id: '',
-    name: '',
-    email: '',
-    role: 'usuario',
-    status: 'activo'
+    nombre: '',
+    correo: '',
+    estado: 'true',
+    password: '', // Nuevo campo para la contraseña
   });
   const [editing, setEditing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await userService.getUsers();
+      if (response.success) {
+        setUsers(response.data);
+      } else {
+        setError('No se pudieron obtener los usuarios');
+      }
+    } catch (err) {
+      setError('Error al obtener los usuarios');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleAddUser = (e: React.FormEvent) => {
+  const handleAddOrEditUser = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editing) {
-      setUsers(users.map(u => (u.id === form.id ? { ...form } : u)));
+    setLoading(true);
+    setError(null);
+    try {
+      if (editing && form.id) {
+        // Editar usuario
+        const response = await userService.updateUser(form.id, {
+          nombre: form.nombre,
+          estado: form.estado === 'true',
+        });
+        if (!response.success) setError(response.message || 'No se pudo editar el usuario');
+      } else {
+        // Agregar usuario (nombre, correo, estado, password)
+        const response = await userService.addUser({
+          nombre: form.nombre,
+          correo: form.correo,
+          estado: form.estado === 'true',
+          password: form.password, // Enviar contraseña
+        });
+        if (!response.success) setError(response.message || 'No se pudo agregar el usuario');
+      }
+      await fetchUsers();
+      setForm({ id: '', nombre: '', correo: '', estado: 'true', password: '' });
       setEditing(false);
-    } else {
-      setUsers([...users, { ...form, id: (Date.now()).toString() }]);
+    } catch (err) {
+      setError('Error al guardar el usuario');
+    } finally {
+      setLoading(false);
     }
-    setForm({ id: '', name: '', email: '', role: 'usuario', status: 'activo' });
   };
 
   const handleEdit = (id: string) => {
-    const user = users.find(u => u.id === id);
+    const user = users.find((u: any) => u.id === id);
     if (user) {
-      setForm(user);
+      setForm({
+        id: user.id,
+        nombre: user.nombre,
+        correo: user.correo,
+        estado: user.estado ? 'true' : 'false',
+      });
       setEditing(true);
     }
   };
 
-  const handleDelete = (id: string) => {
-    setUsers(users.filter(u => u.id !== id));
-    if (editing && form.id === id) {
-      setForm({ id: '', name: '', email: '', role: 'usuario', status: 'activo' });
-      setEditing(false);
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await userService.deleteUser(id);
+      if (!response.success) setError(response.message || 'No se pudo eliminar el usuario');
+      await fetchUsers();
+      if (editing && form.id === id) {
+        setForm({ id: '', nombre: '', correo: '', estado: 'true' });
+        setEditing(false);
+      }
+    } catch (err) {
+      setError('Error al eliminar el usuario');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <h2>Gestión de Usuarios</h2>
-      </div>
-
+      <h2>Gestión de Usuarios</h2>
+      {loading && <p>Cargando usuarios...</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
       <div className={styles.formContainer}>
-        <form className={styles.form} onSubmit={handleAddUser}>
+        <form className={styles.form} onSubmit={handleAddOrEditUser}>
           <h3>{editing ? 'Editar Usuario' : 'Agregar Usuario'}</h3>
           <div className={styles.formGroup}>
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="nombre">Nombre</label>
             <input
-              id="name"
-              name="name"
+              id="nombre"
+              name="nombre"
               required
-              value={form.name}
-              onChange={handleInputChange}
               placeholder="Nombre completo"
+              value={form.nombre || ''}
+              onChange={handleInputChange}
             />
           </div>
           <div className={styles.formGroup}>
-            <label htmlFor="email">Correo</label>
+            <label htmlFor="correo">Correo</label>
             <input
-              id="email"
-              name="email"
+              id="correo"
+              name="correo"
               type="email"
-              required
-              value={form.email}
-              onChange={handleInputChange}
+              required={!editing}
               placeholder="Correo electrónico"
+              value={form.correo || ''}
+              onChange={handleInputChange}
+              disabled={editing}
             />
           </div>
+          {/* Campo de contraseña solo al agregar usuario */}
+          {!editing && (
+            <div className={styles.formGroup}>
+              <label htmlFor="password">Contraseña</label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                placeholder="Contraseña (mínimo 6 caracteres)"
+                value={form.password || ''}
+                onChange={handleInputChange}
+                minLength={6}
+              />
+            </div>
+          )}
           <div className={styles.formGroup}>
-            <label htmlFor="role">Rol</label>
+            <label htmlFor="estado">Estado</label>
             <select
-              id="role"
-              name="role"
-              value={form.role}
-              onChange={handleInputChange}
+              id="estado"
+              name="estado"
               required
-            >
-              <option value="usuario">Usuario</option>
-              <option value="admin">Administrador</option>
-            </select>
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="status">Estado</label>
-            <select
-              id="status"
-              name="status"
-              value={form.status}
+              value={form.estado}
               onChange={handleInputChange}
-              required
             >
-              <option value="activo">Activo</option>
-              <option value="inactivo">Inactivo</option>
+              <option value="true">Activo</option>
+              <option value="false">Inactivo</option>
             </select>
           </div>
           <div className={styles.formActions}>
@@ -128,7 +173,7 @@ export const UserManager = () => {
                 type="button"
                 className={styles.deleteButton}
                 onClick={() => {
-                  setForm({ id: '', name: '', email: '', role: 'usuario', status: 'activo' });
+                  setForm({ id: '', nombre: '', correo: '', estado: 'true' });
                   setEditing(false);
                 }}
               >
@@ -138,20 +183,19 @@ export const UserManager = () => {
           </div>
         </form>
       </div>
-
       <div className={styles.gamesList}>
-        {users.map(user => (
+        {users.map((user: any) => (
           <div key={user.id} className={styles.gameCard}>
             <div className={styles.gameContent}>
               <div className={styles.gameHeader}>
-                <h3>{user.name}</h3>
-                <span className={`${styles.status} ${user.status === 'activo' ? styles.published : styles.draft}`}>
-                  {user.status}
+                <h3>{user.nombre}</h3>
+                <span className={`${styles.status} ${user.estado ? styles.published : styles.draft}`}>
+                  {user.estado ? 'Activo' : 'Inactivo'}
                 </span>
               </div>
               <div className={styles.meta}>
-                <span>Correo: {user.email}</span>
-                <span>Rol: {user.role}</span>
+                <span>Correo: {user.correo}</span>
+                {/* Si tienes roles, puedes mostrar aquí el rol */}
               </div>
               <div className={styles.actions}>
                 <button className={styles.editButton} onClick={() => handleEdit(user.id)}>

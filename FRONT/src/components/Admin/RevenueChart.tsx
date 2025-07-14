@@ -1,86 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './RevenueChart.module.css';
+import { apiRequest } from '../../config/api';
 
-// Datos simulados para visualización frontend
-const mockRevenueData = [
-  { year: 2024, month: 'Ene', revenue: 15000, sales: 120 },
-  { year: 2024, month: 'Feb', revenue: 18000, sales: 150 },
-  { year: 2024, month: 'Mar', revenue: 22000, sales: 180 },
-  { year: 2024, month: 'Abr', revenue: 25000, sales: 200 },
-  { year: 2024, month: 'May', revenue: 28000, sales: 220 },
-  { year: 2024, month: 'Jun', revenue: 32000, sales: 250 },
-  { year: 2024, month: 'Jul', revenue: 35000, sales: 280 },
-  { year: 2024, month: 'Ago', revenue: 38000, sales: 300 },
-  { year: 2024, month: 'Sep', revenue: 42000, sales: 330 },
-  { year: 2024, month: 'Oct', revenue: 45000, sales: 350 },
-  { year: 2024, month: 'Nov', revenue: 48000, sales: 380 },
-  { year: 2024, month: 'Dic', revenue: 52000, sales: 400 },
-  // Datos para 2023
-  { year: 2023, month: 'Ene', revenue: 12000, sales: 100 },
-  { year: 2023, month: 'Feb', revenue: 14000, sales: 110 },
-  { year: 2023, month: 'Mar', revenue: 16000, sales: 130 },
-  { year: 2023, month: 'Abr', revenue: 17000, sales: 140 },
-  { year: 2023, month: 'May', revenue: 19000, sales: 150 },
-  { year: 2023, month: 'Jun', revenue: 21000, sales: 170 },
-  { year: 2023, month: 'Jul', revenue: 23000, sales: 180 },
-  { year: 2023, month: 'Ago', revenue: 25000, sales: 190 },
-  { year: 2023, month: 'Sep', revenue: 27000, sales: 200 },
-  { year: 2023, month: 'Oct', revenue: 29000, sales: 210 },
-  { year: 2023, month: 'Nov', revenue: 31000, sales: 220 },
-  { year: 2023, month: 'Dic', revenue: 33000, sales: 230 },
-];
-
-const years = Array.from(new Set(mockRevenueData.map(d => d.year))).sort((a, b) => b - a);
-
-const periods = [
-  { value: 'year', label: 'Este año' },
-  { value: 'month', label: 'Este mes' },
-  { value: 'week', label: 'Esta semana' }
-];
-
-function getFilteredData(year: number, period: string) {
-  let data = mockRevenueData.filter(d => d.year === year);
-
-  if (period === 'month') {
-    // Solo el último mes
-    const lastMonth = data[data.length - 1]?.month;
-    data = data.filter(d => d.month === lastMonth);
-  } else if (period === 'week') {
-    // Simula la última semana como el último mes dividido entre 4
-    const lastMonth = data[data.length - 1];
-    if (lastMonth) {
-      data = [{
-        ...lastMonth,
-        revenue: Math.round(lastMonth.revenue / 4),
-        sales: Math.round(lastMonth.sales / 4),
-        month: `${lastMonth.month} (sem)`
-      }];
-    }
-  }
-  // 'all' y 'year' muestran todo el año seleccionado
-  return data;
-}
+const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
 
 export const RevenueChart = () => {
-  const [selectedYear, setSelectedYear] = useState(years[0]);
-  const [selectedPeriod, setSelectedPeriod] = useState('all');
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [stats, setStats] = useState<any>(null);
+  const [prevStats, setPrevStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredData = getFilteredData(selectedYear, selectedPeriod);
+  useEffect(() => {
+    fetchStats(selectedYear);
+    fetchStats(selectedYear - 1, true);
+    // eslint-disable-next-line
+  }, [selectedYear]);
 
-  // Cálculos de estadísticas
-  const totalRevenue = filteredData.reduce((sum, d) => sum + d.revenue, 0);
-  const totalSales = filteredData.reduce((sum, d) => sum + d.sales, 0);
-  const avgOrderValue = totalSales ? (totalRevenue / totalSales) : 0;
+  const fetchStats = async (year: number, isPrev = false) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await apiRequest(`/api/analytics/summary?year=${year}`);
+      if (response.success) {
+        if (isPrev) setPrevStats(response.data);
+        else setStats(response.data);
+      } else {
+        setError('No se pudieron obtener los datos');
+      }
+    } catch (err) {
+      setError('Error al obtener los datos');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  // Simulación de tendencias (comparación con año anterior)
-  const prevYearData = getFilteredData(selectedYear - 1, selectedPeriod);
-  const prevRevenue = prevYearData.reduce((sum, d) => sum + d.revenue, 0);
-  const prevSales = prevYearData.reduce((sum, d) => sum + d.sales, 0);
-  const prevAvgOrderValue = prevSales ? (prevRevenue / prevSales) : 0;
+  if (loading && !stats) return <div className={styles.container}><p>Cargando...</p></div>;
+  if (error) return <div className={styles.container}><p style={{color:'red'}}>{error}</p></div>;
+  if (!stats) return null;
 
-  const revenueTrend = prevRevenue ? (((totalRevenue - prevRevenue) / prevRevenue) * 100).toFixed(1) : '0';
-  const salesTrend = prevSales ? (((totalSales - prevSales) / prevSales) * 100).toFixed(1) : '0';
-  const avgOrderTrend = prevAvgOrderValue ? (((avgOrderValue - prevAvgOrderValue) / prevAvgOrderValue) * 100).toFixed(1) : '0';
+  // Cálculos de tendencias
+  const revenueTrend = prevStats && prevStats.ingresosTotales ? (((stats.ingresosTotales - prevStats.ingresosTotales) / prevStats.ingresosTotales) * 100).toFixed(1) : '0';
+  const salesTrend = prevStats && prevStats.ventasTotales ? (((stats.ventasTotales - prevStats.ventasTotales) / prevStats.ventasTotales) * 100).toFixed(1) : '0';
+  const avgOrderTrend = prevStats && prevStats.valorPromedioOrden ? (((stats.valorPromedioOrden - prevStats.valorPromedioOrden) / prevStats.valorPromedioOrden) * 100).toFixed(1) : '0';
 
   return (
     <div className={styles.container}>
@@ -92,17 +55,8 @@ export const RevenueChart = () => {
             value={selectedYear}
             onChange={e => setSelectedYear(Number(e.target.value))}
           >
-            {years.map(y => (
+            {[currentYear, currentYear-1, currentYear-2].map(y => (
               <option key={y} value={y}>{y}</option>
-            ))}
-          </select>
-          <select
-            className={styles.select}
-            value={selectedPeriod}
-            onChange={e => setSelectedPeriod(e.target.value)}
-          >
-            {periods.map(p => (
-              <option key={p.value} value={p.value}>{p.label}</option>
             ))}
           </select>
         </div>
@@ -111,7 +65,7 @@ export const RevenueChart = () => {
       <div className={styles.stats}>
         <div className={styles.statCard}>
           <h3>Ingresos Totales</h3>
-          <p className={styles.value}>${totalRevenue.toLocaleString()}</p>
+          <p className={styles.value}>${stats.ingresosTotales.toLocaleString()}</p>
           <span className={`${styles.trend} ${Number(revenueTrend) >= 0 ? styles.positive : styles.negative}`}>
             {Number(revenueTrend) >= 0 ? '+' : ''}
             {revenueTrend}% respecto al año pasado
@@ -119,7 +73,7 @@ export const RevenueChart = () => {
         </div>
         <div className={styles.statCard}>
           <h3>Ventas Totales</h3>
-          <p className={styles.value}>{totalSales.toLocaleString()}</p>
+          <p className={styles.value}>{stats.ventasTotales.toLocaleString()}</p>
           <span className={`${styles.trend} ${Number(salesTrend) >= 0 ? styles.positive : styles.negative}`}>
             {Number(salesTrend) >= 0 ? '+' : ''}
             {salesTrend}% respecto al año pasado
@@ -127,7 +81,7 @@ export const RevenueChart = () => {
         </div>
         <div className={styles.statCard}>
           <h3>Valor Promedio de Orden</h3>
-          <p className={styles.value}>${avgOrderValue.toLocaleString(undefined, { maximumFractionDigits: 2 })}</p>
+          <p className={styles.value}>${stats.valorPromedioOrden.toLocaleString(undefined, { maximumFractionDigits: 2 })}</p>
           <span className={`${styles.trend} ${Number(avgOrderTrend) >= 0 ? styles.positive : styles.negative}`}>
             {Number(avgOrderTrend) >= 0 ? '+' : ''}
             {avgOrderTrend}% respecto al año pasado
@@ -150,21 +104,21 @@ export const RevenueChart = () => {
           </div>
         </div>
         <div className={styles.barChart}>
-          {filteredData.map((item) => (
-            <div key={item.month} className={styles.barGroup}>
+          {stats.monthlyData.map((item: any, idx: number) => (
+            <div key={months[idx]} className={styles.barGroup}>
               <div className={styles.bars}>
                 <div 
                   className={`${styles.bar} ${styles.revenueBar}`}
-                  style={{ height: `${(item.revenue / 52000) * 100}%` }}
-                  title={`Ingresos: $${item.revenue.toLocaleString()}`}
+                  style={{ height: `${stats.ingresosTotales ? (item.ingresos / Math.max(...stats.monthlyData.map((m:any)=>m.ingresos),1)) * 100 : 0}%` }}
+                  title={`Ingresos: $${item.ingresos.toLocaleString()}`}
                 />
                 <div 
                   className={`${styles.bar} ${styles.salesBar}`}
-                  style={{ height: `${(item.sales / 400) * 100}%` }}
-                  title={`Ventas: ${item.sales.toLocaleString()}`}
+                  style={{ height: `${stats.ventasTotales ? (item.ventas / Math.max(...stats.monthlyData.map((m:any)=>m.ventas),1)) * 100 : 0}%` }}
+                  title={`Ventas: ${item.ventas.toLocaleString()}`}
                 />
               </div>
-              <span className={styles.barLabel}>{item.month}</span>
+              <span className={styles.barLabel}>{months[idx]}</span>
             </div>
           ))}
         </div>

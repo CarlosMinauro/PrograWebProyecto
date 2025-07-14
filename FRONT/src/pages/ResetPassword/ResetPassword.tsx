@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './ResetPassword.module.css';
+import { useAuth } from '../../contexts/AuthContext';
+import { authService } from '../../services/api/authService';
 
 interface FormData {
   password: string;
@@ -14,6 +16,7 @@ interface FormErrors {
 
 export const ResetPassword = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [searchParams] = useSearchParams();
   const [formData, setFormData] = useState<FormData>({
     password: '',
@@ -64,25 +67,25 @@ export const ResetPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
     if (!validateForm()) {
       return;
     }
-
-    const oobCode = searchParams.get('oobCode');
-    if (!oobCode) {
+    const token = searchParams.get('token');
+    if (!token) {
       setError('El enlace de restablecimiento es inválido o ha expirado');
       return;
     }
-
     setIsLoading(true);
-
     try {
-      // Aquí se debería llamar a la función de confirmación de contraseña
-      // pero como no está disponible en AuthContextType, se simula el éxito
-      navigate('/login', { 
-        state: { message: 'La contraseña se ha restablecido correctamente. Por favor, inicia sesión con tu nueva contraseña.' }
-      });
+      const response = await authService.resetPassword(token, formData.password);
+      if (response.success) {
+        logout();
+        navigate('/login', {
+          state: { message: 'La contraseña se ha restablecido correctamente. Por favor, inicia sesión con tu nueva contraseña.' }
+        });
+      } else {
+        setError(response.error || 'No se pudo restablecer la contraseña.');
+      }
     } catch (err) {
       setError('No se pudo restablecer la contraseña. El enlace puede haber expirado.');
     } finally {

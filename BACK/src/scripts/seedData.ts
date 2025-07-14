@@ -219,6 +219,43 @@ async function seedData() {
       );
     }
 
+    // Insert test sales (ventas)
+    console.log('💸 Inserting test sales...');
+    const users = await query('SELECT id FROM usuario');
+    const juegos = await query('SELECT id, precio FROM juego');
+    const ventas = [];
+
+    const now = new Date();
+    for (let y = 2023; y <= now.getFullYear(); y++) {
+      for (let m = 1; m <= 12; m++) {
+        // Genera entre 2 y 5 ventas por mes
+        const numVentas = Math.floor(Math.random() * 4) + 2;
+        for (let v = 0; v < numVentas; v++) {
+          const user = users.rows[Math.floor(Math.random() * users.rows.length)];
+          const juego = juegos.rows[Math.floor(Math.random() * juegos.rows.length)];
+          // Fecha aleatoria dentro del mes
+          const day = Math.floor(Math.random() * 28) + 1;
+          const fecha = new Date(y, m - 1, day, 12, 0, 0);
+          const codigo = `VENTA-${y}${m}${v}${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
+          ventas.push({
+            fecha,
+            usuario_id: user.id,
+            juego_id: juego.id,
+            codigo,
+            monto_pagado: juego.precio
+          });
+        }
+      }
+    }
+
+    for (const venta of ventas) {
+      await query(
+        'INSERT INTO venta (fecha, usuario_id, juego_id, codigo, monto_pagado) VALUES ($1, $2, $3, $4, $5)',
+        [venta.fecha, venta.usuario_id, venta.juego_id, venta.codigo, venta.monto_pagado]
+      );
+    }
+    console.log(`💸 Inserted ${ventas.length} sales!`);
+
     console.log('✅ Database seeding completed successfully!');
     console.log('\n📋 Test Data Summary:');
     console.log('- Categories:', categories.rows.length);

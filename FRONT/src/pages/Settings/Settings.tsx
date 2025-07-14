@@ -3,6 +3,9 @@
 
 import { useState } from 'react';
 import styles from './Settings.module.css';
+import { useAuth } from '../../contexts/AuthContext';
+import { authService } from '../../services/api/authService';
+import { userService } from '../../services/api/userService';
 
 interface UserData {
   name: string;
@@ -13,9 +16,10 @@ interface UserData {
 }
 
 export const Settings = () => {
+  // Aquí deberías obtener los datos reales del usuario desde la API
   const [userData, setUserData] = useState<UserData>({
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: '',
+    email: '',
     currentPassword: '',
     newPassword: '',
     confirmPassword: ''
@@ -23,6 +27,8 @@ export const Settings = () => {
 
   const [activeTab, setActiveTab] = useState<'profile' | 'security'>('profile');
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+
+  const { logout } = useAuth();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,17 +38,31 @@ export const Settings = () => {
     }));
   };
 
-  const handleProfileUpdate = (e: React.FormEvent) => {
+  const handleProfileUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock profile update
-    console.log('Updating profile:', { name: userData.name, email: userData.email });
-    setMessage({
-      type: 'success',
-      text: '¡Perfil actualizado exitosamente!'
-    });
+    try {
+      const response = await userService.updateProfile({ nombre: userData.name, correo: userData.email });
+      if (response.success) {
+        setMessage({
+          type: 'success',
+          text: '¡Perfil actualizado exitosamente! Por seguridad, vuelve a iniciar sesión.'
+        });
+        logout();
+      } else {
+        setMessage({
+          type: 'error',
+          text: response.error || 'No se pudo actualizar el perfil.'
+        });
+      }
+    } catch (err) {
+      setMessage({
+        type: 'error',
+        text: 'No se pudo actualizar el perfil. Intenta de nuevo.'
+      });
+    }
   };
 
-  const handlePasswordUpdate = (e: React.FormEvent) => {
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     if (userData.newPassword !== userData.confirmPassword) {
       setMessage({
@@ -51,18 +71,32 @@ export const Settings = () => {
       });
       return;
     }
-    // Mock password update
-    console.log('Actualizar Contraseña:', { currentPassword: userData.currentPassword, newPassword: userData.newPassword });
-    setMessage({
-      type: 'success',
-      text: '¡Contraseña actualizada exitosamente!'
-    });
-    setUserData(prev => ({
-      ...prev,
-      currentPassword: '',
-      newPassword: '',
-      confirmPassword: ''
-    }));
+    try {
+      const response = await authService.directResetPassword(userData.email, userData.newPassword);
+      if (response.success) {
+        setMessage({
+          type: 'success',
+          text: '¡Contraseña actualizada exitosamente!'
+        });
+        setUserData(prev => ({
+          ...prev,
+          currentPassword: '',
+          newPassword: '',
+          confirmPassword: ''
+        }));
+        logout();
+      } else {
+        setMessage({
+          type: 'error',
+          text: response.error || 'No se pudo actualizar la contraseña.'
+        });
+      }
+    } catch (err) {
+      setMessage({
+        type: 'error',
+        text: 'No se pudo actualizar la contraseña. Intenta de nuevo.'
+      });
+    }
   };
 
   return (

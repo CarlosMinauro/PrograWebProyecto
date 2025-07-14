@@ -48,6 +48,8 @@ export const API_ENDPOINTS = {
   LOGIN: `${config.API_BASE_URL}/auth/login`,
   REGISTER: `${config.API_BASE_URL}/auth/register`,
   ME: `${config.API_BASE_URL}/auth/me`,
+  RESET_PASSWORD: `${config.API_BASE_URL}/auth/reset-password`,
+  DIRECT_RESET_PASSWORD: `${config.API_BASE_URL}/auth/direct-reset-password`,
   
   // Games
   GAMES: `${config.API_BASE_URL}/games`,
@@ -70,4 +72,6 @@ export const API_ENDPOINTS = {
   REVIEWS: `${config.API_BASE_URL}/reviews`,
   REVIEWS_BY_GAME: (gameId: string) => `${config.API_BASE_URL}/reviews/game/${gameId}`,
   REVIEW_BY_ID: (id: string) => `${config.API_BASE_URL}/reviews/${id}`,
+  CATEGORIES: `${config.API_BASE_URL}/categories`,
+  PLATFORMS: `${config.API_BASE_URL}/platforms`,
 }; 

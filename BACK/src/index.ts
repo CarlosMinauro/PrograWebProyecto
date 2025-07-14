@@ -10,6 +10,7 @@ import newsRoutes from './routes/news';
 import userRoutes from './routes/users';
 import orderRoutes from './routes/orders';
 import reviewRoutes from './routes/reviews';
+import metadataRoutes from './routes/metadata';
 import { errorHandler } from './middleware/errorHandler';
 
 // Load environment variables
@@ -39,6 +40,7 @@ app.use('/api/news', newsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api', metadataRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -1,69 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './NewsManager.module.css';
 import { auto } from '@popperjs/core';
 import { AuthProvider } from '../../contexts/AuthContext';
-
-// Mock data for frontend visualization only
-const initialNews = [
-  {
-    id: '1',
-    title: 'Ha salido un nuevo Doom: Doom: The Dark Ages',
-    description: 'Experiencia el futuro del gaming con este juego...',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/en/7/7f/DOOM%2C_The_Dark_Ages_Game_Cover.jpeg',
-    date: '2025-03-15',
-    author: 'John Doe',
-    status: 'published'
-  },
-  {
-    id: '2',
-    title: '¡Pronto iniciará nuestra venta de verano!',
-    description: 'Preparense para nuestras mejores ofertas del año...',
-    imageUrl: 'https://img.freepik.com/vector-gratis/proximamente-fondo-diseno-efecto-luz-enfoque_1017-27277.jpg?semt=ais_hybrid&w=740',
-    date: '2025-03-14',
-    author: 'Jane Smith',
-    status: 'draft'
-  },
-  {
-    id: '3',
-    title: 'Nuevos juegos de playstation 5 llegan este mes',
-    description: 'Descubre los nuevos lanzamientos de juegos para PS5 que llegarán este mes...',
-    imageUrl: 'https://cdn.mos.cms.futurecdn.net/TuKryVEAvYRxzSaUaVcfBW-970-80.jpg.webp',
-    date: '2025-03-13',
-    author: 'john doe',
-    status: 'published'
-  },
-  {
-    id: '4',
-    title: 'Rumores sobre Nintendo Switch Pro: Lo que sabemos',
-    description: 'Los últimos rumores sobre la próxima Nintendo Switch Pro y lo que podría significar para la comunidad gamer.',
-    imageUrl: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/12/nintendo-switch-pro-rumors.jpg?q=50&fit=crop&w=1140&h=&dpr=1.5',
-    date: '2025-03-12',
-    author : 'Jane Smith',
-    status: 'published'
-  },
-  {
-    id: '5',
-    title: 'PC Gaming: El auge de los juegos indie',
-    description: 'Cómo los juegos indie están moldeando el futuro del gaming en PC y qué esperar en los próximos meses',    
-    imageUrl: '../public/images/news/pc new.png',
-    date: '2024-03-11',
-    author : 'John Doe',
-    status: 'published'
-  }
-];
+import { newsService } from '../../services/api/newsService';
 
 export const NewsManager = () => {
-  const [news, setNews] = useState(initialNews);
+  const [news, setNews] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState({
-    title: '',
-    description: '',
-    imageUrl: '',
-    status: 'draft',
-    author: '',
-    date: ''
+    titulo: '',
+    texto: '',
+    imageUrl: '', // No se usa en backend, pero lo dejamos para el formulario
+    status: 'draft', // No se usa en backend, pero lo dejamos para el formulario
+    author: '', // No se usa en backend, pero lo dejamos para el formulario
+    date: '' // No se usa en backend, pero lo dejamos para el formulario
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+  const fetchNews = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await newsService.getNews();
+      if (response.success) {
+        setNews(response.data);
+      } else {
+        setError('No se pudieron obtener las noticias');
+      }
+    } catch (err) {
+      setError('Error al obtener las noticias');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Centrar el formulario
   const centerFormStyle = {
@@ -76,70 +51,69 @@ export const NewsManager = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleAddOrEditNews = (e: React.FormEvent) => {
+  const handleAddOrEditNews = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.title || !form.description || !form.imageUrl || !form.status) {
-      alert('Por favor, completa todos los campos.');
-      return;
-    }
-    if (editingId) {
-      setNews(news.map(n =>
-        n.id === editingId
-          ? { ...n, ...form }
-          : n
-      ));
+    setLoading(true);
+    setError(null);
+    try {
+      if (editingId) {
+        // Editar noticia
+        const response = await newsService.updateNews(editingId, {
+          titulo: form.titulo,
+          texto: form.texto,
+        });
+        if (!response.success) setError(response.message || 'No se pudo editar la noticia');
+      } else {
+        // Agregar noticia
+        const response = await newsService.createNews({
+          titulo: form.titulo,
+          texto: form.texto,
+        });
+        if (!response.success) setError(response.message || 'No se pudo agregar la noticia');
+      }
+      await fetchNews();
+      setForm({ titulo: '', texto: '', imageUrl: '', status: 'draft', author: '', date: '' });
       setEditingId(null);
-    } else {
-      setNews([
-        ...news,
-        {
-          id: (Date.now() + Math.random()).toString(),
-          ...form,
-          author: form.author || 'Admin',
-          date: new Date().toISOString().slice(0, 10)
-        }
-      ]);
+      setShowForm(false);
+    } catch (err) {
+      setError('Error al guardar la noticia');
+    } finally {
+      setLoading(false);
     }
-    setForm({
-      title: '',
-      description: '',
-      imageUrl: '',
-      status: 'draft',
-      author: '',
-      date: ''
-    });
-    setShowForm(false);
   };
 
   const handleEdit = (id: string) => {
-    const noticia = news.find(n => n.id === id);
+    const noticia = news.find((n: any) => n.id === id);
     if (noticia) {
       setForm({
-        title: noticia.title,
-        description: noticia.description,
-        imageUrl: noticia.imageUrl,
-        status: noticia.status,
-        author: noticia.author,
-        date: noticia.date
+        titulo: noticia.titulo,
+        texto: noticia.texto,
+        imageUrl: '',
+        status: noticia.activo ? 'published' : 'draft',
+        author: '',
+        date: ''
       });
       setEditingId(id);
       setShowForm(true);
     }
   };
 
-  const handleDelete = (id: string) => {
-    setNews(news.filter(n => n.id !== id));
-    if (editingId === id) {
-      setEditingId(null);
-      setForm({
-        title: '',
-        description: '',
-        imageUrl: '',
-        status: 'draft',
-        author: '',
-        date: ''
-      });
-      setShowForm(false);
+  const handleDelete = async (id: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await newsService.deleteNews(id);
+      if (!response.success) setError(response.message || 'No se pudo eliminar la noticia');
+      await fetchNews();
+      if (editingId === id) {
+        setEditingId(null);
+        setForm({ titulo: '', texto: '', imageUrl: '', status: 'draft', author: '', date: '' });
+        setShowForm(false);
+      }
+    } catch (err) {
+      setError('Error al eliminar la noticia');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -153,8 +127,8 @@ export const NewsManager = () => {
             setShowForm(true);
             setEditingId(null);
             setForm({
-              title: '',
-              description: '',
+              titulo: '',
+              texto: '',
               imageUrl: '',
               status: 'draft',
               author: '',
@@ -171,27 +145,27 @@ export const NewsManager = () => {
           <form className={styles.form} onSubmit={handleAddOrEditNews}>
             <h3>{editingId ? 'Editar Noticia' : 'Agregar Noticia'}</h3>
             <div className={styles.formGroup}>
-              <label htmlFor="title">Título</label>
+              <label htmlFor="titulo">Título</label>
               <input
                 type="text"
-                id="title"
-                name="title"
+                id="titulo"
+                name="titulo"
                 required
                 placeholder="Ingresa el título de la noticia"
-                value={form.title}
+                value={form.titulo}
                 onChange={handleFormChange}
               />
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="description">Descripción</label>
+              <label htmlFor="texto">Descripción</label>
               <textarea
-                id="description"
-                name="description"
+                id="texto"
+                name="texto"
                 required
                 rows={4}
                 placeholder="Ingresa la descripción de la noticia"
-                value={form.description}
+                value={form.texto}
                 onChange={handleFormChange}
               />
             </div>
@@ -231,8 +205,8 @@ export const NewsManager = () => {
                   setShowForm(false);
                   setEditingId(null);
                   setForm({
-                    title: '',
-                    description: '',
+                    titulo: '',
+                    texto: '',
                     imageUrl: '',
                     status: 'draft',
                     author: '',
@@ -251,19 +225,19 @@ export const NewsManager = () => {
       )}
 
       <div className={styles.newsList}>
-        {news.map(item => (
+        {news.map((item: any) => (
           <div key={item.id} className={styles.newsCard}>
             <div className={styles.newsImage}>
-              <img src={item.imageUrl} alt={item.title} />
+              <img src={item.imageUrl} alt={item.titulo} />
             </div>
             <div className={styles.newsContent}>
               <div className={styles.newsHeader}>
-                <h3>{item.title}</h3>
-                <span className={`${styles.status} ${styles[item.status]}`}>
-                  {item.status === 'published' ? 'Publicado' : 'Borrador'}
+                <h3>{item.titulo}</h3>
+                <span className={`${styles.status} ${styles[item.activo ? 'published' : 'draft']}`}>
+                  {item.activo ? 'Publicado' : 'Borrador'}
                 </span>
               </div>
-              <p className={styles.description}>{item.description}</p>
+              <p className={styles.description}>{item.texto}</p>
               <div className={styles.newsMeta}>
                 <span>Por {item.author}</span>
                 <span>•</span>

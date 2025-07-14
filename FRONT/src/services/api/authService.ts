@@ -55,4 +55,20 @@ export const authService = {
   getToken(): string | null {
     return localStorage.getItem('token');
   },
+
+  // Reset password with token
+  async resetPassword(token: string, password: string) {
+    return await apiRequest(API_ENDPOINTS.RESET_PASSWORD, {
+      method: 'POST',
+      body: JSON.stringify({ token, password }),
+    });
+  },
+
+  // Direct reset password (from profile, with email)
+  async directResetPassword(correo: string, password: string) {
+    return await apiRequest(API_ENDPOINTS.DIRECT_RESET_PASSWORD, {
+      method: 'POST',
+      body: JSON.stringify({ correo, password }),
+    });
+  },
 }; 
